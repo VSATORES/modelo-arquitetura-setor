@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Modelo · Arquitetura de Processos por Setor</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+ color-scheme:light;
+ --bg:oklch(96.5% .012 260);--paper:oklch(99.4% .003 250);
+ --ink:oklch(24% .02 255);--ink2:oklch(42% .018 255);--ink3:oklch(58% .014 255);
+ --line:oklch(89% .01 255);--soft:oklch(95% .012 260);
+ --blue:oklch(48% .21 258);--bluebg:oklch(95% .03 258);
+ --teal:oklch(47% .1 200);--tealbg:oklch(95.5% .03 200);
+ --amber:oklch(55% .12 70);--amberbg:oklch(95.5% .04 80);
+ --green:oklch(50% .11 155);--greenbg:oklch(95.5% .035 155);
+ --red:oklch(52% .17 27);--redbg:oklch(95.5% .03 27);
+ --violet:oklch(48% .16 300);--violetbg:oklch(95.5% .03 300);
+ --navy:oklch(19% .05 260);--coral:oklch(70% .17 32);
+ --hero-fg:oklch(94% .01 260);--hero-muted:oklch(72% .02 260);--hero-line:oklch(35% .04 260);
+ --sans:"Bricolage Grotesque",system-ui,sans-serif;--serif:Literata,Georgia,serif;--mono:ui-monospace,"Cascadia Mono",Consolas,monospace;
+}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:400 15px/1.55 var(--sans)}
+
+.hero{background:var(--navy);color:var(--hero-fg);padding:28px 24px 40px}
+.hero-inner{max-width:1200px;margin:0 auto}
+.masthead{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:12px;border-bottom:1px solid var(--hero-line);margin-bottom:24px;padding-bottom:12px}
+.wordmark{font:700 14px/1 var(--sans);letter-spacing:.14em;color:var(--paper);display:flex;align-items:center;gap:12px;text-transform:uppercase;flex-wrap:wrap}
+.wordmark span:not(.sz-logo):not(.sz-house){color:var(--hero-muted);font-weight:500}
+.sz-logo{display:inline-flex;align-items:center;gap:2px;font:700 30px/1 var(--sans);letter-spacing:-.04em;text-transform:none}
+.sz-house{display:inline-block;width:.82em;height:.84em;margin-inline:1px;vertical-align:-.04em}
+.mast-date{font:500 13px/1 var(--sans);color:var(--hero-muted);letter-spacing:.06em;text-transform:uppercase}
+.eyebrow{font:700 12px/1.3 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--coral);display:block}
+h1{font:700 clamp(30px,4vw,46px)/1.06 var(--sans);letter-spacing:-.01em;margin:12px 0 16px;color:var(--paper);text-wrap:balance;max-width:28ch}
+.lede{font:400 18px/1.55 var(--serif);max-width:72ch;color:var(--hero-fg);margin:0}
+.sub{font:700 13px/1.3 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--coral);margin:16px 0 0}
+
+.wrap{max-width:1200px;margin:0 auto;padding:28px 24px 60px;display:flex;flex-direction:column;gap:28px}
+.toc{background:var(--paper);border-radius:10px;padding:16px 20px;box-shadow:0 2px 12px oklch(20% .05 260 / .06)}
+.toc h2{margin:0 0 10px;font:700 14px/1 var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--ink3)}
+.toc ol{margin:0;padding-left:20px;columns:2;column-gap:40px;font-size:14px}
+.toc li{margin-bottom:6px;break-inside:avoid}
+.toc a{color:var(--blue);text-decoration:none}
+.toc a:hover{text-decoration:underline}
+
+section.block{background:var(--paper);border-radius:12px;padding:22px 24px;box-shadow:0 2px 12px oklch(20% .05 260 / .06),0 1px 3px oklch(20% .05 260 / .04);display:grid;grid-template-columns:120px 1fr;gap:20px}
+section.block > .idx{font:700 44px/1 var(--sans);letter-spacing:-.02em;color:var(--coral);font-variant-numeric:tabular-nums}
+section.block > .body{min-width:0}
+section.block h3{margin:0 0 6px;font:700 22px/1.2 var(--sans);letter-spacing:-.01em;color:var(--ink)}
+section.block .kicker{font:700 11px/1 var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--blue);display:block;margin-bottom:6px}
+section.block .what{font:400 15px/1.55 var(--serif);color:var(--ink2);margin:0 0 14px;max-width:70ch}
+
+.subh{font:700 12px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin:16px 0 8px}
+ul.spec{margin:0;padding-left:18px;font-size:14px;color:var(--ink);display:flex;flex-direction:column;gap:4px}
+ul.spec li b{color:var(--ink);font-weight:700}
+ul.spec code{font-family:var(--mono);font-size:12.5px;background:var(--soft);padding:1px 5px;border-radius:3px;color:var(--ink2)}
+
+.ex{background:var(--soft);border-left:3px solid var(--blue);border-radius:0 8px 8px 0;padding:10px 14px;margin-top:10px;font:400 14px/1.5 var(--serif);color:var(--ink2)}
+.ex b{color:var(--ink);font-weight:700;font-family:var(--sans)}
+
+.chklist{background:oklch(96% .03 32);border-radius:8px;padding:14px 16px;margin-top:14px}
+.chklist .ct{font:700 11px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--coral);margin-bottom:8px}
+.chklist ul{margin:0;padding-left:20px;font-size:13.5px;color:var(--ink2)}
+.chklist li{margin-bottom:4px}
+
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:14px}
+.rule{background:var(--soft);border-radius:8px;padding:12px 14px}
+.rule .rt{font:700 11px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:4px}
+.rule .rv{font-size:13.5px;color:var(--ink);line-height:1.5}
+.rule.ok{background:var(--greenbg)}
+.rule.ok .rt{color:var(--green)}
+.rule.warn{background:var(--amberbg)}
+.rule.warn .rt{color:var(--amber)}
+.rule.no{background:var(--redbg)}
+.rule.no .rt{color:var(--red)}
+
+.badge{font:700 10px/1 var(--sans);letter-spacing:.05em;text-transform:uppercase;padding:4px 7px;border-radius:4px;white-space:nowrap;display:inline-block}
+.badge.auto{color:var(--green);background:var(--greenbg)}
+.badge.misto{color:var(--amber);background:var(--amberbg)}
+.badge.manual{color:var(--red);background:var(--redbg)}
+.badge.i0{color:var(--ink3);background:var(--paper);border:1px solid var(--line)}
+.badge.i1{color:var(--violet);background:var(--paper);border:1px solid var(--violet)}
+.badge.i2{color:var(--paper);background:var(--violet)}
+.badge.ex{color:var(--ink2);background:var(--soft)}
+.badge.imp{color:var(--coral);background:var(--paper);border:1px dashed var(--coral)}
+.badge.chk{color:var(--amber);background:var(--paper);border:1px solid var(--amber)}
+
+pre{background:var(--navy);color:var(--hero-fg);border-radius:8px;padding:14px 16px;font:400 12.5px/1.55 var(--mono);overflow:auto;margin:12px 0 0}
+pre .k{color:oklch(80% .14 70)}
+pre .s{color:oklch(78% .13 155)}
+pre .c{color:var(--hero-muted);font-style:italic}
+
+.instfoot{margin-top:40px;padding-top:20px;border-top:2px solid var(--ink);display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px}
+.instfoot .wm{font:700 14px/1.4 var(--sans);letter-spacing:.14em;color:var(--blue);text-transform:uppercase}
+.instfoot .wm .sz-logo{color:var(--navy);font-size:22px}
+.instfoot .wm>span:not(.sz-logo){display:block;color:var(--ink2);font-weight:500;letter-spacing:.08em;font-size:12px;margin-top:4px}
+.instfoot .who{font-size:13px;color:var(--ink3);text-align:right;line-height:1.6}
+.instfoot .who b{color:var(--ink);font-weight:700;font-size:14px;display:block}
+
+@media (max-width:720px){
+ section.block{grid-template-columns:1fr}
+ section.block > .idx{font-size:28px}
+ .toc ol{columns:1}
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+ <div class="hero-inner">
+  <div class="masthead">
+   <div class="wordmark"><span class="sz-logo" role="img" aria-label="Seazone">sea<span class="sz-house"><svg viewBox="0 0 564 575" xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true"><path d="M543.226 178.172L442.93 119.392C443.194 117.952 443.72 116.643 443.72 115.203V26.5752C443.72 11.913 431.743 0 417.001 0H363.562C348.821 0 336.843 11.913 336.843 26.5752V57.6015L300.516 36.3936C285.774 27.6225 266.294 29.0626 252.605 39.1428C252.342 39.2737 252.079 39.2737 251.947 39.4046L20.951 172.543C1.73419 183.932 -6.29474 210.507 5.55122 230.406C17.9237 251.09 45.301 256.588 64.5178 245.199L78.3381 237.213C62.017 269.025 51.7505 305.026 51.7505 344.169C51.7505 406.221 75.7056 467.226 119.799 511.344C137.173 528.624 157.443 543.156 179.555 553.759C196.666 562.007 214.567 568.814 233.257 572.218C258.002 576.669 283.8 574.444 308.808 574.444C335.922 574.444 363.036 574.444 390.018 574.444C414.5 574.444 439.113 574.575 463.99 574.575C470.176 574.575 476.231 573.004 481.759 570.254C488.866 566.72 492.947 562.792 497.685 556.509C502.95 549.57 506.635 541.061 506.635 532.159V252.923C525.062 259.599 547.306 253.839 558.363 235.511C570.34 215.613 562.311 189.038 542.963 177.648L543.226 178.172ZM427.794 348.751C427.794 433.582 370.012 502.573 282.878 502.573C195.745 502.573 131.777 429.131 131.777 344.3C131.777 259.468 195.745 188.776 282.878 188.776C370.012 188.776 427.794 254.232 427.794 338.147V348.751Z" fill="#EB615E"/></svg></span>zone</span><span>· Franquias · Modelo</span></div>
+   <span class="mast-date">v1 · 15/10/2026</span>
+  </div>
+  <span class="eyebrow">Padrão BackOffice Franquias</span>
+  <h1>Modelo de Arquitetura de Processos por Setor</h1>
+  <p class="lede">O que cada setor (Qualidade, Administrativo e Financeiro, Manutenção, Fornecedores) precisa ter numa página só: trilhas de macroprocesso, lanes de gestão e suporte, agentes e rotinas, interface com a Implantação e pontos a validar. Modelo original: Vic (Qualidade) · replicado por Henry (Fornecedores).</p>
+  <p class="sub">8 blocos · 2 abas · navegação por hover e clique</p>
+ </div>
+</section>
+
+<div class="wrap">
+
+<nav class="toc">
+ <h2>Blocos do modelo</h2>
+ <ol>
+  <li><a href="#b1">Hero (cabeçalho navy)</a></li>
+  <li><a href="#b2">Panel de resumo</a></li>
+  <li><a href="#b3">Trilhas de macroprocesso</a></li>
+  <li><a href="#b4">Lanes de Gestão e Suporte</a></li>
+  <li><a href="#b5">Agentes, extensões e rotinas</a></li>
+  <li><a href="#b6">Legendas (5 linhas)</a></li>
+  <li><a href="#b7">Popover interativo</a></li>
+  <li><a href="#b8">Footer institucional</a></li>
+  <li><a href="#reg">Regras de ouro do modelo</a></li>
+  <li><a href="#tax">Taxonomia (modos, IA, interfaces)</a></li>
+  <li><a href="#use">Como usar o template</a></li>
+ </ol>
+</nav>
+
+<section class="block" id="b1">
+ <div class="idx">01</div>
+ <div class="body">
+  <span class="kicker">Topo da página</span>
+  <h3>Hero navy (cabeçalho institucional)</h3>
+  <p class="what">Dá nome e missão ao setor em 3 segundos. É o único bloco que a liderança lê inteiro antes de rolar.</p>
+  <div class="subh">O que precisa ter</div>
+  <ul class="spec">
+   <li><b>Wordmark Seazone</b> + nome do setor (ex.: <code>Franquias · Qualidade</code>)</li>
+   <li><b>Versão e data</b> no canto direito (<code>Rascunho v1 · 14/10/2026</code>)</li>
+   <li><b>Eyebrow coral</b> fixa: <code>Arquitetura de processos</code></li>
+   <li><b>H1</b> com o nome do setor (sem "da Seazone", sem adjetivo)</li>
+   <li><b>Lede</b> (parágrafo serifa) com a missão do setor em 1-2 frases</li>
+   <li><b>Tagline</b> coral curta, 3-6 palavras memoráveis</li>
+  </ul>
+  <div class="ex"><b>Fornecedores:</b> "Fornecedores certos, itens no padrão e parceria que dura."<br><b>Qualidade:</b> "Padrão medido, desvio tratado, franquia alinhada." (exemplo)</div>
+ </div>
+</section>
+
+<section class="block" id="b2">
+ <div class="idx">02</div>
+ <div class="body">
+  <span class="kicker">Logo abaixo do hero</span>
+  <h3>Panel de resumo (números do setor)</h3>
+  <p class="what">Grade de contadores que a liderança usa pra calibrar o tamanho e a maturidade do setor sem precisar abrir cada macroprocesso.</p>
+  <div class="subh">O que o painel conta sozinho (vem do JS)</div>
+  <ul class="spec">
+   <li><b>Fluxo principal:</b> N processos em X trilhas · Y de gestão e suporte</li>
+   <li><b>Execução:</b> <span class="badge auto">Automático</span> · <span class="badge misto">Misto</span> · <span class="badge manual">Manual</span></li>
+   <li><b>Uso de IA:</b> <span class="badge i0">Sem IA</span> · <span class="badge i1">IA assiste</span> · <span class="badge i2">IA executa</span></li>
+   <li><b>Quem executa:</b> <span class="badge ex">Sistema</span> · <span class="badge ex">Agente</span> · <span class="badge ex">Pessoa</span></li>
+   <li><b>Interface com Implantação:</b> <span class="badge imp">← recebe</span> · <span class="badge imp">→ envia</span> · <span class="badge chk">Validar</span></li>
+  </ul>
+  <div class="chklist"><div class="ct">Regra</div><ul><li>O painel NÃO se preenche à mão. Preencher os arrays <code>TRAILS</code>, <code>LANES</code> e <code>AUTOS</code> e os números aparecem.</li></ul></div>
+ </div>
+</section>
+
+<section class="block" id="b3">
+ <div class="idx">03</div>
+ <div class="body">
+  <span class="kicker">Aba 1 · Arquitetura · núcleo do documento</span>
+  <h3>Trilhas de macroprocesso</h3>
+  <p class="what">Cada trilha é uma linha horizontal com N colunas (uma por macroprocesso MPx). Cada coluna tem um cabeçalho colorido (o MP) e abaixo as etapas em sequência. A última coluna é um bloco navy com a cadeia de valor da trilha.</p>
+
+  <div class="subh">O que uma trilha precisa ter</div>
+  <ul class="spec">
+   <li><b>Badge e nome</b> (<code>Trilha 1 · Prestadores de serviço</code>)</li>
+   <li><b>Objetivo</b> da trilha em 1 frase (serifa, cinza)</li>
+   <li><b>N colunas de macroprocesso</b> ligadas por seta horizontal</li>
+   <li><b>Value box navy</b> no fim com os marcos de valor (<code>Cidade coberta → Imóvel ativado → Taxa real</code>)</li>
+  </ul>
+
+  <div class="subh">O que uma coluna (macroprocesso) precisa ter</div>
+  <ul class="spec">
+   <li><b>Cabeçalho colorido</b> clicável: <code>MP1 · Prospectar</code> + nome + objetivo + entrega</li>
+   <li><b>Etapas em cards</b> (<code>1.1 → 1.2 → 1.3</code>) ligados por seta pra baixo</li>
+   <li>Cada etapa carrega 3 tags obrigatórias: <span class="badge auto">modo</span> <span class="badge i2">IA</span> <span class="badge ex">quem executa</span></li>
+   <li>Tags condicionais: <span class="badge imp">→ Implantação</span> e <span class="badge chk">Validar</span></li>
+  </ul>
+
+  <div class="ex"><b>Quando usar 2 trilhas:</b> só quando o setor roda dois fluxos independentes de verdade (ex.: Fornecedores tem prestadores de serviço E fornecedores de venda, com público, contrato e fechamento diferentes). Para Administrativo e Financeiro, provavelmente 1 trilha. Para Manutenção, 1 trilha com talvez uma gestão forte.</div>
+ </div>
+</section>
+
+<section class="block" id="b4">
+ <div class="idx">04</div>
+ <div class="body">
+  <span class="kicker">Aba 1 · Arquitetura · base do fluxo</span>
+  <h3>Lanes de Gestão e Suporte</h3>
+  <p class="what">Faixas horizontais abaixo das trilhas que sustentam o fluxo principal. Gestão (navy) é o que o coordenador faz pra manter o setor funcionando. Suporte (cinza) são as ferramentas que o setor cuida.</p>
+
+  <div class="subh">Grupos padrão de Gestão</div>
+  <ul class="spec">
+   <li><b>Manter o padrão</b> — tabelas, critérios, contratos, documentação</li>
+   <li><b>Medir resultados</b> — KPIs, relatórios, análises sob demanda</li>
+   <li><b>Gerir demandas</b> — registrar, priorizar, executar, validar</li>
+   <li><b>Eventos e patrocínios</b> — exceção, só se o setor tem</li>
+  </ul>
+
+  <div class="subh">Grupo padrão de Suporte</div>
+  <ul class="spec">
+   <li><b>Manter as ferramentas</b> — artefatos, integrações, agentes do setor</li>
+  </ul>
+
+  <div class="ex"><b>Visual:</b> Gestão ocupa 3/4 da largura · Suporte ocupa 1/4. Etapas aparecem como chips verticais empilhados, não como colunas. Clique no chip abre o popover.</div>
+ </div>
+</section>
+
+<section class="block" id="b5">
+ <div class="idx">05</div>
+ <div class="body">
+  <span class="kicker">Aba 2 · painel violeta</span>
+  <h3>Agentes, extensões, skills e rotinas</h3>
+  <p class="what">Mora numa aba separada da Arquitetura. Catálogo de tudo que roda sozinho ou é rodado pelo time. Cada card referencia as etapas que atende (botão clicável que abre o popover da etapa, sem precisar trocar de aba).</p>
+
+  <div class="subh">4 grupos obrigatórios</div>
+  <ul class="spec">
+   <li><b>Agentes e bots</b> — rodam sozinhos (Olimpo, GitHub Actions, cron). IDs <code>A1, A2...</code></li>
+   <li><b>Extensão</b> — rodam dentro de outra interface (ex.: copiloto na SIA). IDs <code>E1...</code></li>
+   <li><b>Skills (rodadas pelo time)</b> — Claude Code sob demanda. IDs <code>S1...</code></li>
+   <li><b>Rotinas fixas</b> — fechamento mensal, lançamento de KPIs, MCPs. IDs <code>R1...</code></li>
+  </ul>
+
+  <div class="subh">Cada card precisa ter</div>
+  <ul class="spec">
+   <li>ID + nome</li>
+   <li>Status: <span class="badge" style="color:var(--green);background:var(--greenbg)">No ar</span> <span class="badge" style="color:var(--amber);background:var(--amberbg)">Em validação</span> <span class="badge" style="color:var(--ink2);background:var(--soft)">Em desenho</span> <span class="badge" style="color:var(--blue);background:var(--bluebg)">Sob demanda</span></li>
+   <li>Frequência (<code>Olimpo · 11h, 15h e 17h</code>)</li>
+   <li>Objetivo em 1 frase</li>
+   <li>Lista de etapas atendidas (botões clicáveis <code>1.4</code> <code>5.1</code>)</li>
+  </ul>
+ </div>
+</section>
+
+<section class="block" id="b6">
+ <div class="idx">06</div>
+ <div class="body">
+  <span class="kicker">Rodapé do fluxo</span>
+  <h3>Legendas (5 linhas)</h3>
+  <p class="what">Explicam a semântica das tags. Não editar — são padrão BackOffice. Só ajustar a última se o setor tem 1 trilha só.</p>
+
+  <ul class="spec">
+   <li><b>Linha 1 · Modo</b> — Automático / Misto / Manual</li>
+   <li><b>Linha 2 · IA</b> — Sem IA / IA assiste / IA executa</li>
+   <li><b>Linha 3 · Executor</b> — Sistema / Agente / Pessoa</li>
+   <li><b>Linha 4 · Implantação</b> — recebe / envia / Validar</li>
+   <li><b>Linha 5 · Cores das trilhas</b> — azul = Trilha 1, teal = Trilha 2, navy = Gestão, cinza = Suporte</li>
+  </ul>
+ </div>
+</section>
+
+<section class="block" id="b7">
+ <div class="idx">07</div>
+ <div class="body">
+  <span class="kicker">Interatividade</span>
+  <h3>Popover (hover abre, clique fixa)</h3>
+  <p class="what">Dossiê completo de cada etapa ou macroprocesso. Abre com hover (0,12s), fecha ao sair, fixa com clique. ESC fecha.</p>
+
+  <div class="subh">Popover de etapa (cards 1.1, 2.3, 5.4...)</div>
+  <ul class="spec">
+   <li>Título com ID + nome</li>
+   <li>Tags (modo, IA, executor, Implantação, Validar)</li>
+   <li><b>Responsável</b> (quem é o papel que executa)</li>
+   <li><b>Objetivo</b> da etapa</li>
+   <li><b>Entrega</b> concreta</li>
+   <li><b>Como funciona</b> (bullets curtos)</li>
+   <li><b>Auditoria</b> (fundo âmbar) — quando o modo é Misto</li>
+   <li><b>Interface com a Implantação</b> (fundo coral) — quando a etapa recebe ou envia</li>
+   <li><b>A validar</b> (borda tracejada âmbar) — ponto deduzido pelo autor que falta confirmar</li>
+   <li><b>Agentes e rotinas</b> que atendem essa etapa</li>
+   <li><b>Ferramentas</b> em chips (link se tiver URL)</li>
+  </ul>
+
+  <div class="subh">Popover de macroprocesso (clique no cabeçalho colorido)</div>
+  <ul class="spec">
+   <li>Objetivo e entrega do MP</li>
+   <li><b>Valor para a Seazone</b> — qual marco da cadeia esse MP destrava</li>
+   <li><b>Como entregar mais valor</b> (fundo azul) — oportunidade pra validar com a liderança</li>
+  </ul>
+ </div>
+</section>
+
+<section class="block" id="b8">
+ <div class="idx">08</div>
+ <div class="body">
+  <span class="kicker">Rodapé</span>
+  <h3>Footer institucional</h3>
+  <p class="what">Fecha o documento com assinatura e classificação. Mesmo bloco em todos os setores.</p>
+  <ul class="spec">
+   <li><b>Esquerda:</b> wordmark Seazone + nome do setor</li>
+   <li><b>Direita:</b> nome em negrito, email, "Documento interno · data"</li>
+  </ul>
+ </div>
+</section>
+
+<section class="block" id="reg">
+ <div class="idx">★</div>
+ <div class="body">
+  <span class="kicker">Guard-rails</span>
+  <h3>Regras de ouro</h3>
+  <p class="what">O que mantém os documentos dos 4 setores comparáveis entre si.</p>
+
+  <div class="rules">
+   <div class="rule ok"><div class="rt">Faça</div><div class="rv">Numeração sequencial dos MPs no setor inteiro (MP1 a MPn, sem resetar entre trilhas)</div></div>
+   <div class="rule ok"><div class="rt">Faça</div><div class="rv">Etapas no formato <code>MP.etapa</code> (<code>1.1, 1.2, 2.1...</code>)</div></div>
+   <div class="rule ok"><div class="rt">Faça</div><div class="rv">Toda etapa tem modo + IA + executor + responsável + objetivo + entrega + como funciona + ferramentas</div></div>
+   <div class="rule ok"><div class="rt">Faça</div><div class="rv">Marcar <code>chk</code> em tudo que foi deduzido e falta validar — melhor explicitar que esconder</div></div>
+   <div class="rule warn"><div class="rt">Cuidado</div><div class="rv">Só criar 2 trilhas quando os fluxos forem realmente independentes (público, contrato, fechamento diferentes)</div></div>
+   <div class="rule warn"><div class="rt">Cuidado</div><div class="rv">"Como funciona" em bullets de 1 linha, não em parágrafos — vira cansativo</div></div>
+   <div class="rule no"><div class="rt">Nunca</div><div class="rv">Trocar fontes, paleta ou spacing — o padrão navy/coral/Bricolage/Literata é institucional</div></div>
+   <div class="rule no"><div class="rt">Nunca</div><div class="rv">Preencher o painel de resumo à mão — ele é derivado dos arrays</div></div>
+   <div class="rule no"><div class="rt">Nunca</div><div class="rv">Colocar métricas inventadas no value box — só marcos de valor qualitativos</div></div>
+  </div>
+ </div>
+</section>
+
+<section class="block" id="tax">
+ <div class="idx">⚑</div>
+ <div class="body">
+  <span class="kicker">Taxonomia</span>
+  <h3>Vocabulário controlado</h3>
+  <p class="what">Para que Qualidade, Precificação, Manutenção e Fornecedores digam a mesma coisa com as mesmas palavras.</p>
+
+  <div class="subh">Modo (<code>m</code>)</div>
+  <ul class="spec">
+   <li><span class="badge auto">auto</span> roda sozinho, sem auditoria humana</li>
+   <li><span class="badge misto">misto</span> roda sozinho mas passa por auditoria antes de valer</li>
+   <li><span class="badge manual">manual</span> feito por pessoa (do time ou do parceiro)</li>
+  </ul>
+
+  <div class="subh">Uso de IA (<code>ia</code>: 0, 1, 2)</div>
+  <ul class="spec">
+   <li><span class="badge i0">0 · Sem IA</span> regra fixa ou trabalho humano puro</li>
+   <li><span class="badge i1">1 · IA assiste</span> IA sugere ou analisa, a pessoa decide</li>
+   <li><span class="badge i2">2 · IA executa</span> IA decide ou gera o entregável sozinha</li>
+  </ul>
+
+  <div class="subh">Executor (<code>ex</code>)</div>
+  <ul class="spec">
+   <li><code>sistema</code> automação com regra fixa (Sapron faz, cron faz)</li>
+   <li><code>agente</code> agente de IA (Olimpo, Claude)</li>
+   <li><code>pessoa</code> coordenador, analista ou parceiro</li>
+  </ul>
+
+  <div class="subh">Interface com Implantação (<code>imp</code>)</div>
+  <ul class="spec">
+   <li><code>{d:"recebe", t:"..."}</code> o setor recebe algo da Implantação pra começar a trabalhar</li>
+   <li><code>{d:"envia", t:"..."}</code> o setor entrega algo pra Implantação consumir</li>
+  </ul>
+
+  <div class="subh">Status de automatismo (<code>st</code>)</div>
+  <ul class="spec">
+   <li><code>ar</code> em produção, confiável</li>
+   <li><code>val</code> rodando mas em validação</li>
+   <li><code>des</code> em desenho, ainda não roda</li>
+   <li><code>dem</code> sob demanda (skill, MCP, ferramenta manual)</li>
+  </ul>
+ </div>
+</section>
+
+<section class="block" id="use">
+ <div class="idx">▶</div>
+ <div class="body">
+  <span class="kicker">Checklist de uso</span>
+  <h3>Como usar o template</h3>
+  <p class="what">Caminho recomendado para o Vinicius (Manutenção), David (Administrativo e Financeiro) e Victória (Qualidade) replicarem o modelo que o Henry publicou pra Fornecedores.</p>
+
+  <div class="subh">Passo a passo</div>
+  <ul class="spec">
+   <li><b>1.</b> Copiar <code>template-arquitetura-setor.html</code> e renomear pra <code>arquitetura-{setor}.html</code></li>
+   <li><b>2.</b> Preencher o <b>Hero</b>: nome do setor, data, missão em 2 frases, tagline</li>
+   <li><b>3.</b> Mapear as <b>trilhas</b> (1 ou 2) e os <b>macroprocessos</b> de cada uma</li>
+   <li><b>4.</b> Para cada MP, listar as <b>etapas</b> com modo/IA/executor/responsável/como funciona/ferramentas</li>
+   <li><b>5.</b> Preencher as <b>lanes</b> de Gestão (manter padrão, medir, gerir demandas) e Suporte (manter ferramentas)</li>
+   <li><b>6.</b> Catalogar <b>agentes, extensões, skills e rotinas</b> com os IDs das etapas que atendem</li>
+   <li><b>7.</b> Adicionar as ferramentas no dicionário <code>T</code> (com URL quando tiver)</li>
+   <li><b>8.</b> Marcar <code>chk</code> em tudo que foi deduzido e precisa validar com a liderança</li>
+   <li><b>9.</b> Trocar nome e email no footer</li>
+   <li><b>10.</b> Publicar como GitHub Pages (padrão <code>html-tasks</code>) ou subir num Release</li>
+  </ul>
+
+  <div class="chklist"><div class="ct">Antes de publicar — checklist final</div><ul>
+   <li>Hover em todas as etapas abre popover? Clique fixa? ESC fecha?</li>
+   <li>Painel de resumo bate com o que foi mapeado?</li>
+   <li>Toda etapa tem ferramentas (pelo menos 1)?</li>
+   <li>Interface com Implantação está marcada onde existe?</li>
+   <li>Agentes/rotinas apontam pra etapas que de fato existem (IDs batem)?</li>
+   <li>Nenhum lorem ipsum, nenhum placeholder <code>{{...}}</code> esquecido?</li>
+  </ul></div>
+ </div>
+</section>
+
+<footer class="instfoot">
+ <div class="wm"><span class="sz-logo" role="img" aria-label="Seazone">sea<span class="sz-house"><svg viewBox="0 0 564 575" xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true"><path d="M543.226 178.172L442.93 119.392C443.194 117.952 443.72 116.643 443.72 115.203V26.5752C443.72 11.913 431.743 0 417.001 0H363.562C348.821 0 336.843 11.913 336.843 26.5752V57.6015L300.516 36.3936C285.774 27.6225 266.294 29.0626 252.605 39.1428C252.342 39.2737 252.079 39.2737 251.947 39.4046L20.951 172.543C1.73419 183.932 -6.29474 210.507 5.55122 230.406C17.9237 251.09 45.301 256.588 64.5178 245.199L78.3381 237.213C62.017 269.025 51.7505 305.026 51.7505 344.169C51.7505 406.221 75.7056 467.226 119.799 511.344C137.173 528.624 157.443 543.156 179.555 553.759C196.666 562.007 214.567 568.814 233.257 572.218C258.002 576.669 283.8 574.444 308.808 574.444C335.922 574.444 363.036 574.444 390.018 574.444C414.5 574.444 439.113 574.575 463.99 574.575C470.176 574.575 476.231 573.004 481.759 570.254C488.866 566.72 492.947 562.792 497.685 556.509C502.95 549.57 506.635 541.061 506.635 532.159V252.923C525.062 259.599 547.306 253.839 558.363 235.511C570.34 215.613 562.311 189.038 542.963 177.648L543.226 178.172ZM427.794 348.751C427.794 433.582 370.012 502.573 282.878 502.573C195.745 502.573 131.777 429.131 131.777 344.3C131.777 259.468 195.745 188.776 282.878 188.776C370.012 188.776 427.794 254.232 427.794 338.147V348.751Z" fill="#EB615E"/></svg></span>zone</span><span>Franquias · Modelo de Arquitetura</span></div>
+ <div class="who"><b>Rayanne Oliveira</b>rayanne.oliveira@seazone.com.br<br>Documento interno · 15/10/2026</div>
+</footer>
+
+</div>
+</body>
+</html>
