@@ -310,7 +310,7 @@ const P = [
   o:"Resolver em 24 horas o problema que deixa o imóvel sem condição de uso ou põe o hóspede em risco.",
   ini:"O classificador marca o card como urgente: nota 70 ou mais, ou gatilho duro (gás, choque, sem água, sem energia, hóspede sem acesso).",
   fim:"Conserto feito, evidência aprovada e imóvel de volta à venda.",
-  dono:"Analista de Manutenção", cad:"24 horas a partir da abertura do card (MGO); recobra em 24h e vira ocorrência em 48h", val:"Menos reserva cancelada",
+  dono:"Analista de Manutenção", cad:"24 horas a partir da abertura do card (MGO); recobra em 24h", val:"Menos reserva cancelada",
   steps:[
    {a:"A", t:"Marcar o card como urgente", d:"O classificador dá a nota pela lista de urgentes do MGO e a triagem move o card para a coluna Urgente. Duplicata fica marcada.", s:"Card na coluna Urgente.", f:"Classificador e triagem · a cada 15 min"},
    {a:"S", t:"Abrir o chamado com a franquia", d:"Mensagem com 'Prazo: 24 horas, até dd/mm'. O card aparece na aba Urgente do portal da franquia.", s:"Chamado aberto.", f:"Central de Atividades", pd:"Destaque visual de urgente no portal (vermelho, sirene), pedido da Ray em 19/10."},
@@ -318,14 +318,14 @@ const P = [
    {a:"F", t:"O conserto depende do proprietário?", dec:["Sim (acima de R$ 300 ou sem autorização) → sinaliza no card, vai para Programada e segue no MP9","Não → passo 5"], m:"manual",ia:0,ex:"pessoa"},
    {a:"F", t:"Consertar e anexar a evidência", d:"Foto do serviço feito, nota ou recibo do prestador.", s:"Evidência no card.", f:"Portal da Franquia", m:"manual",ia:0,ex:"pessoa"},
    {a:"S", t:"A evidência chegou em 24 horas?", dec:["Sim → passo 8","Não → passo 7"]},
-   {a:"S", t:"Recobrar e abrir ocorrência", d:"24 horas sem evidência: recobra a franquia. 48 horas sem resposta, evidência ou finalização: o agente abre a ocorrência (MP10). Depois volta ao passo 5.", s:"Franquia recobrada; ocorrência em 48h.", f:"Lembrete de atraso · agente de ocorrência", m:"auto",ia:1,ex:"sistema", pd:"O Sapron ainda mede o urgente em 1 dia útil (PR #5367); o MGO diz 24 horas."},
+   {a:"S", t:"Recobrar a franquia", d:"24 horas sem evidência: recobra a franquia e volta ao passo 5. Se passar de 48 horas sem resposta, o card também entra no processo de Ocorrências (MP10), que é separado deste.", s:"Franquia recobrada.", f:"Lembrete de atraso", m:"auto",ia:1,ex:"sistema", pd:"O Sapron ainda mede o urgente em 1 dia útil (PR #5367); o MGO diz 24 horas."},
    {a:"A", t:"Validar e auditar a evidência", d:"Validador lê a prova, antifraude confere se a foto é nova, auditor confere o parecer.", s:"Parecer da evidência.", f:"Validador · antifraude · auditor"},
    {a:"A", t:"A evidência está completa?", dec:["Não → pede o que falta à franquia e volta ao passo 5","Sim → card concluído e passo 10"]},
    {a:"F", t:"Liberar o imóvel", d:"Devolve o imóvel à venda no mesmo dia.", s:"Calendário liberado.", f:"Suporte Unificado", m:"manual",ia:0,ex:"pessoa", pd:"Quem desbloqueia depois da baixa ainda não está definido."}
   ],
-  ag:[["Classificador de urgência","ar"],["Triagem automática","ar"],["Verificador de duplicata","ar"],["Validador, antifraude e auditor","ar"],["Lembrete de atraso","ar"],["Agente de ocorrência do urgente","val"]],
+  ag:[["Classificador de urgência","ar"],["Triagem automática","ar"],["Verificador de duplicata","ar"],["Validador, antifraude e auditor","ar"],["Lembrete de atraso","ar"]]],
   rot:["Rotina diária de urgentes, primeira coisa do dia (MP8)"],
-  ind:["% de urgentes resolvidos em 24 horas","Tempo médio do urgente","Urgentes que viraram ocorrência"],
+  ind:["% de urgentes resolvidos em 24 horas","Tempo médio do urgente"],
   pend:["Comunicado às franquias só depois de a Rose publicar a seção de urgente no MGO."]},
 
  {id:"MP2", tr:1, n:"Manutenção corretiva",
@@ -539,14 +539,14 @@ function geral(){
     <tr><td>Como nasce</td><td>Pedido com nota 70 ou mais</td><td>Pedido com nota abaixo de 70</td><td>Abertura do ciclo, um card por imóvel elegível</td></tr>
     <tr><td>Prazo</td><td>24 horas</td><td>7 dias (pode ser programado)</td><td>15 dias úteis</td></tr>
     <tr><td>Imóvel</td><td>Bloqueado até resolver</td><td>Segue à venda</td><td>Segue à venda</td></tr>
-    <tr><td>Se atrasar</td><td>Recobra em 24h e vira ocorrência em 48h</td><td>Cobrança semanal e lembretes D+7, D+14, D+21</td><td>Lembretes e conversa no fechamento do ciclo</td></tr>
+    <tr><td>Se atrasar</td><td>Recobra em 24h (48h sem resposta segue para Ocorrências, MP10)</td><td>Cobrança semanal e lembretes D+7, D+14, D+21</td><td>Lembretes e conversa no fechamento do ciclo</td></tr>
     <tr><td>Se depende do proprietário</td><td colspan="3">Vai para o ${plink("MP9")}, com o CS de Proprietários</td></tr></tbody></table></section>`;
   TRILHAS.forEach((t,i) => {
     h += `<section class="trail ${t.cls}"><div class="trail-h"><span class="tk">${t.k}</span><span class="tn">${e(t.n)}</span><span class="to">${e(t.o)}</span></div><div class="ovgrid">${P.filter(p=>p.tr===i).map(head).join("")}</div></section>`;
   });
   h += `<section class="panel"><div class="autos-h" style="margin-bottom:8px"><span class="tn" style="color:var(--navy)">Como os processos se ligam</span></div><ul style="margin:0;padding-left:18px;font:400 13px/1.6 var(--serif)">
     <li>${plink("MP1")}, ${plink("MP2")} e ${plink("MP6")} levam ao ${plink("MP9")} tudo o que depende do proprietário; o card volta ao processo de origem quando ele decide.</li>
-    <li>${plink("MP1")}: urgente sem resposta em 48 horas vira ocorrência no ${plink("MP10")}.</li>
+    <li>${plink("MP1")}: urgente sem resposta em 48 horas alimenta o ${plink("MP10")}, que é um processo à parte.</li>
     <li>${plink("MP3")} → ${plink("MP4")} → ${plink("MP5")} → ${plink("MP6")} → ${plink("MP7")} formam um ciclo da recorrente.</li>
     <li>${plink("MP7")} e ${plink("MP10")} alimentam o ${plink("MP11")}; só vai para a UTI quem não sai da faixa.</li>
     <li>${plink("MP8")} vigia as entradas e confere os agentes de todos os processos.</li></ul></section>`;
