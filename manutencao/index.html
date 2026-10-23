@@ -181,633 +181,420 @@ a.tool:hover,a.tool:focus-visible{background:var(--bluebg);outline:none}
 @media (max-width:640px){.wrap,.hero{padding-inline:16px} .instfoot .who{text-align:left} .base{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:no-preference){#pop{animation:pin .12s ease-out}}
 @keyframes pin{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+/* ===== v7: aba geral + aba por processo (mesma identidade do template) ===== */
+.urg{--c:var(--red);--cs:var(--redbg)}
+.tabs{overflow-x:auto;scrollbar-width:thin}
+.tab{white-space:nowrap;padding:10px 14px}
+.tab .code{opacity:.75;margin-right:6px}
+.tabsep{flex:0 0 1px;background:var(--line);margin:8px 6px}
+.entry{display:grid;grid-template-columns:minmax(0,1.3fr) auto minmax(0,1fr) auto minmax(0,1.6fr);gap:10px;align-items:center}
+.entry .eb{background:var(--soft);border-radius:8px;padding:10px 12px;font:400 12.5px/1.45 var(--serif);color:var(--ink2)}
+.entry .eb b{display:block;font:700 11px/1 var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--ink3);margin-bottom:6px}
+.entry .arr{color:var(--ink3);font:700 18px/1 var(--sans)}
+.entry .outs{display:flex;flex-direction:column;gap:6px}
+.entry .outs a{text-decoration:none}
+@media(max-width:900px){.entry{grid-template-columns:1fr}.entry .arr{transform:rotate(90deg);justify-self:center}}
+.cmp{width:100%;border-collapse:collapse;font-size:13px}
+.cmp th,.cmp td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+.cmp th{font:700 11px/1.2 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
+.cmp td:first-child{font-weight:700;color:var(--ink2);white-space:nowrap}
+.cmp .h{color:var(--c);font:700 13px/1.2 var(--sans)}
+.ovgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+a.head{text-decoration:none}
+.head .cnt{font:700 11px/1 var(--sans);letter-spacing:.05em;opacity:.85;margin-top:4px}
+.head .io{font:400 12px/1.4 var(--serif);opacity:.92}
+.head .io span{display:block}
+.pmeta{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px 24px;font:400 13px/1.45 var(--serif);color:var(--ink)}
+.pmeta .gl{display:block;font:700 11px/1 var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--ink3);margin-bottom:5px}
+.pgrid{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:18px;align-items:start}
+@media(max-width:1000px){.pgrid{grid-template-columns:1fr}}
+.swim{display:grid;gap:0 10px}
+.swim .lh{font:700 11px/1.2 var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--c);text-align:center;padding:8px 4px;border-bottom:2px solid var(--c);background:var(--cs);border-radius:6px 6px 0 0}
+.swim .cell{padding:0}
+.swim .cell.ln{border-left:1px dashed var(--line)}
+.swim .cell.first{border-left:none}
+.swim .dn{grid-column:1/-1}
+.stp{cursor:default}
+.stp .n{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;border-radius:10px;background:var(--c);color:var(--paper);font:700 11px/1 var(--sans);flex:0 0 auto}
+.stp .out{font-size:12px;color:var(--ink2)}
+.stp .out b{color:var(--ink)}
+.stp.dec{border-color:var(--amber);background:var(--amberbg)}
+.stp.dec .n{background:var(--amber)}
+.stp .br{margin:0;padding:0;list-style:none;font:400 12.5px/1.45 var(--serif)}
+.stp .br li{padding-left:12px;text-indent:-12px}.stp .br li::before{content:"• ";color:var(--amber);font-weight:700}
+.stp .pd{font-size:11.5px;color:var(--amber);border-top:1px dashed var(--amber);padding-top:4px}
+.stp a,.side a{color:var(--blue);font-weight:700;text-decoration:none}
+.who{display:none;font:700 10px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
+@media(max-width:760px){.swim{grid-template-columns:1fr!important}.swim .lh,.swim .cell.empty{display:none}.swim .cell.ln{border-left:none}.who{display:block}}
+.side{display:flex;flex-direction:column;gap:12px}
+.side .panel h3{margin:0 0 8px;font:700 11px/1 var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--ink3)}
+.side ul{margin:0;padding-left:16px;font:400 13px/1.5 var(--serif)}
+.side li{margin:3px 0}
+.side .acard{margin-bottom:6px}
+.side .warnp{border:1px dashed var(--amber)}
+.side .warnp h3{color:var(--amber)}
+.ptop{display:flex;flex-direction:column;gap:4px}
+.ptop .head{cursor:default}
 </style>
 </head>
 <body>
 
-<!-- =====================================================================
-     1. HERO (cabeçalho navy)
-     - wordmark Seazone + nome do setor (ex.: "Franquias · Qualidade")
-     - data e versão (ex.: "Rascunho v1 · 14/10/2026")
-     - eyebrow fixa: "Arquitetura de processos"
-     - h1 com o nome do setor
-     - lede (parágrafo serifa) com a missão do setor em uma frase
-     - sub (coral) com a tagline curta ("3-5 palavras que grudem")
-===================================================================== -->
+
 <section class="hero">
  <div class="hero-inner">
   <div class="masthead">
    <div class="wordmark"><span class="sz-logo" role="img" aria-label="Seazone">sea<span class="sz-house"><svg viewBox="0 0 564 575" xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true"><path d="M543.226 178.172L442.93 119.392C443.194 117.952 443.72 116.643 443.72 115.203V26.5752C443.72 11.913 431.743 0 417.001 0H363.562C348.821 0 336.843 11.913 336.843 26.5752V57.6015L300.516 36.3936C285.774 27.6225 266.294 29.0626 252.605 39.1428C252.342 39.2737 252.079 39.2737 251.947 39.4046L20.951 172.543C1.73419 183.932 -6.29474 210.507 5.55122 230.406C17.9237 251.09 45.301 256.588 64.5178 245.199L78.3381 237.213C62.017 269.025 51.7505 305.026 51.7505 344.169C51.7505 406.221 75.7056 467.226 119.799 511.344C137.173 528.624 157.443 543.156 179.555 553.759C196.666 562.007 214.567 568.814 233.257 572.218C258.002 576.669 283.8 574.444 308.808 574.444C335.922 574.444 363.036 574.444 390.018 574.444C414.5 574.444 439.113 574.575 463.99 574.575C470.176 574.575 476.231 573.004 481.759 570.254C488.866 566.72 492.947 562.792 497.685 556.509C502.95 549.57 506.635 541.061 506.635 532.159V252.923C525.062 259.599 547.306 253.839 558.363 235.511C570.34 215.613 562.311 189.038 542.963 177.648L543.226 178.172ZM427.794 348.751C427.794 433.582 370.012 502.573 282.878 502.573C195.745 502.573 131.777 429.131 131.777 344.3C131.777 259.468 195.745 188.776 282.878 188.776C370.012 188.776 427.794 254.232 427.794 338.147V348.751Z" fill="#EB615E"/></svg></span>zone</span><span>· Franquias · Manutenção</span></div>
-   <span class="mast-date">Rascunho v5 · 22/10/2026</span>
+   <span class="mast-date">Rascunho v7 · 22/10/2026</span>
   </div>
   <span class="eyebrow">Arquitetura de processos</span>
   <h1>Manutenção</h1>
-  <p class="lede">A Manutenção garante que o imóvel esteja pronto para o hóspede: o urgente resolvido em 24 horas, a preventiva feita no mês certo e a franquia com maturidade para cuidar do imóvel. O resultado é menos reserva cancelada, menos desconto e menos comentário negativo por manutenção.</p>
+  <p class="lede">A Manutenção garante que o imóvel esteja pronto para o hóspede: o urgente resolvido em 24 horas, o conserto do dia a dia feito no prazo, a preventiva feita no mês certo e a franquia com maturidade para cuidar do imóvel. O resultado é menos reserva cancelada, menos desconto e menos comentário negativo por manutenção.</p>
   <p class="sub">Imóvel liberado, hóspede bem recebido.</p>
  </div>
 </section>
 
 <div class="wrap">
-  <!-- =====================================================================
-       2. SUMMARY (panel de contagens)
-       - Preenchido pelo JS a partir dos arrays TRAILS/LANES.
-       - Mostra: total de processos, modo (auto/misto/manual), uso de IA (0/1/2),
-                 quem executa, interface com a Implantação, pontos a validar.
-       - NÃO EDITAR o conteúdo, só os arrays no final.
-  ===================================================================== -->
   <div class="panel summary" id="summary"></div>
+  <nav class="tabs" role="tablist" aria-label="Processos" id="tabs"></nav>
+  <section class="tabpanel" id="view"></section>
 
-  <!-- =====================================================================
-       NAV DE ABAS
-       - Aba 1: Arquitetura (trilhas + lanes de Gestão e Suporte)
-       - Aba 2: Agentes, extensões e rotinas
-  ===================================================================== -->
-  <nav class="tabs" role="tablist" aria-label="Seções do documento">
-    <button class="tab" role="tab" type="button" data-tab="arq" aria-selected="true" aria-controls="t-arq">Arquitetura</button>
-    <button class="tab" role="tab" type="button" data-tab="aut" aria-selected="false" aria-controls="t-aut">Agentes, extensões e rotinas</button>
-  </nav>
-
-  <!-- =====================================================================
-       ABA 1 · ARQUITETURA
-       - Instrução + Trilhas (flow) + Lanes de Gestão e Suporte (base)
-  ===================================================================== -->
-  <section class="tabpanel" id="t-arq" role="tabpanel" aria-labelledby="tab-arq">
-    <p class="hint">Passe o mouse ou clique em qualquer processo para ver objetivo, entrega, como funciona, auditoria, interface com a Implantação e ferramentas. Clique no cabeçalho de cada coluna para ver o valor que ela entrega.</p>
-
-    <!-- 3. FLOW: as trilhas de macroprocessos
-         - Cada trilha é uma linha horizontal com N colunas (uma por MPx).
-         - A última coluna é um "value box" navy com a cadeia de valor.
-         - 1 trilha mínima; 2 só se o setor tem fluxos realmente independentes. -->
-    <div class="scroll">
-      <div class="flow" id="flow">
-        <p class="upnote">▲ As faixas abaixo sustentam as trilhas ▲</p>
-        <!-- 4. BASE: Lanes de Gestão e Suporte (preenchidas via JS a partir de LANES) -->
-        <div class="base" id="base"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- =====================================================================
-       ABA 2 · AGENTES, EXTENSÕES E ROTINAS
-       - O que roda sozinho ou é rodado pelo time em cada etapa.
-       - Cada card: id (Ax/Ex/Sx/Rx), nome, status, frequência, objetivo e etapas atendidas.
-  ===================================================================== -->
-  <section class="tabpanel" id="t-aut" role="tabpanel" aria-labelledby="tab-aut" hidden>
-    <section class="panel autos">
-      <div class="autos-h"><span class="tn">Agentes, extensões e rotinas</span><span class="to">O que roda sozinho ou é rodado pelo time em cada etapa. Clique no número da etapa para ver o processo correspondente na aba Arquitetura.</span></div>
-      <div class="agrid" id="autos"></div>
-    </section>
-  </section>
-
-  <!-- =====================================================================
-       6. LEGENDAS (5 linhas fixas - não mexer)
-       - Modo de execução · Uso de IA · Quem executa · Implantação · Trilhas
-  ===================================================================== -->
   <div class="legend">
     <span><span class="mode auto">Automático</span> roda sozinho</span>
-    <span><span class="mode misto">Misto</span> roda sozinho e passa por auditoria antes de valer</span>
-    <span><span class="mode manual">Manual</span> feito pelo time ou pelo fornecedor</span>
+    <span><span class="mode misto">Misto</span> roda sozinho e passa por conferência</span>
+    <span><span class="mode manual">Manual</span> feito pela pessoa</span>
   </div>
   <div class="legend">
     <span><span class="ia i0">Sem IA</span> regra fixa ou trabalho humano</span>
-    <span><span class="ia i1">IA assiste</span> a IA sugere ou analisa, a pessoa decide</span>
+    <span><span class="ia i1">IA assiste</span> a IA sugere, a pessoa decide</span>
     <span><span class="ia i2">IA executa</span> a IA decide ou gera sozinha</span>
   </div>
   <div class="legend">
     <span><span class="ex">Sistema</span> automação com regra fixa</span>
     <span><span class="ex">Agente</span> agente de IA</span>
-    <span><span class="ex">Pessoa</span> coordenador, analista ou fornecedor</span>
+    <span><span class="ex">Pessoa</span> franquia, analista, CS ou gerência</span>
+    <span><span class="chk">Validar</span> ponto a confirmar</span>
+    <span><span class="chk" style="color:var(--amber);background:var(--amberbg)">Decisão</span> o caminho muda conforme a resposta</span>
   </div>
   <div class="legend">
-    <span><span class="imp">← Implantação</span> recebemos algo da Implantação</span>
-    <span><span class="imp">→ Implantação</span> entregamos algo para a Implantação</span>
-    <span><span class="chk">Validar</span> ponto deduzido, falta confirmar</span>
-  </div>
-  <div class="legend">
-    <!-- Ajustar as cores conforme suas trilhas (fin = azul, fin2 = teal, ges = navy, sup = cinza) -->
-    <span><i style="background:var(--blue)"></i>Trilha 1 · Manutenção corretiva</span>
-    <span><i style="background:var(--teal)"></i>Trilha 2 · Manutenção recorrente</span>
-    <span><i style="background:var(--navy)"></i>Trilha 3 · Gestão e consultoria</span>
-        <span><i style="background:var(--navy)"></i>Gestão: regras, medição e demandas</span>
-    <span><i style="background:var(--ink2)"></i>Suporte: ferramentas</span>
+    <span><i style="background:var(--red)"></i>Trilha 1 · Manutenção urgente</span>
+    <span><i style="background:var(--blue)"></i>Trilha 2 · Manutenção corretiva</span>
+    <span><i style="background:var(--teal)"></i>Trilha 3 · Manutenção recorrente</span>
+    <span><i style="background:var(--navy)"></i>Trilha 4 · Gestão e acompanhamento da rede</span>
   </div>
 
-  <!-- =====================================================================
-       7. FOOTER INSTITUCIONAL
-       - Wordmark seazone + nome do setor
-       - Nome, email e classificação ("Documento interno · data")
-  ===================================================================== -->
   <footer class="instfoot">
     <div class="wm"><span class="sz-logo" role="img" aria-label="Seazone">sea<span class="sz-house"><svg viewBox="0 0 564 575" xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true"><path d="M543.226 178.172L442.93 119.392C443.194 117.952 443.72 116.643 443.72 115.203V26.5752C443.72 11.913 431.743 0 417.001 0H363.562C348.821 0 336.843 11.913 336.843 26.5752V57.6015L300.516 36.3936C285.774 27.6225 266.294 29.0626 252.605 39.1428C252.342 39.2737 252.079 39.2737 251.947 39.4046L20.951 172.543C1.73419 183.932 -6.29474 210.507 5.55122 230.406C17.9237 251.09 45.301 256.588 64.5178 245.199L78.3381 237.213C62.017 269.025 51.7505 305.026 51.7505 344.169C51.7505 406.221 75.7056 467.226 119.799 511.344C137.173 528.624 157.443 543.156 179.555 553.759C196.666 562.007 214.567 568.814 233.257 572.218C258.002 576.669 283.8 574.444 308.808 574.444C335.922 574.444 363.036 574.444 390.018 574.444C414.5 574.444 439.113 574.575 463.99 574.575C470.176 574.575 476.231 573.004 481.759 570.254C488.866 566.72 492.947 562.792 497.685 556.509C502.95 549.57 506.635 541.061 506.635 532.159V252.923C525.062 259.599 547.306 253.839 558.363 235.511C570.34 215.613 562.311 189.038 542.963 177.648L543.226 178.172ZM427.794 348.751C427.794 433.582 370.012 502.573 282.878 502.573C195.745 502.573 131.777 429.131 131.777 344.3C131.777 259.468 195.745 188.776 282.878 188.776C370.012 188.776 427.794 254.232 427.794 338.147V348.751Z" fill="#EB615E"/></svg></span>zone</span><span>Franquias · Manutenção</span></div>
     <div class="who"><b>Vinicius Satores</b>vinicius.satores@seazone.com.br<br>Documento interno · 22/10/2026</div>
   </footer>
 </div>
 
-<!-- Popover (não editar) -->
-<div id="pop" role="dialog" aria-modal="false" hidden></div>
-
 <script>
-const T = {
-  central:{n:"Central de Manutenção (Sapron)"},
-  portal:{n:"Portal da Franquia (menu Manutenção)"},
-  atividades:{n:"Central de Atividades"},
-  financeiro:{n:"Financeiro do Sapron (despesas)"},
-  danos:{n:"Central de Danos (Sapron)"},
-  ocorrencias:{n:"Ocorrências (Qualidade)"},
-  suporte:{n:"Suporte Unificado", u:"https://suporte-unificado.seazone.dev/kanban"},
-  uti:{n:"UTI de Franquias"},
-  aihub:{n:"AI Hub", u:"https://hub.seazone.dev"},
-  abaagentes:{n:"Aba Agentes de IA (Central)"},
-  hubservicos:{n:"Hub de Serviços (prestadores)"},
-  lojas:{n:"Links de compra (Matinali, Mercado Livre)"},
-  datalake:{n:"Data lake (anúncios e comentários)"},
-  mgo:{n:"MGO (manual da franquia)"},
-  sia:{n:"SIA (cobrança da franquia)"},
-  slack:{n:"Slack"},
-  avisos:{n:"Canal de avisos às franquias"},
-  meet:{n:"Google Meet"},
-  sheets:{n:"Google Sheets"},
-  claude:{n:"Claude Code"},
-  taskdex:{n:"TaskDex", u:"https://taskdex.seazone.dev"},
-  github:{n:"GitHub (sapron-backend / frontend)"},
-  canvas:{n:"Canvases de processo"},
-  gov:{n:"Governança de Processos", u:"https://gov.seazone.properties"},
-  folha:{n:"Folha de contexto da manutenção"},
-  processo:{n:"Processo recorrente v2.3"},
-  recuperacao:{n:"Processo de Recuperação de Franquias v1.3"},
-  diario:{n:"Diário (encaminhamentos)"}
-};
-
+const ACT = {D:"Áreas que pedem", F:"Franquia", S:"Sistema (Sapron)", A:"Agentes de IA", M:"Analista de Manutenção", C:"CS de Proprietários", Q:"Qualidade", T:"Tecnologia", G:"Gerência (Ray)"};
+const ORDER = ["D","F","S","A","M","C","Q","T","G"];
 const MODE = {auto:"Automático", misto:"Misto", manual:"Manual"};
 const IA = ["Sem IA","IA assiste","IA executa"];
 const EX = {sistema:"Sistema", agente:"Agente", pessoa:"Pessoa"};
-const IMP = {recebe:"← Implantação", envia:"→ Implantação"};
+const DEF = {A:{m:"auto",ia:2,ex:"agente"}, S:{m:"auto",ia:0,ex:"sistema"}};
 
-// v5 · 22/10/2026 — corrigida com a transcrição da weekly de 19/10 com a Ray:
-// • Entrada não é processo: "Recebimento e classificação" saiu; classificar, triar e tirar duplicata
-//   viraram atividades dentro do Urgente e da Corretiva; as entradas são vigiadas no MP9.
-// • Trilha 1 = gestão da manutenção corretiva com três processos: urgente, corretiva e adequação.
-// • Trilha 2 = gestão da manutenção recorrente; a priorização do item é processo à parte (MP4).
-// • Trilha 3 = gestão e consultoria: controle (monitoramento), ocorrências (com a Vick) e franquias críticas.
-// • Urgente: 24 horas a partir da abertura (MGO); recobra em 24h e vira ocorrência em 48h.
-const TRAILS = [
- {cls:"fin", k:"Trilha 1", n:"Gestão da manutenção corretiva",
-  o:"Resolver o problema que aparece no imóvel: o urgente em 24 horas, o resto no prazo, e o que depende do proprietário destravado com o CS.",
-  mps:[
-   {id:"MP1", v:"Urgente", n:"Manutenção urgente",
-    o:"Resolver em 24 horas o que deixa o imóvel sem condição de uso ou com risco para o hóspede.",
-    e:"Imóvel consertado, evidência no card e calendário liberado.",
-    val:"Menos reserva cancelada",
-    opp:"Comentário negativo de outubro veio de manutenção que esperou. Com o card nascendo urgente, recobrança em 24h e ocorrência em 48h, o urgente deixa de depender de alguém olhar.",
-    p:[
-     {id:"1.1", t:"Identificar o urgente", m:"auto", ia:2, ex:"agente", who:"Agentes de classificação, triagem e duplicata",
-      o:"Fazer o card já nascer urgente para a franquia, sem duplicata.",
-      e:"Card na aba Urgente, com a tag e o visual de urgente.",
-      how:["Cadência: a cada card novo (classificador a cada 15 min)","Lista de urgentes do MGO: gás, elétrica, sem água, alagamento, esgoto, vaso ou ralo entupido, chuveiro sem funcionar ou sem água quente, infiltração, ar-condicionado vazando ou parado, mofo, praga, vidro quebrado, porta externa que não fecha, fechadura com defeito, móvel com risco de queda, geladeira","Duplicata marcada pelo agente e confirmada na tela de duplicatas"],
-      chk:"Card urgente com destaque no portal (vermelho/sirene), pedido da Ray em 19/10.",
-      tools:["central","aihub","abaagentes","portal","mgo"]},
-     {id:"1.2", t:"Acionar a franquia e bloquear o imóvel", m:"misto", ia:0, ex:"sistema", who:"Sistema + Franquia",
-      o:"Avisar a franquia na hora e tirar o imóvel de venda até resolver.",
-      e:"Chamado aberto com o prazo de 24 horas e imóvel bloqueado.",
-      how:["Cadência: na entrada do urgente","O imóvel fica bloqueado até a resolução (regra do MGO)","Acima de R$ 300 com autorização do proprietário: a franquia sinaliza no card e vai para o MP3"],
-      tools:["central","atividades","suporte","mgo"]},
-     {id:"1.3", t:"Recobrar em 24h e abrir ocorrência em 48h", m:"auto", ia:1, ex:"agente", who:"Lembrete de atraso + agente de ocorrência do urgente",
-      o:"Não deixar urgente sem resposta: recobrar em 24h e gerar ocorrência em 48h.",
-      e:"Recobrança em 24h; ocorrência com o link do card e a seção do MGO em 48h.",
-      how:["Cadência: diária","24h sem resposta, evidência ou finalização: recobra a franquia","48h: ocorrência pelo critério do MGO (ex.: ar-condicionado vazando é urgente e a franquia não respondeu)","Começa em teste e depois destrava (Ray, 19/10)"],
-      chk:"O sistema ainda mede o urgente em 1 dia útil (PR #5367); o MGO diz 24 horas.",
-      tools:["central","ocorrencias","mgo"]},
-     {id:"1.4", t:"Comprovar, fechar e liberar o imóvel", m:"auto", ia:2, ex:"agente", who:"Validador e auditor de evidência",
-      o:"Fechar só com prova e devolver o imóvel à venda no mesmo dia.",
-      e:"Card concluído e calendário desbloqueado.",
-      how:["Cadência: contínua","Validador lê a prova; auditor confere e conclui; antifraude segura a baixa com sinal aberto"],
-      chk:"Quem desbloqueia o calendário depois da baixa ainda não está definido.",
-      tools:["central","aihub","suporte"]}
-    ]},
-   {id:"MP2", v:"Corretiva", n:"Manutenção corretiva",
-    o:"Ter o conserto não urgente feito no prazo do card, provado e fechado.",
-    e:"Card concluído com evidência ou pela despesa lançada.",
-    val:"Menos desconto por manutenção",
-    opp:"Os agentes já classificam, cobram e fecham sozinhos a maior parte. O que sobra manual é a revisão dos sinais de fraude e a despesa que não casa com o card.",
-    p:[
-     {id:"2.1", t:"Classificar e enviar à franquia com prazo", m:"auto", ia:2, ex:"agente", who:"Agentes de classificação, triagem e duplicata",
-      o:"Mandar o card certo à franquia: imóvel, responsável, sem duplicata e com prazo.",
-      e:"Chamado aberto com prazo de 7 dias.",
-      how:["Cadência: a cada card novo","Nota de urgência abaixo de 70 vai para Não urgente","Quem paga: franquia ou proprietário (acima de R$ 300)"],
-      tools:["central","portal","atividades","aihub"]},
-     {id:"2.2", t:"Cobrar e acompanhar no prazo", m:"auto", ia:0, ex:"sistema", who:"Sistema (Sapron)",
-      o:"Manter o card vivo até a franquia resolver.",
-      e:"Cobrança semanal e lembretes de atraso.",
-      how:["Cadência: cobrança semanal (quarta, 11h); lembretes em D+7, D+14, D+21 e a cada 7 dias"],
-      tools:["central","atividades"]},
-     {id:"2.3", t:"Programar quando não dá no prazo", m:"manual", ia:0, ex:"pessoa", who:"Franquia",
-      o:"Registrar data e motivo quando o conserto precisa de mais tempo.",
-      e:"Card em Programada com data e justificativa.",
-      how:["Cadência: por card","A data combinada vira o prazo"],
-      chk:"Mudança para Programada ainda sem agente; evidência anexada em Programada fica parada (furo de 01/10).",
-      tools:["portal","central"]},
-     {id:"2.4", t:"Comprovar e fechar", m:"misto", ia:2, ex:"agente", who:"Agentes de evidência + Analista",
-      o:"Fechar com prova de que o serviço foi feito neste imóvel e agora.",
-      e:"Card concluído por evidência ou por despesa.",
-      how:["Cadência: contínua","Validador → antifraude → auditor","Despesa prova o card: casar por código do imóvel + item, janela de ~2 meses"],
-      aud:"A pessoa revisa os sinais do antifraude e a amostra do auditor.",
-      chk:"Afrouxar a regra da despesa (Ray, 19/10): hoje exige a despesa igual ao card.",
-      tools:["central","financeiro","aihub","abaagentes"]},
-     {id:"2.5", t:"Card segue o imóvel na migração", m:"auto", ia:0, ex:"sistema", who:"Sistema (Sapron)",
-      o:"Não perder card quando o imóvel troca de franquia.",
-      e:"Card transferido, com 30 dias de carência no score.",
-      how:["Cadência: na troca de anfitrião"],
-      tools:["central"]}
-    ]},
-   {id:"MP3", v:"Adequação", n:"Adequação com o proprietário",
-    o:"Destravar o conserto que depende do proprietário autorizar ou pagar.",
-    e:"Decisão do proprietário registrada no card e conserto andando.",
-    val:"Menos reserva cancelada",
-    opp:"Imóvel bloqueado é proprietário perdendo reserva. Levar o caso ao CS com a prova e o prejuízo é o ganho mais rápido.",
-    p:[
-     {id:"3.1", t:"Sinalizar a trava no card", m:"manual", ia:0, ex:"pessoa", who:"Franquia",
-      o:"Avisar na hora quando o reparo passa de R$ 300 ou o proprietário não autoriza.",
-      e:"Card em Programada com responsabilidade do proprietário e print da conversa.",
-      how:["Cadência: por card","Botão de pedir suporte no card (proposta de 19/10)"],
-      tools:["portal","central","mgo"]},
-     {id:"3.2", t:"Acionar o CS de Proprietários", m:"misto", ia:1, ex:"pessoa", who:"Analista de Manutenção + CS de Proprietários",
-      o:"Levar o caso ao CS com a prova da recusa.",
-      e:"Chamado no Suporte (Proprietários → Manutenção e Adequação do Imóvel) e card marcado 'CS proprietário acionado'.",
-      how:["Cadência: diária (filtrar o que ainda não foi acionado)","Mensagem no card avisando a franquia, com o link do chamado","22/10: 9 recusas do ciclo de ar-condicionado encaminhadas assim"],
-      chk:"Marcação 'CS proprietário acionado' a criar na Central (Ray, 19/10).",
-      tools:["suporte","central"]},
-     {id:"3.3", t:"Fechar ou escalar", m:"manual", ia:0, ex:"pessoa", who:"Analista de Manutenção",
-      o:"Registrar a decisão do proprietário no card e não deixar o caso parado no CS.",
-      e:"Card fechado como contestado, reprogramado ou caso levado à gerência.",
-      how:["Cadência: semanal","Sem resposta do CS, sobe para a Ray"],
-      tools:["central","suporte","slack"]}
-    ]}
-  ]},
- {cls:"fin2", k:"Trilha 2", n:"Gestão da manutenção recorrente",
-  o:"Fazer a preventiva certa, no mês certo e só onde ela ainda não foi feita, escolhendo o item pelos dados.",
-  mps:[
-   {id:"MP4", v:"Priorizar", n:"Priorização do item",
-    o:"Escolher com dados qual item entra no próximo ciclo.",
-    e:"Item decidido com a Ray, com a análise que justifica.",
-    val:"Menos comentário negativo",
-    opp:"O item era escolhido pelo calendário (travesseiro). Lendo comentário, avaliação, consultor e cards, a recorrente ataca o que está batendo: dedetização com chuva e calor.",
-    p:[
-     {id:"4.1", t:"Levantar o que está batendo", m:"misto", ia:2, ex:"agente", who:"Analista de Manutenção (com Claude)",
-      o:"Mostrar quais itens mais geram problema.",
-      e:"Análise dos últimos 30 dias por item.",
-      how:["Cadência: antes de cada ciclo","Fontes: comentários e avaliações, apontamentos dos consultores e cards corretivos por categoria"],
-      tools:["central","datalake","claude"]},
-     {id:"4.2", t:"Decidir o item com a gerência", m:"manual", ia:0, ex:"pessoa", who:"Analista de Manutenção + Ray",
-      o:"Registrar a decisão e o motivo.",
-      e:"Item do próximo ciclo decidido.",
-      how:["Cadência: antes de cada ciclo","19/10: proposta de puxar a dedetização antes do travesseiro"],
-      tools:["meet","processo"]}
-    ]},
-   {id:"MP5", v:"Preparar", n:"Preparação do ciclo",
-    o:"Deixar a base e a rede prontas para executar o item.",
-    e:"Imóveis elegíveis, prestadores e régua de evidência definidos.",
-    val:"Hóspede bem recebido",
-    opp:"Cobrar um item sem prestador na cidade gera atraso em massa. Ter 2 prestadores por cidade antes de abrir resolve na origem.",
-    p:[
-     {id:"5.1", t:"Definir os imóveis elegíveis", m:"auto", ia:1, ex:"sistema", who:"Sistema (varredura da recorrente)",
-      o:"Cobrar só quem precisa.",
-      e:"Lista de imóveis elegíveis e quantidade do item por imóvel.",
-      how:["Cadência: a cada ciclo","Fica fora quem fez o item nos últimos 6 meses e imóvel com menos de 6 meses de operação","Item no anúncio, despesa já lançada e manutenção já registrada"],
-      imp:{d:"recebe", t:"A data de ativação do imóvel define a entrada na recorrente."},
-      tools:["central","datalake","financeiro"]},
-     {id:"5.2", t:"Preparar a base de prestadores", m:"manual", ia:1, ex:"pessoa", who:"Analista de Manutenção + Fornecedores",
-      o:"Ter pelo menos 2 prestadores por cidade antes de cobrar o item.",
-      e:"Prestadores cadastrados por cidade no Hub de Serviços.",
-      how:["Cadência: a cada ciclo","A própria Manutenção pode prospectar pelo Hub de Serviços"],
-      tools:["hubservicos"]},
-     {id:"5.3", t:"Preparar compra e evidência do item", m:"misto", ia:1, ex:"pessoa", who:"Analista de Manutenção + Tecnologia",
-      o:"Dizer como comprar e o que vale como prova.",
-      e:"Links de compra e régua do validador para o item.",
-      how:["Cadência: a cada ciclo","Documento regulado (dedetização, caixa d'água) exige CNPJ e responsável técnico"],
-      tools:["lojas","central","aihub"]}
-    ]},
-   {id:"MP6", v:"Abrir", n:"Comunicação e abertura",
-    o:"Avisar a franquia uma semana antes, com os dados, e abrir os cards no mesmo dia para todos.",
-    e:"Comunicado enviado e cards do ciclo abertos.",
-    val:"Hóspede bem recebido",
-    opp:"Trazer na comunicação os dados da priorização ('nos últimos meses isso gerou X comentários') muda a conversa de cobrança para prevenção.",
-    p:[
-     {id:"6.1", t:"Comunicar o ciclo com os dados", m:"manual", ia:1, ex:"pessoa", who:"Analista de Manutenção",
-      o:"Preparar a franquia para o item, com o motivo.",
-      e:"Comunicado, reforço e alerta enviados.",
-      how:["Cadência: uma semana antes; terça comunicado, quinta reforço, sábado alerta","Um aviso por franqueado com a lista dos imóveis"],
-      tools:["avisos","suporte","processo"]},
-     {id:"6.2", t:"Auditar a base e abrir os cards", m:"misto", ia:0, ex:"sistema", who:"Sistema + Analista de Manutenção",
-      o:"Conferir a base e abrir um card por imóvel elegível.",
-      e:"Cards abertos com prazo de 15 dias úteis.",
-      how:["Cadência: 1ª segunda-feira útil do ciclo","Conferência de volume por franquia antes do disparo"],
-      aud:"Auditoria da abertura (base, volume e mensagens) antes de liberar.",
-      tools:["central","processo"]}
-    ]},
-   {id:"MP7", v:"Executar", n:"Execução e evidência",
-    o:"Ter o item feito e provado no prazo.",
-    e:"Card concluído por evidência ou auto-verificado pela despesa.",
-    val:"Menos desconto por manutenção",
-    opp:"Cada item novo precisa de régua própria no validador antes de abrir o ciclo.",
-    p:[
-     {id:"7.1", t:"Executar em 15 dias úteis", m:"manual", ia:0, ex:"pessoa", who:"Franquia",
-      o:"Fazer o item no prazo.",
-      e:"Serviço feito e prova no card.",
-      how:["Cadência: prazo do ciclo"],
-      tools:["portal","hubservicos"]},
-     {id:"7.2", t:"Validar a evidência e auto-verificar", m:"auto", ia:2, ex:"agente", who:"Validador de evidência + varredura",
-      o:"Conferir a prova pela matriz do item e fechar pelo que já foi pago.",
-      e:"Parecer por item ou card auto-verificado.",
-      how:["Cadência: contínua; resposta à franquia em até 2 dias úteis","Auto-verificação por item financeiro ou por IA na descrição da despesa"],
-      tools:["central","aihub","financeiro"]},
-     {id:"7.3", t:"Cobrar atraso e tratar recusa do proprietário", m:"misto", ia:0, ex:"sistema", who:"Sistema + Analista de Manutenção",
-      o:"Cobrar quem atrasou e levar a recusa do proprietário ao CS (MP3).",
-      e:"Lembrete, exceção com data ou chamado ao CS.",
-      how:["Cadência: diária","Exceção só pela Coordenação (ex.: Blumenau até 04/11)"],
-      tools:["central","suporte"]}
-    ]},
-   {id:"MP8", v:"Fechar", n:"Fechamento do ciclo",
-    o:"Fechar o ciclo, ajudar quem ficou para trás e aprender antes do próximo.",
-    e:"Balanço do ciclo, franquias com plano e ajustes decididos.",
-    val:"Menos comentário negativo",
-    opp:"É no fechamento que a consultoria acontece: a franquia com pendência recebe ajuda antes de virar caso de UTI.",
-    p:[
-     {id:"8.1", t:"Balanço do ciclo", m:"auto", ia:1, ex:"sistema", who:"Analista de Manutenção",
-      o:"Mostrar gerados, concluídos, auto-verificados e vencidos.",
-      e:"Report semanal e balanço final do ciclo.",
-      how:["Cadência: sexta às 9h durante o ciclo e no fim dele","Lê a aba Recorrentes da Central"],
-      tools:["central","claude","slack"]},
-     {id:"8.2", t:"Consultoria às franquias com pendência", m:"manual", ia:1, ex:"pessoa", who:"Analista de Manutenção",
-      o:"Entender o que trava a franquia e combinar meta para finalizar.",
-      e:"Call com a franquia e meta registrada.",
-      how:["Cadência: no fechamento do ciclo","Pergunta-chave: é proprietário, dinheiro ou falta de prestador?","Só vai para a UTI quem não resolve"],
-      tools:["meet","central","claude"]},
-     {id:"8.3", t:"Retro e ajuste do próximo ciclo", m:"manual", ia:0, ex:"pessoa", who:"Coordenação de Manutenção",
-      o:"Ajustar cadência, datas e matriz com o que o ciclo mostrou.",
-      e:"Decisões registradas no processo.",
-      how:["Cadência: no fim do ciclo"],
-      tools:["processo","meet"]}
-    ]}
-  ]},
- {cls:"ges", k:"Trilha 3", n:"Gestão e consultoria de manutenção",
-  o:"Ser o radar da área: vigiar as entradas e os agentes, transformar desvio em ocorrência e levar a franquia crítica à consultoria antes da UTI.",
-  mps:[
-   {id:"MP9", v:"Controlar", n:"Controle de manutenção",
-    o:"Saber todo dia se a operação está mandando o que deveria e se os agentes estão decidindo certo.",
-    e:"Alerta ao responsável quando uma entrada cai e agentes auditados.",
-    val:"Hóspede bem recebido",
-    opp:"Se uma entrada para de mandar card, algum processo da operação quebrou (foi o que aconteceu com o consultor). O monitoramento é o termômetro da operação.",
-    p:[
-     {id:"9.1", t:"Monitorar o volume das entradas", m:"auto", ia:1, ex:"agente", who:"Agente monitor de entradas",
-      o:"Comparar o volume de cada entrada com o habitual e acionar o responsável quando cair.",
-      e:"Alerta à área dona da entrada (ex.: 'danos 10% abaixo do habitual esta semana').",
-      how:["Cadência: semanal","Entradas (não são processo da Manutenção): dano de hóspede, Suporte Unificado, comentário de hóspede, consultor e Consultoria Regional, UTI, Implantação, migração, a própria franquia e limpeza","Base: histórico de 1 mês por origem; dono de cada entrada: Danos, Consultoria, Migração, Qualidade"],
-      chk:"Definir a meta de variação aceita por entrada (Ray citou 20%).",
-      imp:{d:"recebe", t:"Recebemos os pendentes de conserto encontrados na vistoria de ativação."},
-      tools:["central","suporte","danos","uti","slack","claude"]},
-     {id:"9.2", t:"Monitorar e auditar os agentes", m:"misto", ia:2, ex:"agente", who:"Analista de Manutenção (com Claude)",
-      o:"Ver se cada agente rodou e conferir por amostra o que ele decidiu.",
-      e:"Heartbeat semanal e amostra auditada.",
-      how:["Cadência: heartbeat semanal; auditoria amostral diária","Pares validador × auditor e fila do antifraude"],
-      tools:["abaagentes","claude","central"]},
-     {id:"9.3", t:"Rotina diária de urgentes e travas", m:"misto", ia:1, ex:"pessoa", who:"Analista de Manutenção",
-      o:"Começar o dia pelos urgentes e pelas travas no proprietário ainda não acionadas.",
-      e:"Lista do dia sem urgente esquecido.",
-      how:["Cadência: diária","Filtrar pela marcação 'CS proprietário acionado'"],
-      tools:["central"]}
-    ]},
-   {id:"MP10", v:"Ocorrência", n:"Ocorrências de manutenção",
-    o:"Transformar desvio de manutenção em ocorrência para a franquia, junto com a Qualidade.",
-    e:"Ocorrência aberta e refletida no score.",
-    val:"Menos comentário negativo",
-    opp:"Até outubro a manutenção quase não gerava ocorrência; por isso pesava pouco na nota da franquia.",
-    p:[
-     {id:"10.1", t:"Identificar o critério", m:"auto", ia:1, ex:"agente", who:"Agente de ocorrência + Qualidade",
-      o:"Achar o card que se enquadra na regra.",
-      e:"Lista de cards com critério de ocorrência.",
-      how:["Cadência: diária","Urgente sem resposta em 48h","Manutenção vinda de comentário negativo: entrega do imóvel em condição inadequada"],
-      tools:["central","ocorrencias"]},
-     {id:"10.2", t:"Abrir a ocorrência", m:"misto", ia:1, ex:"agente", who:"Agente de ocorrência + Vick",
-      o:"Registrar a ocorrência com o link do card e a seção do MGO.",
-      e:"Ocorrência registrada.",
-      how:["Cadência: diária","Começa em teste; a Qualidade confere antes de liberar"],
-      aud:"Amostra conferida pela Qualidade no período de teste.",
-      tools:["ocorrencias","central","mgo"]},
-     {id:"10.3", t:"Refletir no score", m:"auto", ia:0, ex:"sistema", who:"Sistema (Sapron)",
-      o:"Fazer a ocorrência pesar na nota da franquia.",
-      e:"Score atualizado.",
-      how:["Cadência: mensal"],
-      chk:"Acesso às Ocorrências ainda falta para o score.",
-      tools:["central","ocorrencias"]}
-    ]},
-   {id:"MP11", v:"Consultar", n:"Franquias críticas",
-    o:"Fechar o mês, identificar a franquia crítica em manutenção e ajudá-la antes da UTI.",
-    e:"Franquia crítica com plano e fora da faixa no mês seguinte.",
-    val:"Menos reserva cancelada",
-    opp:"Previne a UTI: a franquia só vai para lá depois de passar pela consultoria da Manutenção.",
-    p:[
-     {id:"11.1", t:"Score mensal da franquia", m:"auto", ia:0, ex:"sistema", who:"Sistema + Coordenação",
-      o:"Dar uma nota por franquia: lead time, SLA, reincidência e volume.",
-      e:"Score do mês na aba do score da Central.",
-      how:["Cadência: mensal (dia 10); cálculo toda segunda","Manutenção urgente pesa no score"],
-      chk:"Legenda de cada item na aba.",
-      tools:["central"]},
-     {id:"11.2", t:"Triagem pelas faixas", m:"misto", ia:1, ex:"agente", who:"Analista de Manutenção (com Claude)",
-      o:"Achar a franquia travada pela régua.",
-      e:"Faixa de cada franquia (Atenção, Recuperação, Crítica, UTI).",
-      how:["Cadência: semanal","5 sinais por franquia no Sapron"],
-      tools:["claude","central","recuperacao"]},
-     {id:"11.3", t:"Consultoria e plano com a franquia", m:"manual", ia:1, ex:"pessoa", who:"Analista de Manutenção",
-      o:"Entender a dor da franquia e combinar meta.",
-      e:"Plano · Ação · Resultado da semana.",
-      how:["Cadência: semanal enquanto estiver na faixa","Call de 15 minutos"],
-      tools:["meet","claude"]},
-     {id:"11.4", t:"Levar à UTI quem não sai da faixa", m:"manual", ia:0, ex:"pessoa", who:"Coordenação de Manutenção",
-      o:"Subir a franquia que não reage à consultoria.",
-      e:"Caso aberto na UTI com o histórico da manutenção.",
-      how:["Cadência: mensal","Protocolo de manutenção da UTI: confirmar, combinar, executar, validar"],
-      tools:["uti","slack"]}
-    ]}
-  ]}
+const TRILHAS = [
+ {k:"Trilha 1", cls:"urg",  n:"Manutenção urgente", o:"O que deixa o imóvel sem condição de uso ou põe o hóspede em risco: resolver em 24 horas, com o imóvel bloqueado."},
+ {k:"Trilha 2", cls:"fin",  n:"Manutenção corretiva", o:"O conserto que não impede o uso do imóvel: resolver no prazo de 7 dias, com prova."},
+ {k:"Trilha 3", cls:"fin2", n:"Manutenção recorrente", o:"A preventiva: o item certo, no mês certo, só onde ainda não foi feita."},
+ {k:"Trilha 4", cls:"ges",  n:"Gestão e acompanhamento da rede", o:"O radar da área e o acompanhamento de proprietário, qualidade e franquia."}
 ];
 
+/* passo: a=ator · t=título · d=como · s=saída · f=ferramenta · dec=[caminhos] · pd=ponto a validar · m/ia/ex sobrescrevem o padrão */
+const P = [
+ {id:"MP1", tr:0, n:"Manutenção urgente",
+  o:"Resolver em 24 horas o problema que deixa o imóvel sem condição de uso ou põe o hóspede em risco.",
+  ini:"O classificador marca o card como urgente: nota 70 ou mais, ou gatilho duro (gás, choque, sem água, sem energia, hóspede sem acesso).",
+  fim:"Conserto feito, evidência aprovada e imóvel de volta à venda.",
+  dono:"Analista de Manutenção", cad:"24 horas a partir da abertura do card (MGO); recobra em 24h e vira ocorrência em 48h", val:"Menos reserva cancelada",
+  steps:[
+   {a:"A", t:"Marcar o card como urgente", d:"O classificador dá a nota pela lista de urgentes do MGO e a triagem move o card para a coluna Urgente. Duplicata fica marcada.", s:"Card na coluna Urgente.", f:"Classificador e triagem · a cada 15 min"},
+   {a:"S", t:"Abrir o chamado com a franquia", d:"Mensagem com 'Prazo: 24 horas, até dd/mm'. O card aparece na aba Urgente do portal da franquia.", s:"Chamado aberto.", f:"Central de Atividades", pd:"Destaque visual de urgente no portal (vermelho, sirene), pedido da Ray em 19/10."},
+   {a:"F", t:"Bloquear o imóvel", d:"O imóvel sai de venda até o conserto (regra do MGO).", s:"Calendário bloqueado.", f:"Suporte Unificado", m:"manual",ia:0,ex:"pessoa"},
+   {a:"F", t:"O conserto depende do proprietário?", dec:["Sim (acima de R$ 300 ou sem autorização) → sinaliza no card, vai para Programada e segue no MP9","Não → passo 5"], m:"manual",ia:0,ex:"pessoa"},
+   {a:"F", t:"Consertar e anexar a evidência", d:"Foto do serviço feito, nota ou recibo do prestador.", s:"Evidência no card.", f:"Portal da Franquia", m:"manual",ia:0,ex:"pessoa"},
+   {a:"S", t:"A evidência chegou em 24 horas?", dec:["Sim → passo 8","Não → passo 7"]},
+   {a:"S", t:"Recobrar e abrir ocorrência", d:"24 horas sem evidência: recobra a franquia. 48 horas sem resposta, evidência ou finalização: o agente abre a ocorrência (MP10). Depois volta ao passo 5.", s:"Franquia recobrada; ocorrência em 48h.", f:"Lembrete de atraso · agente de ocorrência", m:"auto",ia:1,ex:"sistema", pd:"O Sapron ainda mede o urgente em 1 dia útil (PR #5367); o MGO diz 24 horas."},
+   {a:"A", t:"Validar e auditar a evidência", d:"Validador lê a prova, antifraude confere se a foto é nova, auditor confere o parecer.", s:"Parecer da evidência.", f:"Validador · antifraude · auditor"},
+   {a:"A", t:"A evidência está completa?", dec:["Não → pede o que falta à franquia e volta ao passo 5","Sim → card concluído e passo 10"]},
+   {a:"F", t:"Liberar o imóvel", d:"Devolve o imóvel à venda no mesmo dia.", s:"Calendário liberado.", f:"Suporte Unificado", m:"manual",ia:0,ex:"pessoa", pd:"Quem desbloqueia depois da baixa ainda não está definido."}
+  ],
+  ag:[["Classificador de urgência","ar"],["Triagem automática","ar"],["Verificador de duplicata","ar"],["Validador, antifraude e auditor","ar"],["Lembrete de atraso","ar"],["Agente de ocorrência do urgente","val"]],
+  rot:["Rotina diária de urgentes, primeira coisa do dia (MP8)"],
+  ind:["% de urgentes resolvidos em 24 horas","Tempo médio do urgente","Urgentes que viraram ocorrência"],
+  pend:["Comunicado às franquias só depois de a Rose publicar a seção de urgente no MGO."]},
 
-// Valor: mesma cadeia nas três trilhas
-const VALOR = ["Hóspede bem recebido","Menos reserva cancelada","Menos desconto por manutenção","Menos comentário negativo"];
-TRAILS.forEach(t => { t.val = VALOR; });
+ {id:"MP2", tr:1, n:"Manutenção corretiva",
+  o:"Consertar no prazo o que não impede o uso do imóvel, com prova de que foi feito.",
+  ini:"O classificador marca o card como não urgente (nota abaixo de 70).",
+  fim:"Card concluído por evidência ou pela despesa lançada.",
+  dono:"Analista de Manutenção", cad:"Prazo de 7 dias; cobrança semanal (quarta, 11h) e lembretes em D+7, D+14 e D+21", val:"Menos desconto por manutenção",
+  steps:[
+   {a:"A", t:"Marcar o card como não urgente", d:"Nota abaixo de 70; a triagem move o card para Não urgente e marca duplicata.", s:"Card na coluna Não urgente.", f:"Classificador e triagem"},
+   {a:"S", t:"Abrir o chamado com prazo de 7 dias", d:"A mensagem de abertura já diz a data.", s:"Chamado aberto.", f:"Central de Atividades"},
+   {a:"F", t:"Dá para fazer no prazo?", dec:["Depende do proprietário → sinaliza no card e segue no MP9","Precisa de mais tempo → passo 4","Sim → passo 5"], m:"manual",ia:0,ex:"pessoa"},
+   {a:"F", t:"Programar com data e motivo", d:"A data combinada vira o novo prazo.", s:"Card em Programada.", f:"Portal da Franquia", m:"manual",ia:0,ex:"pessoa", pd:"Evidência anexada em Programada fica parada."},
+   {a:"F", t:"Consertar e provar", d:"Evidência no card ou despesa lançada no Sapron.", s:"Evidência ou despesa.", f:"Portal · Financeiro do Sapron", m:"manual",ia:0,ex:"pessoa"},
+   {a:"S", t:"Cobrar quem atrasou", d:"Cobrança semanal e lembretes até chegar a prova.", s:"Franquia cobrada.", f:"Lembrete de atraso"},
+   {a:"A", t:"A despesa lançada prova o card?", dec:["Sim (mesmo imóvel e item, até cerca de 2 meses) → card concluído","Não → passo 8"], pd:"Hoje a regra exige despesa igual ao card; afrouxar para imóvel + item (Ray, 19/10)."},
+   {a:"A", t:"Validar e auditar a evidência", d:"Validador, antifraude e auditor.", s:"Parecer da evidência.", f:"Validador · antifraude · auditor"},
+   {a:"A", t:"Qual o resultado?", dec:["Incompleta → pede o que falta e volta ao passo 5","Sinal de fraude → passo 10","Completa → card concluído"]},
+   {a:"M", t:"Revisar o sinal de fraude", d:"Confere a foto suspeita e decide.", s:"Card concluído ou devolvido à franquia.", f:"Aba Agentes de IA", m:"misto",ia:1,ex:"pessoa"}
+  ],
+  ag:[["Classificador e triagem","ar"],["Despesa prova o card","val"],["Validador, antifraude e auditor","ar"],["Lembrete de atraso","ar"]],
+  rot:["Cobrança semanal (quarta, 11h)"],
+  ind:["% concluído no prazo","Lead time médio","Cards fechados pela despesa"],
+  pend:["Quando o imóvel troca de franquia, o card vai junto, com 30 dias de carência no score."]},
 
-const LANES = [
-  {cls:"ges", lab:"Gestão", groups:[
-    {id:"MP12", n:"Manter o padrão", o:"Documentos que todos seguem (não são processo: são a régua dos processos).", p:[
-      {id:"12.1", t:"MGO e regra do urgente", m:"manual", ia:1, ex:"pessoa", who:"Analista de Manutenção + Rose",
-       o:"Deixar no MGO o que é urgente, o prazo e as regras.",
-       e:"Seção de manutenção urgente no MGO.",
-       how:["24 horas a partir da abertura do card, imóvel bloqueado até resolver, acima de R$ 300 com proprietário avisa no card"],
-       chk:"Rose atualiza o MGO antes do comunicado (pedido em 19/10).",
-       tools:["mgo"]},
-      {id:"12.2", t:"Matriz de evidência", m:"manual", ia:1, ex:"pessoa", who:"Coordenação + Tecnologia",
-       o:"Dizer o que a prova precisa mostrar, item a item.",
-       e:"Régua do validador e do auditor.",
-       how:["Uma régua para os dois agentes"],
-       tools:["processo","github"]},
-      {id:"12.3", t:"Política de responsabilidade", m:"manual", ia:0, ex:"pessoa", who:"Coordenação + Financeiro",
-       o:"Dizer quando o custo é da franquia, do proprietário ou rateado.",
-       e:"Política escrita.",
-       how:["Hoje vale o corte de R$ 300 para o proprietário"],
-       chk:"Não escrita (decisão 4 do v2.1).",
-       tools:["processo"]},
-      {id:"12.4", t:"Canvas de cada processo", novo:true, m:"misto", ia:2, ex:"agente", who:"Analista de Manutenção (com Claude)",
-       o:"Ter um canvas por processo desta arquitetura, lido pelo portfólio do BackOffice.",
-       e:"Canvases atualizados a cada entrega.",
-       how:["Atualizar pelo MCP de processos ao fim de cada entrega"],
-       tools:["canvas","gov","claude"]}
-    ]},
-    {id:"MP13", n:"Medir resultados", o:"Os números que dizem se a área entrega o valor prometido.", p:[
-      {id:"13.1", t:"Indicadores da área", m:"auto", ia:1, ex:"sistema", who:"Coordenação de Manutenção",
-       o:"Medir imóvel sem bloqueio, reserva cancelada, desconto e comentário negativo por manutenção.",
-       e:"Painel mensal.",
-       how:["Comentários: relatório da Qualidade","Cards: Central de Manutenção"],
-       chk:"Falta escolher a fonte de reserva cancelada e desconto.",
-       tools:["central","datalake","sheets"]},
-      {id:"13.2", t:"Daily com os KPIs", m:"auto", ia:0, ex:"sistema", who:"Time de Manutenção",
-       o:"Ler estoque e fluxo na tela da Central.",
-       e:"Leitura diária.",
-       how:["Definição que vale é a da tela"],
-       tools:["central","meet"]},
-      {id:"13.3", t:"Auditoria de processo e de ferramenta", m:"misto", ia:1, ex:"pessoa", who:"Analista de Manutenção",
-       o:"Conferir se o processo escrito é o que roda e se as ferramentas fazem o que dizem.",
-       e:"Relatório mensal de furos com dono e data.",
-       how:["Ex.: furo da coluna Programada, cards perdidos no incidente de 09/10"],
-       tools:["central","claude"]}
-    ]},
-    {id:"MP14", n:"Gerir demandas", o:"Melhorias, encaminhamentos e comunicação com a rede com dono e data.", p:[
-      {id:"14.1", t:"Backlog e TaskDex", m:"manual", ia:1, ex:"pessoa", who:"Vinicius",
-       o:"Priorizar as melhorias e manter o status em dia.",
-       e:"Uma entrega por dia, com status comentado no TaskDex.",
-       how:["Lista 'Projeto Central de manutenção'"],
-       tools:["taskdex"]},
-      {id:"14.2", t:"Encaminhamentos de reunião", m:"misto", ia:2, ex:"agente", who:"Vinicius (com Claude)",
-       o:"Não esquecer o que foi combinado em reunião, no Slack ou no TaskDex.",
-       e:"Tarefas no Diário com a origem.",
-       how:["Transcrição do Meet, TaskDex, Slack e Gmail viram tarefas"],
-       tools:["diario","meet","taskdex"]},
-      {id:"14.3", t:"Comunicados e treinamento da rede", m:"manual", ia:1, ex:"pessoa", who:"Analista de Manutenção + Rose",
-       o:"Deixar claro para a rede o que é urgente e como registrar.",
-       e:"Comunicado pelo Suporte com pop-up e treinamento quinzenal.",
-       how:["Treinamento da Tela de Manutenção adiado em 19/10"],
-       tools:["suporte","avisos","mgo"]}
-    ]}
-  ]},
-  {cls:"sup", lab:"Suporte", groups:[
-    {id:"MP15", n:"Manter as ferramentas", o:"Central, portal, agentes e integrações funcionando.", p:[
-      {id:"15.1", t:"Agentes e flags", m:"manual", ia:1, ex:"pessoa", who:"Tecnologia",
-       o:"Pôr agente no ar com segurança.",
-       e:"Agente em produção com flag e chave.",
-       how:["Conferir pela migração aplicada, não pelo merge"],
-       tools:["github","aihub","abaagentes"]},
-      {id:"15.2", t:"Integrações de entrada", m:"manual", ia:1, ex:"pessoa", who:"Tecnologia",
-       o:"Manter ponte do Suporte, UTI e Hub de Serviços ligados à Central.",
-       e:"Integrações com chave válida.",
-       how:["Chave por integração"],
-       tools:["suporte","uti","hubservicos"]},
-      {id:"15.3", t:"Portal da Franquia", m:"manual", ia:1, ex:"pessoa", who:"Tecnologia",
-       o:"Manter o que a franquia vê e faz no card.",
-       e:"Portal sem furo de fluxo, com o urgente bem visível.",
-       how:["Envio sem foto, rótulo errado, dado interno no portal"],
-       tools:["portal","github"]},
-      {id:"15.4", t:"Folha de contexto", m:"manual", ia:1, ex:"pessoa", who:"Tecnologia",
-       o:"Guardar vocabulário e armadilhas do dado.",
-       e:"Folha atualizada.",
-       how:["Erro achado é corrigido no arquivo"],
-       tools:["folha"]}
-    ]}
-  ]}
+ {id:"MP3", tr:2, n:"Priorização do item",
+  o:"Escolher com dados qual item entra no próximo ciclo.",
+  ini:"Cerca de 30 dias antes do próximo ciclo.",
+  fim:"Item decidido com a Ray, com a análise que justifica.",
+  dono:"Analista de Manutenção", cad:"Uma vez por ciclo", val:"Menos comentário negativo",
+  steps:[
+   {a:"M", t:"Levantar os corretivos por item", d:"Cards dos últimos 30 dias por categoria e região.", s:"Volume por item.", f:"Central · Claude", m:"misto",ia:2,ex:"pessoa"},
+   {a:"M", t:"Cruzar com comentários e consultores", d:"Comentários e avaliações de hóspede e apontamentos dos consultores.", s:"Impacto por item.", f:"Data lake · skill comentários × urgência", m:"misto",ia:2,ex:"pessoa"},
+   {a:"M", t:"Montar a proposta", d:"Item, volume, impacto e época do ano (ex.: dedetização com chuva e calor).", s:"Proposta de item.", f:"Claude", m:"manual",ia:1,ex:"pessoa"},
+   {a:"G", t:"A gerência aprova o item?", dec:["Sim → passo 5","Não → ajusta a proposta e volta ao passo 3"], m:"manual",ia:0,ex:"pessoa"},
+   {a:"M", t:"Registrar a decisão", d:"Item, motivo e dados no processo da recorrente.", s:"Decisão registrada; segue no MP4.", f:"Processo recorrente", m:"manual",ia:0,ex:"pessoa"}
+  ],
+  ag:[["Skill comentários × urgência","dem"]], rot:[],
+  ind:["Queda de corretivos do item depois do ciclo"],
+  pend:["19/10: proposta de puxar a dedetização antes do travesseiro."]},
+
+ {id:"MP4", tr:2, n:"Preparação do ciclo",
+  o:"Deixar a base e a rede prontas para executar o item.",
+  ini:"Item decidido no MP3.",
+  fim:"Imóveis elegíveis, prestadores e régua de evidência prontos.",
+  dono:"Analista de Manutenção", cad:"Uma vez por ciclo", val:"Hóspede bem recebido",
+  steps:[
+   {a:"S", t:"Calcular os imóveis elegíveis", d:"Fica fora quem já fez o item na janela, imóvel com menos de 6 meses de operação e imóvel sem o item.", s:"Contagem por imóvel.", f:"Varredura da recorrente", ia:1},
+   {a:"M", t:"Conferir a contagem por franquia", d:"Recontar a regra e olhar os extremos.", s:"Base conferida.", f:"Central · aba Recorrentes", m:"manual",ia:0,ex:"pessoa"},
+   {a:"M", t:"Garantir 2 prestadores por cidade", d:"Prospectar onde faltar.", s:"Prestadores cadastrados.", f:"Hub de Serviços", m:"manual",ia:1,ex:"pessoa"},
+   {a:"T", t:"Definir a régua de evidência do item", d:"O que vale como prova no validador e no auditor.", s:"Régua no ar.", f:"Validador · GitHub", m:"manual",ia:1,ex:"pessoa"},
+   {a:"M", t:"Está tudo pronto?", dec:["Não → ajusta base, prestadores ou régua","Sim → segue no MP5"], m:"manual",ia:0,ex:"pessoa"}
+  ],
+  ag:[["Varredura da recorrente","ar"]], rot:[],
+  ind:["Cidades com 2 prestadores ou mais"], pend:[]},
+
+ {id:"MP5", tr:2, n:"Comunicação e abertura",
+  o:"Avisar a franquia uma semana antes, com os dados, e abrir os cards de uma vez.",
+  ini:"Base pronta no MP4.",
+  fim:"Franquias avisadas e cards do ciclo abertos.",
+  dono:"Analista de Manutenção", cad:"Uma semana antes do ciclo e no dia da abertura", val:"Hóspede bem recebido",
+  steps:[
+   {a:"M", t:"Enviar o comunicado com os dados", d:"Por que o item entrou e a lista de imóveis de cada franquia.", s:"Comunicado enviado.", f:"Canal de avisos · Suporte", m:"manual",ia:1,ex:"pessoa"},
+   {a:"M", t:"Reforçar e alertar", d:"Reforço na quinta e alerta no sábado.", s:"Franquias avisadas.", f:"Canal de avisos", m:"manual",ia:0,ex:"pessoa"},
+   {a:"M", t:"Auditar a base antes do disparo", d:"Recontagem, volume por franquia e texto das mensagens.", s:"Disparo liberado.", f:"Central", m:"manual",ia:0,ex:"pessoa"},
+   {a:"S", t:"Abrir os cards do ciclo", d:"Um card por imóvel elegível, prazo de 15 dias úteis. Quem já tem a despesa do item fecha sozinho.", s:"Cards e chamados abertos.", f:"Regra da recorrente"},
+   {a:"M", t:"A abertura saiu certa?", dec:["Não → corrige e reabre o que falhou","Sim → segue no MP6"], m:"manual",ia:0,ex:"pessoa"}
+  ],
+  ag:[["Varredura da recorrente","ar"]], rot:["Abertura do ciclo (1ª segunda-feira útil)"],
+  ind:["Cards abertos × imóveis elegíveis"], pend:[]},
+
+ {id:"MP6", tr:2, n:"Execução e evidência",
+  o:"Ter o item feito e provado no prazo.",
+  ini:"Card do ciclo aberto no MP5.",
+  fim:"Card concluído, encaminhado ou com exceção registrada.",
+  dono:"Analista de Manutenção", cad:"Durante o ciclo (15 dias úteis); report às sextas, 9h", val:"Menos desconto por manutenção",
+  steps:[
+   {a:"F", t:"Executar e anexar a prova", d:"Foto do serviço, nota ou recibo do prestador.", s:"Evidência no card.", f:"Portal da Franquia", m:"manual",ia:0,ex:"pessoa"},
+   {a:"S", t:"Fechar pela despesa", d:"Se a despesa do item é lançada no imóvel, o card fecha sozinho.", s:"Card concluído pela despesa.", f:"Varredura da recorrente", ia:1},
+   {a:"A", t:"Validar e auditar a evidência", d:"A prova é lida pela régua do item.", s:"Parecer da evidência.", f:"Validador · auditor"},
+   {a:"A", t:"Qual o parecer?", dec:["Completa → card concluído","Incompleta → pede o que falta e volta ao passo 1","Recusa do proprietário → MP9","Imóvel sem o item → baixa e corrige o cadastro"]},
+   {a:"S", t:"Cobrar quem não mandou prova", d:"Lembretes de atraso e report de sexta, 9h.", s:"Franquia cobrada.", f:"Lembrete de atraso"},
+   {a:"M", t:"Registrar exceção combinada", d:"Só pela coordenação (ex.: Blumenau até 04/11).", s:"Exceção com data.", f:"Central", m:"manual",ia:0,ex:"pessoa"}
+  ],
+  ag:[["Validador e auditor","ar"],["Varredura da recorrente","ar"],["Lembrete de atraso","ar"]], rot:["Report do ciclo (sexta, 9h)"],
+  ind:["% concluído com evidência","Cards sem resposta da franquia"],
+  pend:["Ciclo de ar-condicionado (prazo 22/10): 627 de 1.147 concluídos com evidência e 317 sem nenhuma resposta (API do Sapron, 22/10)."]},
+
+ {id:"MP7", tr:2, n:"Fechamento do ciclo",
+  o:"Fechar o ciclo, ajudar quem ficou para trás e aprender antes do próximo.",
+  ini:"Prazo do ciclo vencido.",
+  fim:"Balanço feito, pendências com dono e ajustes decididos.",
+  dono:"Analista de Manutenção", cad:"No fim de cada ciclo", val:"Menos comentário negativo",
+  steps:[
+   {a:"M", t:"Puxar o balanço", d:"Gerados, concluídos, em aprovação e sem resposta, por franquia.", s:"Relatório do ciclo.", f:"Central · Claude", m:"misto",ia:2,ex:"pessoa"},
+   {a:"M", t:"Separar o que faltou por motivo", d:"Sem resposta, agendado sem prova, sem o item, distrato, recusa do proprietário.", s:"Lista por motivo.", f:"Claude", m:"misto",ia:2,ex:"pessoa"},
+   {a:"M", t:"Encaminhar cada grupo", d:"Recusa → MP9; sem o item → corrige o cadastro; adiou com data → reprograma.", s:"Pendências com dono.", f:"Central · Suporte", m:"manual",ia:1,ex:"pessoa"},
+   {a:"M", t:"Conversar com a franquia com pendência", d:"O que trava: proprietário, dinheiro ou falta de prestador? Combina meta.", s:"Meta registrada.", f:"Google Meet", m:"manual",ia:1,ex:"pessoa"},
+   {a:"M", t:"A franquia resolveu?", dec:["Não → MP11 Franquias críticas","Sim → fecha o ciclo da franquia"], m:"manual",ia:0,ex:"pessoa"},
+   {a:"G", t:"Retro e ajuste do próximo ciclo", d:"Cadência, datas e régua de evidência.", s:"Decisões registradas no processo.", f:"Processo recorrente", m:"manual",ia:0,ex:"pessoa"}
+  ],
+  ag:[], rot:[], ind:["% do ciclo concluído","Franquias com pendência no fechamento"], pend:[]},
+
+ {id:"MP8", tr:3, n:"Controle de manutenção",
+  o:"Saber todo dia se as áreas estão mandando o que deveriam e se os agentes estão decidindo certo.",
+  ini:"Todo dia útil (rotina) e toda semana (monitoramento).",
+  fim:"Desvio avisado ao dono e agentes conferidos.",
+  dono:"Analista de Manutenção", cad:"Diária e semanal", val:"Hóspede bem recebido",
+  steps:[
+   {a:"D", t:"As áreas mandam os pedidos", d:"Danos de hóspede, Suporte, comentários, consultores, UTI, Implantação, migração, limpeza e a própria franquia. Entrada não é processo da Manutenção: aqui ela é vigiada.", s:"Cards na Central.", f:"Central · ponte do Suporte · integração UTI", m:"misto",ia:0,ex:"pessoa"},
+   {a:"M", t:"Começar o dia pelos urgentes e travas", d:"Urgentes vencendo e travas no proprietário ainda não acionadas.", s:"Lista do dia.", f:"Central", m:"manual",ia:0,ex:"pessoa"},
+   {a:"A", t:"Comparar o volume de cada entrada", d:"Com o histórico de 1 mês por origem.", s:"Variação por entrada.", f:"Monitor de entradas", ia:1},
+   {a:"A", t:"Caiu além da meta?", dec:["Sim (ex.: 20% abaixo do habitual) → passo 5","Não → segue o monitoramento"], ia:1, pd:"Definir a meta de variação por entrada (Ray citou 20%)."},
+   {a:"M", t:"Avisar o dono da entrada", d:"'Danos 10% abaixo do habitual esta semana: aconteceu algo?'", s:"Dono acionado.", f:"Slack", m:"manual",ia:0,ex:"pessoa"},
+   {a:"M", t:"Conferir os agentes", d:"Pulso semanal de cada agente e auditoria por amostra.", s:"Agentes conferidos.", f:"Aba Agentes · Claude", m:"misto",ia:2,ex:"pessoa"},
+   {a:"M", t:"Algum agente parado ou errando?", dec:["Sim → corrige com a Tecnologia","Não → segue"], m:"manual",ia:0,ex:"pessoa"}
+  ],
+  ag:[["Monitor de entradas","des"],["Heartbeat dos agentes","dem"]], rot:["Rotina diária de urgentes e travas","Monitoramento semanal das entradas"],
+  ind:["Entradas fora da faixa","Agentes com pulso em dia"], pend:[]},
+
+ {id:"MP9", tr:3, n:"Adequação com o proprietário",
+  o:"Destravar o conserto que depende do proprietário autorizar ou pagar.",
+  ini:"Card urgente, corretivo ou recorrente travado porque o proprietário não autoriza, não paga ou recusa.",
+  fim:"Decisão do proprietário registrada e card de volta ao processo de origem, reprogramado ou fechado.",
+  dono:"Analista de Manutenção + CS de Proprietários", cad:"Diária (filtro) e semanal (escalonamento)", val:"Menos reserva cancelada",
+  steps:[
+   {a:"F", t:"Sinalizar a trava no card", d:"Responsabilidade 'proprietário' e print da conversa.", s:"Card sinalizado.", f:"Portal da Franquia", m:"manual",ia:0,ex:"pessoa"},
+   {a:"M", t:"Filtrar as travas ainda não acionadas", d:"Faz parte da rotina do dia (MP8).", s:"Lista de travas novas.", f:"Central", m:"manual",ia:0,ex:"pessoa"},
+   {a:"M", t:"Tem print do proprietário?", dec:["Não → pede o print à franquia; sem print a recusa não vale","Sim → passo 4"], m:"manual",ia:0,ex:"pessoa", pd:"Prazo para a franquia mandar o print (proposta: 5 dias úteis)."},
+   {a:"M", t:"Abrir o chamado ao CS", d:"Suporte → Proprietários → Manutenção e Adequação do Imóvel, com a frase do proprietário, o risco e o link do card.", s:"Chamado no Suporte.", f:"Suporte Unificado", m:"manual",ia:1,ex:"pessoa"},
+   {a:"M", t:"Marcar o card e avisar a franquia", d:"Card 'CS proprietário acionado' e mensagem no card com o link do chamado.", s:"Franquia avisada.", f:"Central", m:"manual",ia:0,ex:"pessoa", pd:"Marcação 'CS proprietário acionado' ainda a criar na Central."},
+   {a:"C", t:"Falar com o proprietário", d:"Registra a decisão e que ele está ciente do risco: sem o serviço, o custo e a avaliação ruim ficam com ele.", s:"Resposta no chamado.", f:"Suporte Unificado", m:"manual",ia:0,ex:"pessoa"},
+   {a:"C", t:"O que o proprietário decidiu?", dec:["Autorizou → volta ao processo de origem (MP1, MP2 ou MP6)","Adiou com data → card reprogramado","Recusou → passo 8","Sem resposta do CS em uma semana → leva à Ray"], m:"manual",ia:0,ex:"pessoa"},
+   {a:"M", t:"Fechar como contestado", d:"A recusa comprovada não conta contra a franquia; o imóvel volta no próximo ciclo.", s:"Card fechado.", f:"Central", m:"manual",ia:0,ex:"pessoa", pd:"Regra proposta em 22/10, a decidir."}
+  ],
+  ag:[["Aviso ao CS de Proprietários","des"]], rot:["Rotina diária de travas (MP8)"],
+  ind:["Travas acionadas no mesmo dia","Tempo até a decisão do proprietário","Imóveis bloqueados por trava"],
+  pend:["22/10: 9 recusas do ciclo de ar-condicionado encaminhadas assim (8 chamados novos e 1 comentário)."]},
+
+ {id:"MP10", tr:3, n:"Ocorrências de manutenção",
+  o:"Transformar o desvio de manutenção em ocorrência para a franquia, junto com a Qualidade.",
+  ini:"Card que se enquadra no critério (ex.: urgente sem resposta em 48 horas).",
+  fim:"Ocorrência registrada e refletida no score.",
+  dono:"Analista de Manutenção + Qualidade (Vick)", cad:"Diária", val:"Menos comentário negativo",
+  steps:[
+   {a:"A", t:"Achar o card no critério", d:"Urgente sem resposta em 48 horas; manutenção vinda de comentário negativo.", s:"Lista do dia.", f:"Agente de ocorrência"},
+   {a:"A", t:"Montar a ocorrência", d:"Link do card e a seção do MGO que foi descumprida.", s:"Rascunho da ocorrência.", f:"Agente de ocorrência"},
+   {a:"Q", t:"A ocorrência está correta?", dec:["Não → descarta e ajusta o critério","Sim → passo 4"], m:"manual",ia:0,ex:"pessoa"},
+   {a:"Q", t:"Registrar a ocorrência", d:"Para a franquia.", s:"Ocorrência aberta.", f:"Ocorrências", m:"manual",ia:0,ex:"pessoa", pd:"Destino das ocorrências na Central de Qualidade ainda a definir."},
+   {a:"S", t:"Refletir no score", d:"A ocorrência pesa na nota mensal da franquia (MP11).", s:"Score atualizado.", f:"Score da franquia", pd:"Falta acesso às Ocorrências para o score."}
+  ],
+  ag:[["Agente de ocorrência do urgente","val"]], rot:[],
+  ind:["Ocorrências de manutenção no mês"], pend:["O agente está em sombra desde 20/10: conferir a amostra antes de liberar."]},
+
+ {id:"MP11", tr:3, n:"Franquias críticas",
+  o:"Identificar a franquia crítica em manutenção e ajudá-la antes da UTI.",
+  ini:"Score do mês (dia 10) ou franquia vinda do fechamento do ciclo (MP7).",
+  fim:"Franquia fora da faixa ou levada à UTI.",
+  dono:"Analista de Manutenção", cad:"Semanal; fechamento mensal no dia 10", val:"Menos reserva cancelada",
+  steps:[
+   {a:"S", t:"Calcular o score", d:"Lead time, SLA, reincidência e volume, toda segunda.", s:"Nota por franquia.", f:"Aba do score"},
+   {a:"M", t:"Triar pelas faixas", d:"5 sinais por franquia.", s:"Faixa de cada franquia.", f:"Skill recuperação de franquias", m:"misto",ia:2,ex:"pessoa"},
+   {a:"M", t:"Está em Recuperação ou Crítica?", dec:["Sim → passo 4","Não → acompanha no mês seguinte"], m:"manual",ia:0,ex:"pessoa"},
+   {a:"M", t:"Call de 15 minutos com a franquia", d:"O que trava: proprietário, dinheiro ou prestador?", s:"Diagnóstico.", f:"Google Meet", m:"manual",ia:1,ex:"pessoa"},
+   {a:"M", t:"Combinar o plano", d:"Plano · Ação · Resultado da semana.", s:"Plano registrado.", f:"Registro da triagem", m:"manual",ia:1,ex:"pessoa"},
+   {a:"M", t:"Saiu da faixa no mês?", dec:["Sim → encerra o acompanhamento","Não → passo 7"], m:"manual",ia:0,ex:"pessoa"},
+   {a:"G", t:"Levar à UTI", d:"Com o histórico da manutenção.", s:"Caso na UTI.", f:"UTI de Franquias", m:"manual",ia:0,ex:"pessoa"}
+  ],
+  ag:[["Score da franquia","val"]], rot:["Score mensal (dia 10)","Triagem semanal"],
+  ind:["Franquias na faixa Crítica","Franquias que saíram da faixa"], pend:["Legenda de cada item na aba do score."]}
 ];
 
 const ST = {ar:"No ar", val:"Em validação", des:"Em desenho", dem:"Sob demanda"};
-const AUTOS = [
-  {lab:"Agentes e bots", items:[
-    {id:"A1", n:"Classificador de urgência", st:"ar", f:"Sapron · a cada 15 min", o:"Nota de urgência de 0 a 100 no card novo.", s:["1.1","2.1","12.1"]},
-    {id:"A2", n:"Triagem automática", st:"ar", f:"Sapron · a cada card novo", o:"Move o card para Urgente ou Não urgente.", s:["1.1","2.1"]},
-    {id:"A3", n:"Verificador de duplicata", st:"ar", f:"Sapron · a cada card novo", o:"Marca possível duplicata.", s:["1.1","2.1"]},
-    {id:"A4", n:"Validador de evidência", st:"ar", f:"Sapron · contínuo", o:"Lê a prova contra a matriz.", s:["1.4","2.4","7.2"]},
-    {id:"A5", n:"Auditor do parecer", st:"ar", f:"Sapron · contínuo", o:"Confere o parecer e conclui o card.", s:["1.4","2.4"]},
-    {id:"A6", n:"Antifraude de evidência", st:"val", f:"Sapron · ligado em 13/10", o:"Sinaliza foto reaproveitada e segura a baixa.", s:["2.4","9.2"]},
-    {id:"A7", n:"Despesa prova o card", st:"val", f:"Sapron · contínuo", o:"Fecha card avulso pela despesa lançada.", s:["2.4"], chk:"afrouxar para imóvel + item, janela de ~2 meses"},
-    {id:"A8", n:"Varredura da recorrente", st:"ar", f:"Sapron · diária", o:"Elegibilidade, abertura e auto-verificação do ciclo.", s:["5.1","6.2","7.2"]},
-    {id:"A9", n:"Integração UTI", st:"ar", f:"API da Central · por evento", o:"Marca ou abre card a partir da UTI.", s:["9.1"]},
-    {id:"A10", n:"Score da franquia", st:"val", f:"Sapron · toda segunda", o:"Nota de cada franquia.", s:["11.1","10.3"]},
-    {id:"A11", n:"Lembrete de atraso", st:"ar", f:"Sapron · diário, 10h", o:"Recobra o urgente em 24h e os demais em D+7, D+14, D+21.", s:["1.3","2.2","7.3"]},
-    {id:"A12", n:"Agente de ocorrência do urgente", st:"val", f:"Sapron · diário · em sombra", o:"Abre ocorrência quando o urgente passa de 48h sem resposta.", s:["1.3","10.1","10.2"], chk:"em sombra desde 20/10; falta o destino na Central de Qualidade"},
-    {id:"A13", n:"Monitor de entradas", st:"des", f:"Semanal", o:"Compara o volume de cada entrada com o habitual e avisa o responsável.", s:["9.1"]},
-    {id:"A14", n:"Aviso ao CS de proprietários", st:"des", f:"A definir", o:"Leva ao CS o imóvel travado por decisão do proprietário.", s:["3.2"]}
-  ]},
-  {lab:"Extensão", items:[
-    {id:"E1", n:"Extensão da SIA (usada em Fornecedores)", st:"des", f:"Central de Atividades · a avaliar", o:"Conversa com a franquia dentro do chamado.", s:["1.3"], chk:"ver com o Henry se serve na Central de Atividades"}
-  ]},
-  {lab:"Skills (rodadas pelo time)", items:[
-    {id:"S1", n:"ponte-suporte-manutencao", st:"dem", f:"Claude Code · por leva", o:"Leva chamados do Suporte para a Central.", s:["9.1","15.2"]},
-    {id:"S2", n:"recuperacao-franquias", st:"dem", f:"Claude Code · semanal", o:"Triagem das franquias pelos 5 sinais.", s:["11.2"]},
-    {id:"S3", n:"Heartbeat dos agentes", st:"dem", f:"Claude Code · semanal", o:"Pulso semanal de cada agente.", s:["9.2"]},
-    {id:"S4", n:"Comentários × urgência", st:"dem", f:"Claude Code · mensal", o:"Cruza comentários de hóspede com a urgência e os itens do ciclo.", s:["4.1","10.1"]},
-    {id:"S5", n:"diario", st:"dem", f:"Claude Code · diária", o:"Junta encaminhamentos de reunião, TaskDex, Slack e Gmail.", s:["14.2"]}
-  ]},
-  {lab:"Rotinas fixas", items:[
-    {id:"R1", n:"Rotina diária de urgentes e travas", st:"ar", f:"Todo dia útil, primeira coisa", o:"Nenhum urgente nem trava esquecidos.", s:["1.3","9.3"]},
-    {id:"R2", n:"Daily da manutenção", st:"ar", f:"Todo dia útil", o:"Leitura dos KPIs.", s:["13.2"]},
-    {id:"R3", n:"Cobrança semanal", st:"ar", f:"Quarta, 11h", o:"Cobra em lote os cards pendentes.", s:["2.2"]},
-    {id:"R4", n:"Abertura do ciclo recorrente", st:"ar", f:"1ª segunda útil do ciclo", o:"Comunicação e abertura dos cards.", s:["6.1","6.2"]},
-    {id:"R5", n:"Report do ciclo", st:"ar", f:"Sexta, 9h", o:"Andamento do ciclo para a gerência.", s:["8.1"]},
-    {id:"R6", n:"Semanal de adequação", st:"ar", f:"Semanal, com CS de Proprietários", o:"Leva os imóveis travados no proprietário.", s:["3.2","3.3"]},
-    {id:"R7", n:"Score mensal", st:"val", f:"Dia 10 de cada mês", o:"Fechamento do mês e franquias críticas.", s:["11.1"]},
-    {id:"R8", n:"Monitoramento semanal das entradas", st:"des", f:"Semanal", o:"Termômetro das entradas da operação.", s:["9.1"]}
-  ]}
-];
+const e = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const mp = s => e(s).replace(/MP\d+/g, m => P.some(p=>p.id===m) ? `<a href="#${m}">${m}</a>` : m);
+const st = s => Object.assign({m:"manual",ia:0,ex:"pessoa"}, DEF[s.a]||{}, Object.fromEntries(["m","ia","ex"].filter(k=>k in s).map(k=>[k,s[k]])));
+const tr = p => TRILHAS[p.tr];
+const plink = id => { const p = P.find(x=>x.id===id); return `<a href="#${id}">${id} ${e(p.n)}</a>`; };
 
-/* ===================== DAQUI PRA BAIXO NÃO MEXER ===================== */
-const autosOf = id => AUTOS.flatMap(g=>g.items).filter(a=>a.s.includes(id));
-const ARROW_DOWN = `<div class="down"><svg viewBox="0 0 10 16" aria-hidden="true"><line x1="5" y1="0" x2="5" y2="10"/><path d="M1 9 L5 16 L9 9 Z"/></svg></div>`;
-const ARROW_RIGHT = `<div class="join"><svg viewBox="0 0 36 14" preserveAspectRatio="none" aria-hidden="true"><line x1="2" y1="7" x2="27" y2="7"/><path d="M26 2 L34 7 L26 12 Z"/></svg></div>`;
-const REG = {};
-const tags = p => `<span class="tags"><span class="mode ${p.m}">${MODE[p.m]}</span><span class="ia i${p.ia}">${IA[p.ia]}</span><span class="ex">${EX[p.ex]}</span>${p.imp?`<span class="imp">${IMP[p.imp.d]}</span>`:""}${p.chk?`<span class="chk">Validar</span>`:""}${p.novo?`<span class="new">Novo</span>`:""}</span>`;
-function box(p,tr){REG[p.id]={kind:"p",d:p,tr};return `<button class="box" type="button" data-k="${p.id}" aria-expanded="false"><span class="t"><span class="code">${p.id}</span><span>${p.t}</span></span><span class="o">${p.o}</span>${tags(p)}</button>`;}
-function col(mp,tr){REG[mp.id]={kind:"mp",d:mp,tr};return `<div class="col"><button class="head" type="button" data-k="${mp.id}" aria-expanded="false"><span class="v">${mp.id} · ${mp.v}</span><span class="n">${mp.n}</span><span class="o">${mp.o}</span><span class="e"><b>Entrega:</b> ${mp.e}</span></button>${mp.p.map(p=>ARROW_DOWN+box(p,tr)).join("")}</div>`;}
-const valueBox = v => `<div class="value"><b>Valor para a Seazone</b>${v.map((s,i)=>`<span class="${i===v.length-1?'meta':''}">${s}</span>`).join(`<span>↓</span>`)}</div>`;
-const flow = document.getElementById("flow");
-flow.insertAdjacentHTML("afterbegin", TRAILS.map(tr=>{const cols=tr.mps.map(()=>"1fr").join(" 36px ");return `<section class="trail ${tr.cls}"><div class="trail-h"><span class="tk">${tr.k}</span><span class="tn">${tr.n}</span><span class="to">${tr.o}</span></div><div class="main" style="grid-template-columns:${cols} 36px 170px">${tr.mps.map(mp=>col(mp,tr)).join(ARROW_RIGHT)}${ARROW_RIGHT}${valueBox(tr.val)}</div></section>`;}).join(""));
-document.getElementById("base").innerHTML = LANES.map(l=>`<div class="lane ${l.cls}"><span class="lab">${l.lab}</span><div class="row">${l.groups.map(g=>`<div class="grp"><span class="gh"><span class="code">${g.id}</span>${g.n} ${g.tag?`<span class="new">${g.tag}</span>`:''}</span><span class="go">${g.o}</span><div class="chips">${g.p.map(p=>{REG[p.id]={kind:"p",d:p};return `<button class="chip" type="button" data-k="${p.id}" aria-expanded="false"><span class="code">${p.id}</span><span class="nm">${p.t}</span><span class="ia i${p.ia}">${IA[p.ia]}</span>${p.imp?`<span class="imp">${IMP[p.imp.d]}</span>`:""}${p.chk?`<span class="chk">Validar</span>`:""}</button>`}).join("")}</div></div>`).join("")}</div>`).join("");
-document.getElementById("autos").innerHTML = AUTOS.map(g=>`<div class="agrp"><span class="lab">${g.lab}</span>${g.items.map(a=>`<div class="acard"><span class="t"><span class="code">${a.id}</span><span>${a.n}</span></span><span class="tags"><span class="st ${a.st}">${ST[a.st]}</span>${a.chk?`<span class="chk" title="${a.chk}">Validar</span>`:""}</span><span class="o">${a.o}${a.chk?` <i>(${a.chk})</i>`:""}</span><span class="f">${a.f}</span><span class="steps">Etapas: ${a.s.map(id=>`<button class="stepb" type="button" data-k="${id}" aria-expanded="false">${id}</button>`).join("")}</span></div>`).join("")}</div>`).join("");
-const main = TRAILS.flatMap(t=>t.mps.flatMap(m=>m.p)), all = main.concat(LANES.flatMap(l=>l.groups.flatMap(g=>g.p)));
-const cnt = (arr,f) => arr.filter(f).length;
-document.getElementById("summary").innerHTML = `<div class="g"><span class="gl">Fluxo principal</span><span class="gv"><span><b>${main.length}</b> processos em ${TRAILS.length} ${TRAILS.length===1?'trilha':'trilhas'}</span><span><b>${all.length-main.length}</b> de gestão e suporte</span></span></div><div class="g"><span class="gl">Execução (fluxo principal)</span><span class="gv">${["auto","misto","manual"].map(k=>`<span><span class="mode ${k}">${MODE[k]}</span> <b>${cnt(main,p=>p.m===k)}</b></span>`).join("")}</span></div><div class="g"><span class="gl">Uso de IA (fluxo principal)</span><span class="gv">${[0,1,2].map(i=>`<span><span class="ia i${i}">${IA[i]}</span> <b>${cnt(main,p=>p.ia===i)}</b></span>`).join("")}</span></div><div class="g"><span class="gl">Quem executa (fluxo principal)</span><span class="gv">${Object.keys(EX).map(k=>`<span><span class="ex">${EX[k]}</span> <b>${cnt(main,p=>p.ex===k)}</b></span>`).join("")}</span></div><div class="g"><span class="gl">Interface com a Implantação</span><span class="gv">${Object.keys(IMP).map(k=>`<span><span class="imp">${IMP[k]}</span> <b>${cnt(all,p=>p.imp&&p.imp.d===k)}</b></span>`).join("")}<span><span class="chk">Validar</span> <b>${cnt(all,p=>p.chk)}</b></span></span></div>`;
-const pop = document.getElementById("pop");
-let cur=null,pinned=false,hideT=null,showT=null;
-const tool = k => { const t=T[k]; return t?.u ? `<a class="tool" href="${t.u}" target="_blank" rel="noopener">${t.n} ↗</a>` : `<span class="tool">${t?.n||k}</span>`; };
-const sec = (l,h,c="") => `<div class="sec ${c}"><span class="sl">${l}</span>${h}</div>`;
-function content(k){const r=REG[k],d=r.d;const head=`<div class="ph"><h3><span class="code">${d.id}</span>${d.t||d.n}</h3><button class="x" type="button" aria-label="Fechar">×</button></div>`;if(r.kind==="mp")return head+sec("Objetivo",`<p>${d.o}</p>`)+sec("Entrega",`<p>${d.e}</p>`)+sec("Valor para a Seazone",`<p>Contribui para: <b>${d.val}</b> (${r.tr.val.join(" → ")}).</p>`)+sec("Como entregar mais valor",`<p>${d.opp}</p><p style="font-size:12px;color:var(--ink3)">Sugestão para validar com a liderança.</p>`,"opp");return head+tags(d)+sec("Responsável",`<p>${d.who}</p>`)+sec("Objetivo",`<p>${d.o}</p>`)+sec("Entrega",`<p>${d.e}</p>`)+sec("Como funciona", d.how.length>1?`<ul>${d.how.map(h=>`<li>${h}</li>`).join("")}</ul>`:`<p>${d.how[0]}</p>`)+(d.aud?sec("Auditoria",`<p>${d.aud}</p>`,"aud"):"")+(d.imp?sec(d.imp.d==="recebe"?"Interface: recebemos da Implantação":"Interface: entregamos para a Implantação",`<p>${d.imp.t}</p>`,"impb"):"")+(d.chk?sec("A validar",`<p>${d.chk}</p>`,"chkb"):"")+(autosOf(d.id).length?sec("Agentes e rotinas",`<ul>${autosOf(d.id).map(a=>`<li><b>${a.id}</b> ${a.n} (${ST[a.st].toLowerCase()})</li>`).join("")}</ul>`):"")+sec("Ferramentas",`<div class="tools">${d.tools.map(tool).join("")}</div>`);}
-function place(el){const b=el.getBoundingClientRect(),pw=pop.offsetWidth,ph=pop.offsetHeight,vw=innerWidth,vh=innerHeight;let x,y=b.top;if(b.right+10+pw<=vw-12)x=b.right+10;else if(b.left-pw-10>=12)x=b.left-pw-10;else{x=Math.max(12,Math.min(b.left,vw-pw-12));y=b.bottom+8;}if(y+ph>vh-12)y=Math.max(12,vh-ph-12);pop.style.left=x+"px";pop.style.top=y+"px";}
-function open(el,pin){clearTimeout(hideT);if(cur&&cur!==el)cur.setAttribute("aria-expanded","false");cur=el;pinned=pin;el.setAttribute("aria-expanded","true");pop.innerHTML=content(el.dataset.k);pop.hidden=false;place(el);pop.querySelector(".x").onclick=close;}
-function close(){pop.hidden=true;pinned=false;if(cur){cur.setAttribute("aria-expanded","false");cur=null;}}
-document.querySelectorAll("[data-k]").forEach(el=>{el.addEventListener("mouseenter",()=>{if(pinned)return;clearTimeout(showT);showT=setTimeout(()=>open(el,false),120);});el.addEventListener("mouseleave",()=>{clearTimeout(showT);if(!pinned)hideT=setTimeout(close,180);});el.addEventListener("click",e=>{e.stopPropagation();(cur===el&&pinned)?close():open(el,true);});});
-pop.addEventListener("mouseenter",()=>clearTimeout(hideT));
-pop.addEventListener("mouseleave",()=>{if(!pinned)hideT=setTimeout(close,180);});
-pop.addEventListener("click",e=>e.stopPropagation());
-document.addEventListener("click",()=>{if(!pop.hidden)close();});
-document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!pop.hidden){const c=cur;close();c&&c.focus();}});
-addEventListener("resize",()=>{if(cur&&!pop.hidden)place(cur);});
-document.querySelector(".scroll").addEventListener("scroll",()=>{if(cur&&!pop.hidden)place(cur);});
-addEventListener("scroll",()=>{if(cur&&!pop.hidden)place(cur);},{passive:true});
+function summary(){
+  const all = P.flatMap(p=>p.steps), acts = all.filter(s=>!s.dec), cnt = f => all.filter(f).length;
+  document.getElementById("summary").innerHTML =
+   `<div class="g"><span class="gl">Arquitetura</span><span class="gv"><span><b>${P.length}</b> processos em ${TRILHAS.length} trilhas</span><span><b>${acts.length}</b> atividades</span><span><b>${all.length-acts.length}</b> decisões</span></span></div>`+
+   `<div class="g"><span class="gl">Execução</span><span class="gv">${Object.keys(MODE).map(k=>`<span><span class="mode ${k}">${MODE[k]}</span> <b>${cnt(s=>st(s).m===k)}</b></span>`).join("")}</span></div>`+
+   `<div class="g"><span class="gl">Uso de IA</span><span class="gv">${[0,1,2].map(i=>`<span><span class="ia i${i}">${IA[i]}</span> <b>${cnt(s=>st(s).ia===i)}</b></span>`).join("")}</span></div>`+
+   `<div class="g"><span class="gl">Quem executa · a validar</span><span class="gv">${Object.keys(EX).map(k=>`<span><span class="ex">${EX[k]}</span> <b>${cnt(s=>st(s).ex===k)}</b></span>`).join("")}<span><span class="chk">Validar</span> <b>${cnt(s=>s.pd)+P.reduce((n,p)=>n+p.pend.length,0)}</b></span></span></div>`;
+}
 
-/* abas */
-document.querySelectorAll(".tab").forEach(t=>{
-  t.addEventListener("click",()=>{
-    if(!pop.hidden)close();
-    document.querySelectorAll(".tab").forEach(x=>x.setAttribute("aria-selected","false"));
-    document.querySelectorAll(".tabpanel").forEach(x=>x.hidden=true);
-    t.setAttribute("aria-selected","true");
-    document.getElementById("t-"+t.dataset.tab).hidden=false;
+function tabs(cur){
+  let h = `<button class="tab" type="button" role="tab" data-id="geral" aria-selected="${cur==="geral"}">Todos os processos</button>`;
+  TRILHAS.forEach((t,i) => {
+    h += `<span class="tabsep" aria-hidden="true"></span>`;
+    P.filter(p=>p.tr===i).forEach(p => h += `<button class="tab" type="button" role="tab" data-id="${p.id}" aria-selected="${cur===p.id}"><span class="code">${p.id}</span>${e(p.n)}</button>`);
   });
-});
+  const nav = document.getElementById("tabs"); nav.innerHTML = h;
+  nav.querySelectorAll(".tab").forEach(b => b.onclick = () => { location.hash = b.dataset.id; });
+  const on = nav.querySelector('[aria-selected="true"]'); if (on) on.scrollIntoView({block:"nearest",inline:"center"});
+}
+
+function geral(){
+  const head = p => { const t = tr(p), acts = p.steps.filter(s=>!s.dec).length, decs = p.steps.length-acts;
+    return `<a class="head ${t.cls}" href="#${p.id}"><span class="v">${p.id}</span><span class="n">${e(p.n)}</span><span class="o">${e(p.o)}</span>
+      <span class="e"><b>Começa:</b> ${e(p.ini)}<br><b>Termina:</b> ${e(p.fim)}</span><span class="cnt">${acts} atividades · ${decs} decisões →</span></a>`; };
+  let h = `<p class="hint">Cada processo tem a sua aba com a sequência de atividades, quem faz cada uma e as decisões. Clique em um processo para abrir.</p>`;
+  h += `<section class="panel"><div class="autos-h" style="margin-bottom:10px"><span class="tn" style="color:var(--navy)">Como um pedido de manutenção chega</span><span class="to">Entrada não é processo da Manutenção: o volume de cada uma é vigiado no ${plink("MP8")}.</span></div>
+    <div class="entry"><div class="eb"><b>Quem pede</b>Danos de hóspede, Suporte Unificado, comentários, consultores, UTI, Implantação, migração, limpeza e a própria franquia.</div><span class="arr">→</span>
+    <div class="eb"><b>Classificador e triagem</b>Nota de 0 a 100 pela lista de urgentes do MGO, a cada 15 minutos.</div><span class="arr">→</span>
+    <div class="outs"><a class="head urg" href="#MP1"><span class="v">Nota 70 ou mais</span><span class="n">MP1 Manutenção urgente</span></a><a class="head fin" href="#MP2"><span class="v">Nota abaixo de 70</span><span class="n">MP2 Manutenção corretiva</span></a>
+    <a class="head fin2" href="#MP3"><span class="v">Não vem de pedido: nasce do ciclo</span><span class="n">MP3 a MP7 Manutenção recorrente</span></a></div></div></section>`;
+  h += `<section class="panel" style="overflow-x:auto"><table class="cmp"><thead><tr><th></th><th class="urg"><span class="h">Urgente</span></th><th class="fin"><span class="h">Corretiva</span></th><th class="fin2"><span class="h">Recorrente</span></th></tr></thead><tbody>
+    <tr><td>O que é</td><td>Imóvel sem condição de uso ou hóspede em risco</td><td>Conserto que não impede o uso do imóvel</td><td>Preventiva de um item escolhido para o ciclo</td></tr>
+    <tr><td>Como nasce</td><td>Pedido com nota 70 ou mais</td><td>Pedido com nota abaixo de 70</td><td>Abertura do ciclo, um card por imóvel elegível</td></tr>
+    <tr><td>Prazo</td><td>24 horas</td><td>7 dias (pode ser programado)</td><td>15 dias úteis</td></tr>
+    <tr><td>Imóvel</td><td>Bloqueado até resolver</td><td>Segue à venda</td><td>Segue à venda</td></tr>
+    <tr><td>Se atrasar</td><td>Recobra em 24h e vira ocorrência em 48h</td><td>Cobrança semanal e lembretes D+7, D+14, D+21</td><td>Lembretes e conversa no fechamento do ciclo</td></tr>
+    <tr><td>Se depende do proprietário</td><td colspan="3">Vai para o ${plink("MP9")}, com o CS de Proprietários</td></tr></tbody></table></section>`;
+  TRILHAS.forEach((t,i) => {
+    h += `<section class="trail ${t.cls}"><div class="trail-h"><span class="tk">${t.k}</span><span class="tn">${e(t.n)}</span><span class="to">${e(t.o)}</span></div><div class="ovgrid">${P.filter(p=>p.tr===i).map(head).join("")}</div></section>`;
+  });
+  h += `<section class="panel"><div class="autos-h" style="margin-bottom:8px"><span class="tn" style="color:var(--navy)">Como os processos se ligam</span></div><ul style="margin:0;padding-left:18px;font:400 13px/1.6 var(--serif)">
+    <li>${plink("MP1")}, ${plink("MP2")} e ${plink("MP6")} levam ao ${plink("MP9")} tudo o que depende do proprietário; o card volta ao processo de origem quando ele decide.</li>
+    <li>${plink("MP1")}: urgente sem resposta em 48 horas vira ocorrência no ${plink("MP10")}.</li>
+    <li>${plink("MP3")} → ${plink("MP4")} → ${plink("MP5")} → ${plink("MP6")} → ${plink("MP7")} formam um ciclo da recorrente.</li>
+    <li>${plink("MP7")} e ${plink("MP10")} alimentam o ${plink("MP11")}; só vai para a UTI quem não sai da faixa.</li>
+    <li>${plink("MP8")} vigia as entradas e confere os agentes de todos os processos.</li></ul></section>`;
+  return h;
+}
+
+function proc(p){
+  const t = tr(p);
+  const lanes = ORDER.filter(a => p.steps.some(s=>s.a===a));
+  let fl = `<div class="swim" style="grid-template-columns:repeat(${lanes.length},minmax(0,1fr))">` + lanes.map(a=>`<div class="lh">${e(ACT[a])}</div>`).join("");
+  p.steps.forEach((s,i) => {
+    if (i) fl += `<div class="dn"><div class="down"><svg viewBox="0 0 10 16" aria-hidden="true"><line x1="5" y1="0" x2="5" y2="10"/><path d="M1 9 L5 16 L9 9 Z"/></svg></div></div>`;
+    else fl += `<div class="dn" style="height:10px"></div>`;
+    const x = st(s);
+    lanes.forEach((a,j) => {
+      if (a !== s.a) { fl += `<div class="cell ln empty${j?"":" first"}"></div>`; return; }
+      const tags = `<span class="tags">${s.dec?`<span class="chk" style="color:var(--amber);background:var(--amberbg)">Decisão</span>`:""}<span class="mode ${x.m}">${MODE[x.m]}</span><span class="ia i${x.ia}">${IA[x.ia]}</span><span class="ex">${EX[x.ex]}</span>${s.pd?`<span class="chk">Validar</span>`:""}</span>`;
+      const body = s.dec
+        ? `<ul class="br">${s.dec.map(d=>`<li>${mp(d)}</li>`).join("")}</ul>`
+        : `${s.d?`<span class="o">${mp(s.d)}</span>`:""}${s.s?`<span class="out"><b>Saída:</b> ${mp(s.s)}</span>`:""}${s.f?`<span><span class="tool">${e(s.f)}</span></span>`:""}`;
+      fl += `<div class="cell ln${j?"":" first"}"><div class="box stp${s.dec?" dec":""}"><span class="who">${e(ACT[a])}</span><span class="t"><span class="n">${i+1}</span>${e(s.t)}</span>${body}${tags}${s.pd?`<span class="pd">A validar: ${e(s.pd)}</span>`:""}</div></div>`;
+    });
+  });
+  fl += `</div>`;
+  const ul = (arr, vazio) => arr.length ? `<ul>${arr.map(x=>`<li>${mp(x)}</li>`).join("")}</ul>` : `<p class="hint">${vazio}</p>`;
+  const liga = [...new Set(p.steps.flatMap(s => [s.d,s.s,...(s.dec||[])].join(" ").match(/MP\d+/g)||[]).concat((p.ini.match(/MP\d+/g)||[])))].filter(x => x!==p.id && P.some(q=>q.id===x));
+  return `<div class="ptop"><div class="head ${t.cls}"><span class="v">${t.k} · ${e(t.n)} · ${p.id}</span><span class="n" style="font-size:22px">${e(p.n)}</span><span class="o" style="font-size:14px">${e(p.o)}</span></div></div>
+   <section class="panel pmeta"><div><span class="gl">Começa quando</span>${mp(p.ini)}</div><div><span class="gl">Termina quando</span>${mp(p.fim)}</div><div><span class="gl">Dono</span>${e(p.dono)}</div><div><span class="gl">Cadência e prazo</span>${e(p.cad)}</div><div><span class="gl">Valor que entrega</span>${e(p.val)}</div></section>
+   <div class="pgrid ${t.cls}"><section class="panel"><div class="autos-h" style="margin-bottom:12px"><span class="tn" style="color:var(--c)">Sequência de atividades</span><span class="to">De cima para baixo; cada coluna é quem faz.</span></div><div style="overflow-x:auto">${fl}</div></section>
+   <aside class="side">
+     <section class="panel"><h3>Agentes e automações</h3>${p.ag.length?p.ag.map(([n,s])=>`<div class="acard"><span class="t">${e(n)} <span class="st ${s}">${ST[s]}</span></span></div>`).join(""):`<p class="hint">Nenhum.</p>`}</section>
+     <section class="panel"><h3>Rotinas fixas</h3>${ul(p.rot,"Nenhuma.")}</section>
+     <section class="panel"><h3>Indicadores</h3>${ul(p.ind,"A definir.")}</section>
+     ${liga.length?`<section class="panel"><h3>Liga com</h3><ul>${liga.map(x=>`<li>${plink(x)}</li>`).join("")}</ul></section>`:""}
+     ${p.pend.length?`<section class="panel warnp"><h3>Notas e pontos a validar</h3>${ul(p.pend,"")}</section>`:""}
+   </aside></div>`;
+}
+
+function render(){
+  const id = (location.hash||"#geral").slice(1), p = P.find(x=>x.id===id);
+  tabs(p ? p.id : "geral");
+  document.getElementById("view").innerHTML = p ? proc(p) : geral();
+  window.scrollTo({top: p ? document.getElementById("tabs").offsetTop - 8 : 0});
+}
+summary();
+window.addEventListener("hashchange", render);
+render();
 </script>
+
 </body>
 </html>
