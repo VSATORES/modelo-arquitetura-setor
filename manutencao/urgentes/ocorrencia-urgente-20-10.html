@@ -95,6 +95,12 @@
       <h2>Ocorrência do urgente <span class="estado">Atenção</span></h2>
       <p class="sub">Acha o card urgente sem resposta da franquia em 48 horas úteis e propõe a ocorrência 6.2 com as provas. Só propõe. Roda de hora em hora.</p>
 
+      <div class="aviso">
+        <b>De onde vem o "Urgente":</b> não é lista marcada à mão — é o Classificador de urgência (em produção), que soma gatilho duro (frases fechadas de risco à segurança/imóvel inutilizável: gás, choque, curto, incêndio/fumaça, sem água, sem energia, alagamento, hóspede preso, sem acesso), severidade por IA (0-80) e reincidência 90 dias (0-20); nota ≥ 70 é <code>ai_is_urgent</code>, mas só ordena — virar <code>status="urgente"</code> segue sendo decisão humana. Regras completas no documento v0.3 (22/10).<br>
+        <b>Escopo:</b> este agente nunca lança no Pipefy / Central de Ocorrências e Multas — só propõe; quem efetivamente abre o chamado e conta os pontos é o app da Victória.<br>
+        <b>MGO:</b> chamado de atualização da página 28 aberto no Suporte em 20/10 — dono e prazo de retorno ainda <b>a confirmar</b>.
+      </div>
+
       <div class="nums">
         <div class="num al"><span class="lbl">Para decidir</span><b>2</b><small>nada vai para a franquia até alguém lançar</small></div>
         <div class="num"><span class="lbl">Espera da mais antiga</span><b>9h</b><small>alerta a partir de 24h</small></div>

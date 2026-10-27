@@ -66,6 +66,13 @@ code{font-size:13px;background:var(--bg);padding:1px 5px;border-radius:4px}ul{ma
 </div>
 <blockquote class="atencao"><b>Comparar palavra não basta.</b> Dos 187 cards, a maioria tem só despesa sem relação com o card (água, energia, vassoura, condomínio). A regra simples de palavra erra para os dois lados: casa despesa errada e perde a certa. Por isso o bot precisa de um juiz, detalhado na seção 4.</blockquote>
 
+<h3>2.1 Antes × depois — o que dá para afirmar hoje</h3>
+<p><b>Volume elegível (hoje, 26/10/2026):</b> 1.095 cards abertos no Sapron (<code>status NOT IN ('concluido','cancelada')</code>). Tirando os 419 de <code>origin='recorrente'</code> — esses já fecham sozinhos pelo matcher de recorrência que já existe em produção — sobram <b>676 cards</b> que esse bot novo mira, dos quais <b>197 são de Danos</b> (o alvo mais limpo, por casar valor sem IA).</p>
+<blockquote class="atencao">
+<p><b>"Quantos o bot baixa por mês" não dá para responder com precisão antes de ele rodar.</b> A ligação despesa↔card não é um campo gravado — <code>financial_expenses</code> não tem <code>card_id</code> (folha de contexto, seção 5). A varredura mais confiável já feita (property_id + janela −30/+7 dias, testada em toda a base, não só Danos) achou candidato para <b>16,6% das despesas</b> (1.492 de 9.003), e <b>29% desses (429) são ambíguos</b> — medição de 08/09/2026. Esse é o teto de confiabilidade do pareamento por imóvel, não a taxa de acerto do bot. O número real de baixas por mês só existe depois da Fase 1 (sombra), quando o juiz da seção 4 roda contra casos reais e a régua da seção 7.2 começa a contar conferências.</p>
+<p><b>Tempo economizado por semana:</b> não há no card nem na despesa um campo de tempo de conferência manual (lessons.md / folha de contexto: tempo por etapa do card não é calculável, só contagem). Em vez de estimar sem base, esse número entra como <b>meta de medição da Fase 1</b>: comparar o tempo entre "despesa aprovada" e "card baixado" nos casos que o bot sinalizar, contra a mesma distância nos casos de hoje feitos à mão.</p>
+</blockquote>
+
 <h2>🔍 3. O que já existe no sistema</h2>
 <div class="tabela"><table>
 <tr><th>Peça</th><th>Situação</th></tr>
@@ -128,7 +135,7 @@ code{font-size:13px;background:var(--bg);padding:1px 5px;border-radius:4px}ul{ma
 <tr><th>Tipo de caso</th><th>Como decide</th><th>Libera a baixa sozinha com</th></tr>
 <tr><td>Danos</td><td>O valor total do card é igual ao da despesa. É conta, sem IA</td><td><b>15 conferências sem nenhum erro</b></td></tr>
 <tr><td>Recorrente</td><td>A despesa foi lançada no item da regra, sem IA</td><td><b>30 conferências com até 1 erro</b></td></tr>
-<tr><td>IA</td><td>A IA lê o card e a despesa item a item</td><td><b>30 conferências com até 1 erro</b> (97%)</td></tr>
+<tr><td>IA</td><td>A IA lê o card e a despesa item a item</td><td><b>30 conferências com até 1 erro</b> (97% = 1 erro em 30 conferências)</td></tr>
 </table></div>
 <p>A régua olha sempre as últimas conferências. Se o erro passar do limite, o tipo perde a baixa sozinha e volta a só anexar.</p>
 
@@ -155,6 +162,14 @@ code{font-size:13px;background:var(--bg);padding:1px 5px;border-radius:4px}ul{ma
 <li>A data da evidência é a do serviço na despesa, nunca antes da abertura do card.</li>
 <li>Despesa cancelada depois gera só um aviso interno. O agente não reabre o card sozinho.</li>
 </ul>
+
+<h3>7.8 Protocolo de rollback</h3>
+<p>Se o agente der baixa num card errado (casou despesa que não era daquele serviço), a Manutenção reabre o card em <b>até 1 dia útil</b>, mediante qualquer um dos dois gatilhos:</p>
+<ul>
+<li><b>Contestação da franquia</b> — ela reabre pedindo revisão, igual hoje.</li>
+<li><b>Achado na auditoria amostral</b> (seção 7.5) — a baixa sorteada que vier com "discordo" já dispara a reabertura, sem esperar a franquia reclamar.</li>
+</ul>
+<p>Reabrir tira a etiqueta <code>despesa:&lt;número&gt;</code>, devolve o card para o status anterior à baixa e registra o motivo — o mesmo campo de "discordo" da seção 7.3. Enquanto a Fase 3 (baixa) não provar a régua, isso é raro; vira rotina de auditoria, não exceção.</p>
 
 <figure><img src="print-aba.png" alt="Aba Agentes de IA com o agente Despesa prova o card">
 <figcaption>O agente na aba Agentes de IA, com a mesma cara dos outros cinco. <b>Print do Sapron local com dados de exemplo</b> (29/09), não de produção.</figcaption></figure>

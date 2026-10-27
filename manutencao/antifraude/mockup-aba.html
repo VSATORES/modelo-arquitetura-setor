@@ -118,7 +118,7 @@
 <div class="folha">
 <h1>Aba do antifraude de evidência</h1>
 <p class="sub">Como ficaria a nova aba dentro de Agentes de IA, na central de manutenção, e o selo no card. Clique nos botões: a tela reage, mas nada é gravado.</p>
-<p class="data">Mockup v0.2 · 08/10/2026 · regras em <code>processo-antifraude-evidencia.html</code></p>
+<p class="data">Mockup v0.3 · 26/10/2026 · ajuste da Ray: bot avisa a franquia, não trava o fechamento · regras em <code>processo.html</code></p>
 <div class="aviso"><b>Todos os números e cards abaixo são de exemplo</b>, inventados para mostrar a tela. Nenhum foi medido no Sapron. As fotos são blocos cinza no lugar das imagens reais.</div>
 
 <h2>1 · A aba, na etapa 1 (sombra: só a Manutenção vê)</h2>
@@ -199,11 +199,11 @@
         <div class="secao-tit">O que este agente nunca faz</div>
         <div class="nunca">
           <div><b>Não devolve o card</b>status e data da evidência ficam como estão (R28, R30)</div>
-          <div><b>Não escreve à franquia</b>nenhuma mensagem sai deste agente (R29)</div>
+          <div><b>Avisa a franquia, não trava</b>manda mensagem automática pedindo evidência nova; não segura o fechamento (R29, R35)</div>
           <div><b>Não pune</b>ocorrência e nota só por clique de gente, fora daqui (R31, R39)</div>
-          <div><b>Não acusa</b>o texto diz "imagem coincide com a do card #N", nunca "fraude" (R32)</div>
+          <div><b>Não acusa</b>o texto diz "imagem parecida com a do card #N", nunca "fraude" (R32)</div>
         </div>
-        <p class="rodape-aba">Única consequência automática, a partir da etapa 2: o auditor não finaliza sozinho um card em nível forte ou suspeito (R35). Só adia o fechamento.</p>
+        <p class="rodape-aba">Única ação automática, a partir da etapa 2: o bot manda ao franqueado "sua evidência tem indício de duplicidade, envie uma foto nova" (R29). O auditor segue o fluxo normal — quem trava, se precisar, é a fila de gente (seção 3.8 do processo).</p>
       </div>
     </div>
   </div>
@@ -218,7 +218,7 @@
     <span class="selo2 v">Parecer: evidência completa</span>
     <span class="selo2 f">Antifraude: forte</span>
   </div>
-  <div class="detalhe"><b style="color:var(--tinta)">Por que o auditor não finalizou sozinho:</b> 2 imagens coincidem com as do card #5870 (outro imóvel, 41 dias). Veja a comparação na aba Antifraude e decida. Isso não é uma acusação: pode ser foto legítima reaproveitada pela franquia.</div>
+  <div class="detalhe"><b style="color:var(--tinta)">Por que o selo apareceu:</b> 2 imagens coincidem com as do card #5870 (outro imóvel, 41 dias). A franquia já recebeu o alerta pedindo foto nova (R29); o auditor segue o fluxo normal. Veja a comparação na aba Antifraude e decida se quer confirmar ou descartar. Isso não é uma acusação: pode ser foto legítima reaproveitada pela franquia.</div>
 </div>
 <p class="nota" style="margin-top:10px">O selo aparece só quando o nível é forte ou suspeito. Card limpo não ganha nada na tela, para não poluir.</p>
 </div>

@@ -157,6 +157,18 @@
 
   <h2>Regras</h2>
   <div class="regras">
+    <section class="regra larga">
+      <h3>Antes deste agente: o que vira "Urgente" na origem</h3>
+      <p>Não é uma lista marcada à mão — é o <b>Classificador de urgência</b> (já em produção, <code>maintenance/actions/classify_card.py</code>), que roda assim que o card chega e monta uma nota de 0 a 100:</p>
+      <ol>
+        <li><b>Gatilho duro</b> — a descrição bate uma de ~20 frases fechadas de risco à segurança ou imóvel inutilizável: vazamento/cheiro de gás, choque elétrico, curto-circuito, fiação exposta, princípio de incêndio/fumaça, falta de água ou sem água (exceto "água quente" — chuveiro frio não entra aqui), falta de energia/sem luz, alagamento/inundação, esgoto vazando, hóspede preso/trancado, porta não abre, fechadura travada, sem acesso ao imóvel. Bateu, a nota vai direto ao piso de 95.</li>
+        <li><b>Severidade por IA (0-80)</b> — sem gatilho duro, o modelo avalia a gravidade do problema em si: 70-80 é imóvel inutilizável ou risco à segurança (sozinho já cruza o corte), 45-69 é função essencial parada (ar-condicionado no verão, geladeira, chuveiro, vazamento ativo), abaixo disso é conforto ou estético.</li>
+        <li><b>Reincidência (0-20)</b> — soma pontos se o mesmo imóvel teve o mesmo tipo de problema nos últimos 90 dias.</li>
+      </ol>
+      <p>Severidade + reincidência ≥ 70, ou gatilho duro, é o corte do binário <code>ai_is_urgent</code>. <b>Mas a nota só ordena — ela não move o card sozinha.</b> Virar <code>status="urgente"</code> de fato continua sendo decisão humana: é por isso que "toda manutenção vira urgente pra pular fila" não acontece — o classificador prioriza, não decide.</p>
+      <p class="meta">Fonte: <code>maintenance/constants.py</code> (<code>URGENCY_HARD_TRIGGERS</code>, <code>URGENCY_URGENT_THRESHOLD</code>) e <code>maintenance/actions/classify_card.py</code>, sapron-backend, conferido em 26/10/2026. A lista literal completa de gatilhos e os limiares exatos moram no código — aqui citamos os âncoras, pra não duplicar fonte de verdade.</p>
+    </section>
+
     <section class="regra">
       <h3>Quem entra</h3>
       <ol>
@@ -211,6 +223,7 @@
     <section class="regra">
       <h3>O que vai para a Victória</h3>
       <ul>
+        <li><b>Escopo: este agente nunca lança nada no Pipefy / Central de Ocorrências e Multas.</b> Ele só monta a ocorrência e espera sua aprovação; "Aprovar e enviar" manda os dados pro app da Victória — é o app dela, nunca este agente, que de fato abre o chamado e conta os pontos. Isso existe pra não duplicar ocorrência (uma pelo agente, outra lançada à mão).</li>
         <li>Origem <b>Manutenções</b> (já existe no formulário dela).</li>
         <li>Chave <code>card:&lt;id&gt;</code>: reenviar atualiza, nunca duplica.</li>
         <li>Subcategoria <b>6.2</b> por enquanto. A troca pelo código novo é uma configuração.</li>
@@ -239,6 +252,7 @@
         <li><b>Quando tirar a trava.</b> Sugestão: 2 semanas de uso, 90% ou mais aprovadas sem edição e nenhuma contestação aceita pela Victória.</li>
         <li><b>Com a Victória:</b> função de entrada, chave de API, código da subcategoria nova e se o nome da franquia que enviamos bate com o cadastro dela.</li>
         <li><b>Medidas:</b> propostas geradas, aprovadas e descartadas (por motivo), tempo até a decisão, contestações aceitas (os falsos positivos) e atraso médio no envio.</li>
+        <li><b>MGO sem dono nem prazo.</b> O chamado de atualização da MGO p.28 (a regra citada no texto da ocorrência) foi aberto no Suporte Unificado em 20/10/2026. Faltam: <b>[a confirmar — quem é o dono da MGO que assina a página 28]</b> e <b>[a confirmar — prazo de retorno]</b>. Enquanto isso não fechar, o agente cita uma regra que pode mudar sem aviso.</li>
       </ul>
     </section>
   </div>

@@ -128,14 +128,34 @@ td.c{text-align:center; white-space:nowrap; font-variant-numeric:tabular-nums;}
   <h1>Recuperação de franquias críticas</h1>
   <p class="sub">O que a Seazone faz quando uma franquia para de resolver manutenção: como ela
   entra, quem conduz, o que acontece em cada etapa e como ela sai.</p>
-  <p class="tagline"><b>Versão 1.3</b> · 28/09/2026 · dono: Central de Manutenção ·
+  <p class="tagline"><b>Versão 1.4</b> · 26/10/2026 · dono: Central de Manutenção (Vinicius) + BackOffice Franquias (Ray) ·
   valida: Diretoria de Franquias, Financeiro e Jurídico</p>
+
+  <div class="antes" style="margin-top:20px">
+    <b>Resumo</b><br>
+    Quantas franquias estão em Crítica hoje: número final depende do <b>Score de Manutenção</b>
+    (lead time × SLA × reincidência), em fechamento em documento separado — não antecipado aqui
+    para não divergir do score quando ele publicar.<br>
+    Impacto em R$: sem base própria nesta página; o impacto por franquia sai do Score de
+    Manutenção quando ele cruzar com despesa e card (ver <code>folha-de-contexto.md</code>, seção 5 —
+    hoje não existe ligação direta entre despesa e card).<br>
+    <b>Decisões pendentes:</b> (1) Jurídico assinar, junto com a Coordenação de Manutenção, o
+    critério de validação de multa na UTI; (2) Diretoria confirmar a regra de stop de crescimento
+    por franquia Crítica (exceto mesmo prédio); (3) Iara/BackOffice triar os 6 casos em pré-UTI do
+    ScorePulse (pedido de 12/10) e dizer se entram por este processo ou pela Pré-UTI já existente.<br>
+    <b>Dono e prazo:</b> Central de Manutenção, fechar com os 3 ajustes acima até 30/10/2026
+    (prazo proposto pela Ray em 23/10).
+  </div>
 </header>
 
 <section>
   <h2>A linha do tempo</h2>
   <p class="lede">Cinco etapas em sequência. As linhas em vermelho são passagens automáticas: se a
-  condição não for cumprida, o caso sobe sem nova reunião para decidir.</p>
+  condição não for cumprida, o caso sobe sem nova reunião para decidir. <b>A partir da v1.4, só a
+  Triagem tem reunião fixa.</b> Recuperação, Crítica e UTI viram acompanhamento assíncrono por
+  status/score — a UTI e a Pré-UTI de Franquias, que já existem como processo do time de
+  Franquias, continuam com as calls delas; este processo não cria reunião nova, só entra na pauta
+  quando a UTI/Pré-UTI pedir.</p>
 
   <p class="antes"><b>Antes de tudo:</b> a régua do Sapron roda sozinha no card — ele vence e a franquia recebe
   lembrete no chat do card em D+7, D+14, D+21 e a cada 7 dias depois. Acionar o gestor por nome em
@@ -157,12 +177,12 @@ td.c{text-align:center; white-space:nowrap; font-variant-numeric:tabular-nums;}
 
   <div class="fase f2">
     <div class="fase-h">
-      <h3>2 · Recuperação</h3><span class="cad">call quinzenal · 30 min</span>
+      <h3>2 · Recuperação</h3><span class="cad">acompanhamento assíncrono · sem reunião própria</span>
       <p class="entra"><b>Entra com</b> dois sinais ruins, ou qualquer card vencido há mais de 60 dias. <b>Conduz:</b> Coordenação de Consultoria de Franquias.</p>
     </div>
     <div class="tl">
       <div class="ti"><p class="acao">Montar a planilha da franquia e <b>quebrar os cards mistos</b> em franquia × proprietário.</p><p class="quem">Central de Manutenção</p></div>
-      <div class="ti"><p class="acao">Call com a franquia, card a card, saindo com <b>data assumida por ela</b> em cada um.</p><p class="quem">Coordenação + consultor regional</p></div>
+      <div class="ti"><p class="acao">Contato assíncrono com a franquia (mensagem no card/chamado), card a card, pedindo <b>data assumida por ela</b> em cada um — sem reunião de calendário fixa.</p><p class="quem">Coordenação + consultor regional</p></div>
       <div class="ti"><p class="acao">Confirmar em campo o que a franquia declarou. Declaração sem confirmação não fecha card.</p><p class="quem">Consultoria Regional</p></div>
       <div class="ti"><p class="acao">Encaminhar ao proprietário o que depender de orçamento dele.</p><p class="quem">Relacionamento</p></div>
       <div class="ti gate"><p class="acao">Duas calls seguidas sem entrega → sobe para Crítica.</p><p class="quem">Automático</p></div>
@@ -172,14 +192,16 @@ td.c{text-align:center; white-space:nowrap; font-variant-numeric:tabular-nums;}
 
   <div class="fase f3">
     <div class="fase-h">
-      <h3>3 · Crítica</h3><span class="cad">call semanal · 45 min · dia fixo</span>
-      <p class="entra"><b>Entra com</b> três sinais ruins, alcance acima de 50% da carteira, ou card de avaliação de hóspede aberto há mais de 30 dias. <b>Conduz:</b> Gerência de BackOffice · Franquias.</p>
+      <h3>3 · Crítica</h3><span class="cad">acompanhamento assíncrono · reunião só se a UTI/Pré-UTI de Franquias pedir</span>
+      <p class="entra"><b>Entra com</b> três sinais ruins, alcance acima de 50% da carteira, ou card de avaliação de hóspede aberto há mais de 30 dias. <b>Conduz:</b> Gerência de BackOffice · Franquias.
+      <br><b>Antes de classificar:</b> confere se a franquia já está em Pré-UTI/UTI de Franquias (processo do time de Franquias) — se já está, não abre caso novo aqui, só referencia o status existente lá, para não duplicar.</p>
     </div>
     <div class="tl">
-      <div class="ti"><p class="acao">Publicar a ordem de ataque da franquia e enviar o relatório antes de cada call.</p><p class="quem">Central de Manutenção</p></div>
-      <div class="ti"><p class="acao">Fechar a posição da Seazone em 15 minutos antes da call. Ninguém negocia prazo ao vivo.</p><p class="quem">Gerência + Coordenação + Manutenção</p></div>
-      <div class="ti"><p class="acao">Call semanal com a franquia. Termina sempre com <b>card, responsável e dia</b>.</p><p class="quem">Gerência de BackOffice</p></div>
+      <div class="ti"><p class="acao">Publicar a ordem de ataque da franquia e enviar o relatório — sem convocar call própria.</p><p class="quem">Central de Manutenção</p></div>
+      <div class="ti"><p class="acao">Fechar a posição da Seazone antes de qualquer contato. Ninguém negocia prazo ao vivo sem posição fechada.</p><p class="quem">Gerência + Coordenação + Manutenção</p></div>
+      <div class="ti"><p class="acao">Contato assíncrono com a franquia (mensagem no card/chamado). Termina sempre com <b>card, responsável e dia</b>. Vira call presencial só se a franquia já estiver na pauta da UTI/Pré-UTI de Franquias.</p><p class="quem">Gerência de BackOffice</p></div>
       <div class="ti"><p class="acao">Registrar <b>ocorrência formal</b> com o prazo final declarado por escrito.</p><p class="quem">Gerência de BackOffice</p></div>
+      <div class="ti"><p class="acao">Entrar em <b>stop de crescimento</b>: trava novas aquisições de imóveis para a franquia, exceto imóveis no mesmo prédio onde ela já opera (esses seguem liberados).</p><p class="quem">Automático</p></div>
       <div class="ti gate"><p class="acao">Prazo da ocorrência vencido sem entrega → sobe para UTI.</p><p class="quem">Automático</p></div>
       <div class="ti alta"><p class="acao">Alta: plano cumprido por 30 dias seguidos, sem card novo vencendo.</p><p class="quem">Triagem semanal</p></div>
     </div>
@@ -191,10 +213,10 @@ td.c{text-align:center; white-space:nowrap; font-variant-numeric:tabular-nums;}
       <p class="entra"><b>Entra com</b> quatro ou cinco sinais ruins, descumprimento do prazo da ocorrência, ou reincidência. <b>Conduz:</b> Diretoria de Franquias, com a COO informada.</p>
     </div>
     <div class="tl">
-      <div class="ti"><p class="acao">Bloquear a entrada de novos imóveis e comunicar a franquia por escrito, com prazo e consequência.</p><p class="quem">Diretoria de Franquias</p></div>
-      <div class="ti"><p class="acao">Acionar multa e o caminho contratual.</p><p class="quem">Financeiro + Jurídico</p></div>
+      <div class="ti"><p class="acao">Manter o stop de crescimento da Crítica (exceto mesmo prédio) e comunicar a franquia por escrito, com prazo e consequência.</p><p class="quem">Diretoria de Franquias</p></div>
+      <div class="ti gate"><p class="acao">Acionar multa e caminho contratual <b>nunca automático</b>: exige validação conjunta de Financeiro + Jurídico, com registro de <b>quem validou e quando</b> antes de aplicar.</p><p class="quem">Financeiro + Jurídico</p></div>
       <div class="ti"><p class="acao">Onde houver <b>risco ao hóspede</b>, executar direto pela Seazone e cobrar da franquia depois.</p><p class="quem">Diretoria + Financeiro</p></div>
-      <div class="ti"><p class="acao">Comitê quinzenal: entregou o quê, o que falta, segue ou encerra. Decisão registrada com data.</p><p class="quem">Diretoria + COO + BackOffice + Manutenção</p></div>
+      <div class="ti"><p class="acao">Acompanhamento quinzenal assíncrono: entregou o quê, o que falta, segue ou encerra. Decisão registrada com data. Vira reunião só se a Diretoria pedir.</p><p class="quem">Diretoria + COO + BackOffice + Manutenção</p></div>
       <div class="ti gate"><p class="acao">Dia 60: decisão de continuidade da franquia. A UTI não se renova.</p><p class="quem">Diretoria de Franquias</p></div>
       <div class="ti alta"><p class="acao">Alta: zero cards críticos e 60 dias sem reincidência → desce para Recuperação, nunca direto para fora.</p><p class="quem">Comitê</p></div>
     </div>
@@ -283,6 +305,11 @@ td.c{text-align:center; white-space:nowrap; font-variant-numeric:tabular-nums;}
       </tbody>
     </table>
   </div>
+  <p class="antes"><b>Checagem obrigatória antes de Crítica ou UTI:</b> confere se a franquia já está
+  em Pré-UTI/UTI de Franquias (processo do time de Franquias). Se já está, este processo não abre
+  caso novo — só referencia o status existente lá. Inclui o corte de UTI das franquias críticas e os
+  6 casos em pré-UTI do ScorePulse pedidos pela Iara em 12/10 (triagem desses 6 ainda pendente com
+  a Iara/BackOffice — ver Resumo no topo).</p>
 </section>
 
 <section>
@@ -323,14 +350,34 @@ td.c{text-align:center; white-space:nowrap; font-variant-numeric:tabular-nums;}
 
 <section>
   <h2>As reuniões</h2>
+  <p class="lede"><b>v1.4:</b> só a Triagem é reunião própria deste processo. Recuperação, Crítica
+  e UTI viram acompanhamento assíncrono (mensagem no card/chamado + relatório da triagem) — elas só
+  viram reunião quando a UTI ou a Pré-UTI de Franquias (processo já existente do time de Franquias,
+  com as próprias calls) colocar o caso na pauta delas. Isso evita que uma mesma franquia tenha
+  duas agendas de reunião rodando em paralelo para o mesmo problema.</p>
   <div class="tablebox">
     <table>
-      <thead><tr><th>Reunião</th><th>Etapa</th><th>Quando</th><th>Quem</th></tr></thead>
+      <thead><tr><th>Ritual</th><th>Etapa</th><th>Quando</th><th>Quem</th></tr></thead>
       <tbody>
-        <tr><td class="b">Triagem</td><td class="c">1</td><td class="c">Semanal · 20 min</td><td class="w">Manutenção + BackOffice</td></tr>
-        <tr><td class="b">Call de Recuperação</td><td class="c">2</td><td class="c">Quinzenal · 30 min</td><td class="w">Coordenação de Consultoria + consultor regional</td></tr>
-        <tr><td class="b">Call Crítica</td><td class="c">3</td><td class="c">Semanal · 45 min</td><td class="w">Gerência de BackOffice + Coordenação + Manutenção</td></tr>
-        <tr><td class="b">Comitê de UTI</td><td class="c">4</td><td class="c">Quinzenal · 45 min</td><td class="w">Diretoria + COO + BackOffice + Manutenção</td></tr>
+        <tr><td class="b">Triagem</td><td class="c">1</td><td class="c">Semanal · 20 min · reunião própria</td><td class="w">Manutenção + BackOffice</td></tr>
+        <tr><td class="b">Recuperação</td><td class="c">2</td><td class="c">Assíncrono · sem reunião própria</td><td class="w">Coordenação de Consultoria + consultor regional</td></tr>
+        <tr><td class="b">Crítica</td><td class="c">3</td><td class="c">Assíncrono · reunião só se UTI/Pré-UTI pedir</td><td class="w">Gerência de BackOffice + Coordenação + Manutenção</td></tr>
+        <tr><td class="b">UTI</td><td class="c">4</td><td class="c">Assíncrono quinzenal · reunião só se a Diretoria pedir</td><td class="w">Diretoria + COO + BackOffice + Manutenção</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2>Comunicação com o franqueado</h2>
+  <p class="lede">Três templates, um por momento. Sem diminutivo, sem emoji, sempre com o próximo
+  passo explícito.</p>
+  <div class="tablebox">
+    <table>
+      <tbody>
+        <tr><td class="b">Entrada em Crítica</td><td class="w">"Sua franquia entrou na faixa Crítica do processo de Recuperação de Franquias em [data], por [motivo: nº de sinais / alcance / card de avaliação]. A partir de hoje: stop de crescimento para novos imóveis (exceto no mesmo prédio onde você já opera) e acompanhamento direto da Gerência de BackOffice. Próximo passo: responda com a data que assume para cada card listado em anexo até [prazo]."</td></tr>
+        <tr><td class="b">Aplicação de multa</td><td class="w">"A ocorrência formal registrada em [data], com prazo até [data], não foi cumprida. Financeiro e Jurídico validaram a aplicação de multa em [data], conforme contrato. Valor: [R$]. Próximo passo: o boleto/desconto sai em [prazo]; dúvidas sobre o cálculo vão para [contato]."</td></tr>
+        <tr><td class="b">Saída para Observação</td><td class="w">"Sua franquia saiu da faixa [Recuperação/Crítica/UTI] e entrou em Observação a partir de [data]. Você segue na leitura semanal por 90 dias; sem novo problema, não há mais nenhuma ação necessária da sua parte. Se um sinal piorar nesse período, o caso volta direto para [faixa], sem passar pelas intermediárias."</td></tr>
       </tbody>
     </table>
   </div>
@@ -527,21 +574,23 @@ CONDUZ = {&quot;atencao&quot;: &quot;BackOffice · Franquias&quot;, &quot;recupe
 ACOES_ETAPA = {
     &quot;recuperacao&quot;: [
         (&quot;Montar a planilha e quebrar os cards mistos em franquia × proprietário&quot;, &quot;Central de Manutenção&quot;),
-        (&quot;Call quinzenal de 30 min, card a card, saindo com data assumida pela franquia&quot;, &quot;Coordenação + consultor regional&quot;),
+        (&quot;Contato assíncrono (mensagem no card), card a card, pedindo data assumida pela franquia — sem reunião própria&quot;, &quot;Coordenação + consultor regional&quot;),
         (&quot;Confirmar em campo o que a franquia declarou&quot;, &quot;Consultoria Regional&quot;),
         (&quot;Encaminhar ao proprietário o que depende de orçamento dele&quot;, &quot;Relacionamento&quot;),
     ],
     &quot;critica&quot;: [
-        (&quot;Publicar a ordem de ataque e enviar o relatório antes da call&quot;, &quot;Central de Manutenção&quot;),
-        (&quot;Fechar a posição da Seazone 15 min antes da call&quot;, &quot;Gerência + Coordenação + Manutenção&quot;),
-        (&quot;Call semanal de 45 min, terminando com card, responsável e dia&quot;, &quot;Gerência de BackOffice&quot;),
+        (&quot;Checar se a franquia já está em Pré-UTI/UTI de Franquias; se já está, só referenciar, não abrir caso novo&quot;, &quot;Central de Manutenção&quot;),
+        (&quot;Publicar a ordem de ataque e enviar o relatório — sem reunião própria&quot;, &quot;Central de Manutenção&quot;),
+        (&quot;Fechar a posição da Seazone antes de qualquer contato&quot;, &quot;Gerência + Coordenação + Manutenção&quot;),
+        (&quot;Contato assíncrono com a franquia, terminando com card, responsável e dia&quot;, &quot;Gerência de BackOffice&quot;),
         (&quot;Registrar ocorrência formal com o prazo final por escrito&quot;, &quot;Gerência de BackOffice&quot;),
+        (&quot;Entrar em stop de crescimento (exceto imóveis no mesmo prédio)&quot;, &quot;Automático&quot;),
     ],
     &quot;uti&quot;: [
-        (&quot;Bloquear novos imóveis e comunicar por escrito, com prazo e consequência&quot;, &quot;Diretoria de Franquias&quot;),
-        (&quot;Acionar multa e caminho contratual&quot;, &quot;Financeiro + Jurídico&quot;),
+        (&quot;Manter stop de crescimento e comunicar por escrito, com prazo e consequência&quot;, &quot;Diretoria de Franquias&quot;),
+        (&quot;Acionar multa e caminho contratual só com validação conjunta de Financeiro + Jurídico, registrando quem validou e quando&quot;, &quot;Financeiro + Jurídico&quot;),
         (&quot;Onde houver risco ao hóspede, executar direto e cobrar depois&quot;, &quot;Diretoria + Financeiro&quot;),
-        (&quot;Comitê quinzenal: entregou o quê, segue ou encerra (decisão com data)&quot;, &quot;Diretoria + COO + BackOffice + Manutenção&quot;),
+        (&quot;Acompanhamento quinzenal assíncrono: entregou o quê, segue ou encerra (decisão com data; reunião só se a Diretoria pedir)&quot;, &quot;Diretoria + COO + BackOffice + Manutenção&quot;),
     ],
 }
 
@@ -1137,6 +1186,16 @@ Prepara a call da franquia [nome ou host]: quero só o bloco Plano · Ação · 
   de Franquias, do Financeiro e do Jurídico antes de valer como norma. Revisar a cada 6 meses.</p>
   <p>v1.3 (28/09/2026): start com input da semana, ciclo Plano · Ação · Resultado e triagem rodada
   pela skill <b>recuperacao-franquias</b> (obrigatória, com prompts de instalação e uso no fim); corrigido que D+14 e D+21 ainda não são automáticos.</p>
+  <p>v1.4 (26/10/2026) — ajustes da revisão de 23/10 (Ray, devolvido): resumo e decisões pendentes
+  no topo; Recuperação, Crítica e UTI deixam de ter reunião própria e viram acompanhamento
+  assíncrono (só a Triagem continua com reunião fixa; UTI/Pré-UTI de Franquias seguem com as calls
+  delas, sem duplicação); multa na UTI passa a exigir validação conjunta de Financeiro + Jurídico
+  com registro de quem validou e quando (nunca automática); entrada em Crítica liga com stop de
+  crescimento, exceto imóveis no mesmo prédio; checagem obrigatória de Pré-UTI/UTI de Franquias
+  antes de classificar Crítica ou UTI, cobrindo o pedido da Iara (12/10) sobre os 6 casos do
+  ScorePulse; 3 templates de comunicação ao franqueado (entrada em Crítica, multa, saída para
+  Observação). Os ajustes de Score de Manutenção (valores reais, fórmula, fonte dos dados,
+  antes×depois) da mesma revisão estão em <code>manutencao/score/</code>, documento separado.</p>
 </div>
 
 </div>

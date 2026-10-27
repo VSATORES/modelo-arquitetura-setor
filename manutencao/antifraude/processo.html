@@ -57,7 +57,7 @@
 
 <h1>Antifraude de evidência</h1>
 <p class="sub">Como o bot descobre que a evidência de um card não é deste serviço, o que ele grava, o que ele nunca faz e como saímos da sombra sem punir ninguém por engano.</p>
-<p class="data">Versão 0.2 (proposta para aprovação) · 08/10/2026 · dono: Central de Manutenção (Vinicius Satores) · origem: Weekly Prioridades - Manutenções de 05/10/2026 com a Ray</p>
+<p class="data">Versão 0.3 (proposta para aprovação) · 26/10/2026 · dono: Central de Manutenção (Vinicius Satores) · origem: Weekly Prioridades - Manutenções de 05/10/2026 com a Ray · ajustes de 26/10/2026 (Ray): bot reposicionado como suporte operacional, não antifraude processual</p>
 
 <div class="aviso amb"><b>Tudo marcado como "proposta" é padrão meu, não decisão tomada.</b>
 Os limites numéricos (distância da imagem, janelas de idade) não foram medidos no Sapron ainda. A primeira tarefa depois da aprovação é medir a base de evidências existentes e ajustar.</div>
@@ -66,15 +66,18 @@ Os limites numéricos (distância da imagem, janelas de idade) não foram medido
 <div class="cards">
   <div class="card"><b>A pergunta</b><span>A evidência que a franquia mandou é genuína e é deste serviço, neste imóvel, depois do pedido?</span></div>
   <div class="card"><b>Não é o validador</b><span>O validador e o auditor conferem se a foto cobre o que o card pediu. O antifraude olha a origem do arquivo, nunca o que a foto mostra.</span></div>
-  <div class="card"><b>Princípio</b><span>Confiar na palavra da franquia. Se ela mandou evidência, ela fez o serviço. Quem mentir, responde por isso, e quem decide é gente.</span></div>
+  <div class="card"><b>Princípio</b><span>Foto repetida não é fraude processual, é <b>alerta operacional</b>: a franquia reaproveitou a evidência errada, por engano ou pressa. O bot pede uma foto nova — não acusa, não abre ocorrência e não trava o fechamento sozinho. Quem decide seguir adiante continua sendo gente.</span></div>
 </div>
+
+<div class="aviso amb"><b>Ajuste de 26/10/2026 (Ray)</b>
+Esta versão tira o bot do terreno jurídico (que exigiria parecer formal) e o recoloca como <b>suporte operacional</b>. R29 e R35 (seção 3.7) mudaram: antes seguravam o fechamento em silêncio, agora avisam a franquia e pedem evidência nova.</div>
 
 <h2>2 · A linha do processo</h2>
 <div class="linha">
   <div class="passo"><i>1</i><b>Evidência chega</b>Franquia anexa foto no chamado do card</div>
   <div class="passo"><i>2</i><b>Validador lê</b>Parecer item a item (já existe, :10/:40)</div>
-  <div class="passo"><i>3</i><b>Antifraude olha</b>Impressão de cada imagem, comparada com o histórico</div>
-  <div class="passo"><i>4</i><b>Auditor decide fechar?</b>Só fecha se o antifraude estiver em dia e sem sinal forte</div>
+  <div class="passo"><i>3</i><b>Antifraude compara</b>Impressão de cada imagem, comparada com o histórico</div>
+  <div class="passo"><i>4</i><b>Sinal dispara → alerta à franquia</b>Nível forte ou suspeito: mensagem automática pede evidência nova (R29). O card segue seu fluxo normal</div>
   <div class="passo"><i>5</i><b>Pessoa confirma ou descarta</b>Na aba, em um clique; vira rótulo para medir o bot</div>
 </div>
 
@@ -140,9 +143,30 @@ Os limites numéricos (distância da imagem, janelas de idade) não foram medido
 
 <h3>3.7 O que o bot pode e não pode fazer</h3>
 <div class="aviso verm"><b>Nunca</b>
-R28 · não altera <code>status</code> nem <code>evidence_received_at</code>. R29 · não manda mensagem à franquia. R30 · não devolve card. R31 · não cria ocorrência, multa ou nota. R32 · não acusa: o texto na tela diz "imagem coincide com a do card #N", nunca "fraude".</div>
+R28 · não altera <code>status</code> nem <code>evidence_received_at</code>. R30 · não devolve card sozinho. R31 · não cria ocorrência, multa ou nota. R32 · não acusa: o texto na tela e na mensagem à franquia diz "imagem parecida com a do card #N", nunca "fraude".</div>
 <div class="aviso verde"><b>Pode</b>
-R33 · gravar o sinal, os arquivos e os cards relacionados. R34 · aparecer na aba Agentes de IA e como selo no card. R35 · <b>segurar o fechamento automático</b>: o auditor não finaliza card em nível forte ou suspeito, nem card cuja checagem antifraude está atrasada em relação à última mensagem. É a única consequência automática, e ela só adia: o card continua na fila de gente.</div>
+R29 · <b>manda mensagem automática à franquia</b> pedindo evidência nova quando o nível é forte ou suspeito, pelo template padrão (3.7.1). É a única ação automática do bot sobre o fluxo. R33 · gravar o sinal, os arquivos e os cards relacionados. R34 · aparecer na aba Agentes de IA e como selo no card. R35 · <b>não segura mais o fechamento automático</b>: o auditor segue o fluxo normal de aprovação enquanto a franquia responde ao alerta de R29. Se a franquia não corrigir, o card entra na fila de gente (seção 3.8) — não é mais o bot que trava.</div>
+
+<h3>3.7.1 Template da mensagem à franquia (R29)</h3>
+<div class="aviso amb"><b>Texto padrão — sem diminutivo, sem emoji, com próximo passo</b>
+"Identificamos que a foto enviada no card #{id} é parecida com uma evidência de outro serviço. Por favor, envie uma foto nova do serviço realizado neste imóvel, anexada diretamente no card. Isso evita atraso na aprovação."</div>
+
+<h3>3.7.2 Realidade em produção hoje (26/10/2026) e o tamanho do problema</h3>
+<div class="aviso verm"><b>O código ainda é a R35 antiga — isto é proposta, não o que roda agora</b>
+Em <code>maintenance/actions/fraud_evidence.py::segura_baixa</code> (chamado por <code>audit_evidence.py</code>), o agente hoje <b>trava o fechamento</b> e <b>não manda mensagem nenhuma</b>. A flag <code>ff_sapron_backend_enable_maintenance_evidence_fraud</code> está ligada desde 13/10/2026 — ou seja, essa trava já está ativa em produção agora, não é uma fase futura. R29 (mensagem automática) não existe no código: é feature nova a construir. Enquanto a mudança não entra, o comportamento real segue sendo "trava e silêncio", não "alerta".</div>
+
+<div class="tabela-wrap"><table>
+<tr><th>Medida</th><th>Valor</th></tr>
+<tr><td>Cards checados pelo antifraude</td><td><b>522</b> · janela 13/10 a 20/10/2026</td></tr>
+<tr><td>Nível forte</td><td><b>82</b></td></tr>
+<tr><td>Nível suspeito</td><td><b>33</b></td></tr>
+<tr><td>Forte + suspeito (travados pela R35 de hoje)</td><td><b>115</b></td></tr>
+<tr><td>Decisão humana registrada até agora</td><td><b>1</b> (26/10/2026, descartado, motivo "outro") — <b>114</b> seguem travados sem decisão</td></tr>
+</table></div>
+<p class="fonte">Fonte: Sapron, <code>maintenance_maintenancecard</code> (campos <code>ai_fraud_*</code>) e <code>maintenance_evidencefraudreview</code>. Consulta de 26/10/2026.</p>
+
+<div class="aviso amb"><b>Taxa de falso positivo do pHash (distância ≤6) — ainda não medível</b>
+Não há no Sapron rótulo humano suficiente para calcular uma taxa real: até agora existe <b>1 única decisão humana</b> registrada. A literatura de pHash costuma apontar falso positivo baixo (abaixo de 1-2%) para distância ≤6 em bases genéricas de imagens, mas isso é <b>estimativa de referência, não medição</b> — a taxa real só sai depois que a fila de revisão (115 cards hoje) acumular decisões suficientes. Primeira meta: 40 cards rotulados (etapa 1, seção 4).</div>
 
 <h3>3.8 Decisão humana e como medimos o bot</h3>
 <div class="tabela-wrap"><table>
@@ -168,7 +192,7 @@ R33 · gravar o sinal, os arquivos e os cards relacionados. R34 · aparecer na a
 <tr><th>Etapa</th><th>O que acontece</th><th>Só passa para a próxima quando</th></tr>
 <tr><td class="id">0</td><td><b>Medir.</b> Carga inicial das impressões; conferir no Sapron quantas imagens existem e se a distância 6 separa bem "igual" de "diferente".</td><td>Você aprovar os limites com números na mão</td></tr>
 <tr><td class="id">1</td><td><b>Sombra.</b> Roda e grava; só você vê na aba. Você rotula cada sinalizado.</td><td>Ao menos 40 cards rotulados e <b>zero descarte em nível forte</b></td></tr>
-<tr><td class="id">2</td><td><b>Selo visível</b> para quem aprova o card; auditor passa a respeitar R35.</td><td>Duas semanas sem reclamação de franquia por card segurado sem motivo</td></tr>
+<tr><td class="id">2</td><td><b>Alerta liga</b> para a franquia (R29); R35 deixa de travar o fechamento, o auditor volta ao fluxo normal.</td><td>Duas semanas sem reclamação de franquia por alerta disparado sem motivo</td></tr>
 <tr><td class="id">3</td><td><b>Consequência por clique de gente</b> (ocorrência). Decisão separada, com a Ray.</td><td>Decisão registrada com data</td></tr>
 </table></div>
 
@@ -179,7 +203,7 @@ R33 · gravar o sinal, os arquivos e os cards relacionados. R34 · aparecer na a
 <tr><td class="id">2</td><td>Foto de etiqueta reaproveitada</td><td>Não leva sozinha a "forte" (R22)</td><td>Vinicius</td></tr>
 <tr><td class="id">3</td><td>Reuso entre imóveis da mesma franquia pesa mais?</td><td>Não: S3 é forte para qualquer franquia (R16)</td><td>Vinicius + Ray</td></tr>
 <tr><td class="id">4</td><td>Quem vê o sinal</td><td>Etapa 1: só Manutenção. Etapa 2: quem aprova o card</td><td>Ray</td></tr>
-<tr><td class="id">5</td><td>O que "forte" dispara</td><td>Só segura o fechamento automático (R35). Ocorrência é decisão separada (R39)</td><td>Ray + Diretoria de Franquias</td></tr>
+<tr><td class="id">5</td><td>O que "forte" dispara</td><td>Dispara o alerta automático à franquia (R29). Não trava fechamento. Ocorrência é decisão separada (R39)</td><td>Ray + Diretoria de Franquias</td></tr>
 <tr><td class="id">6</td><td>Como reconhecer "mesmo prédio" (R21)</td><td>Ainda sem padrão. Opção: sigla do imóvel + raio, como já existe na escolha de franqueado</td><td>Vinicius</td></tr>
 </table></div>
 
@@ -196,6 +220,7 @@ R33 · gravar o sinal, os arquivos e os cards relacionados. R34 · aparecer na a
 <h2>7 · Histórico</h2>
 <div class="tabela-wrap"><table>
 <tr><th>Versão</th><th>Data</th><th>Mudança</th></tr>
+<tr><td>0.3</td><td>26/10/2026</td><td>Ajustes da Ray: R29 e R35 reescritas (alerta operacional à franquia, não trava por fraude), template de mensagem (3.7.1), quantificação real do problema e checagem contra o código em produção (3.7.2).</td></tr>
 <tr><td>0.2</td><td>08/10/2026</td><td>Regras R1 a R44, mockup da aba e etapas de lançamento. Substitui a lógica 0.1 (<code>LOGICA.md</code>).</td></tr>
 <tr><td>0.1</td><td>08/10/2026</td><td>Primeira lógica, a partir da Weekly de 05/10 com a Ray.</td></tr>
 </table></div>
