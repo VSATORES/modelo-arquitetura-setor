@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Registro de manutenções das franquias · mockup v1</title>
+<style>
+:root{
+  --tinta:#0f172a;--texto:#334155;--fraco:#64748b;--fraquinho:#94a3b8;
+  --linha:#e2e8f0;--fundo:#f5f7fb;--papel:#fff;--azul:#0055ff;--azul-f:rgba(0,85,255,.07);--azul-h:#0044cc;
+  --verde:#15803d;--verde-f:#dcfce7;--ambar:#92400e;--ambar-f:#fef3c7;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fundo);color:var(--texto);font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+button,input,select{font:inherit}
+
+/* troca de visão do mockup */
+.switch{position:sticky;top:0;z-index:30;display:flex;justify-content:center;gap:6px;padding:10px;background:#0f172a}
+.switch button{border:1px solid #334155;background:transparent;color:#cbd5e1;border-radius:999px;padding:8px 18px;font-weight:600;cursor:pointer}
+.switch button.on{background:#fff;color:#0f172a;border-color:#fff}
+.switch small{color:#94a3b8;align-self:center;margin-left:10px;font-size:12px}
+
+/* casca do Sapron */
+.app{display:flex;min-height:calc(100vh - 56px)}
+.side{width:220px;background:var(--papel);border-right:1px solid var(--linha);padding:18px 12px;flex-shrink:0}
+.brand{font-weight:800;font-size:20px;color:var(--tinta);padding:0 10px 18px;letter-spacing:-.02em}
+.brand span{color:#eb615e}
+.nav a{display:block;padding:9px 12px;border-radius:8px;color:var(--fraco);text-decoration:none;font-size:13.5px;margin-bottom:2px}
+.nav a.on{background:var(--azul-f);color:var(--azul);font-weight:600}
+.nav .grp{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--fraquinho);padding:14px 12px 6px;font-weight:700}
+.main{flex:1;min-width:0}
+.wrap{padding:16px 28px 48px;max-width:1440px}
+.hdr{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+h1{font-size:24px;font-weight:700;margin:0;color:var(--tinta)}
+.sub{font-size:13px;color:var(--fraco);margin:2px 0 0;max-width:640px}
+.btn{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;border:none;border-radius:8px;padding:10px 18px;cursor:pointer;background:var(--azul);color:#fff;box-shadow:0 1px 2px rgba(0,85,255,.3)}
+.btn:hover{background:var(--azul-h)}
+.btn.sec{background:var(--papel);color:var(--texto);border:1px solid var(--linha);box-shadow:none}
+.tabs{display:flex;gap:2px;border-bottom:1px solid #e0e0e0;margin-bottom:20px;overflow-x:auto}
+.tab{padding:10px 14px;font-size:13.5px;color:var(--fraco);white-space:nowrap;border-bottom:2px solid transparent;cursor:default}
+.tab.on{color:var(--azul);border-bottom-color:var(--azul);font-weight:600}
+.tab .novo{font-size:10px;font-weight:800;background:#eb615e;color:#fff;border-radius:4px;padding:1px 5px;margin-left:6px;vertical-align:1px}
+
+/* números do topo */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+.kpi{background:var(--papel);border:1px solid var(--linha);border-radius:12px;padding:14px 16px}
+.kpi .l{font-size:12px;color:var(--fraco)}
+.kpi .v{font-size:26px;font-weight:700;color:var(--tinta);margin-top:2px;font-variant-numeric:tabular-nums}
+.kpi .s{font-size:12px;color:var(--fraquinho)}
+
+/* filtros */
+.filtros{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;background:var(--papel);border:1px solid var(--linha);border-radius:12px;padding:12px 14px;margin-bottom:12px}
+.f{display:flex;flex-direction:column;gap:4px;min-width:150px}
+.f label{font-size:11.5px;font-weight:600;color:var(--fraco)}
+.f select,.f input{border:1px solid var(--linha);border-radius:8px;padding:8px 10px;background:#fff;color:var(--tinta);font-size:13px}
+.f.busca{flex:1;min-width:200px}
+.limpar{font-size:13px;color:var(--azul);background:none;border:none;cursor:pointer;padding:8px 4px}
+.conta{font-size:12.5px;color:var(--fraco);margin:0 0 8px 2px}
+
+/* tabela */
+.tw{background:var(--papel);border:1px solid var(--linha);border-radius:12px;overflow:auto}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th{text-align:left;font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--fraco);background:#f8fafc;padding:10px 12px;border-bottom:1px solid var(--linha);white-space:nowrap}
+td{padding:11px 12px;border-bottom:1px solid var(--linha);white-space:nowrap;color:var(--tinta)}
+tr:last-child td{border-bottom:0}
+tbody tr:hover td{background:#fafcff}
+.r{text-align:right;font-variant-numeric:tabular-nums}
+.cod{font-family:ui-monospace,Consolas,monospace;font-size:12.5px;color:var(--azul);font-weight:600}
+.tipo{display:inline-block;padding:2px 9px;border-radius:999px;font-size:12px;font-weight:600;background:#eef2ff;color:#3730a3}
+.t-ac{background:#e0f2fe;color:#075985}.t-hid{background:#e0e7ff;color:#3730a3}.t-ele{background:#fef3c7;color:#92400e}
+.t-mar{background:#fae8ff;color:#86198f}.t-ded{background:#dcfce7;color:#166534}.t-pin{background:#ffe4e6;color:#9f1239}
+.vazio{color:var(--fraquinho)}
+.prest b{display:block;font-weight:600}
+.prest span{font-size:12px;color:var(--fraco)}
+.obs{max-width:240px;white-space:normal;color:var(--texto);font-size:12.5px}
+tfoot td{background:#f8fafc;font-weight:700;border-top:1px solid var(--linha)}
+.pag{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;font-size:12.5px;color:var(--fraco);border-top:1px solid var(--linha)}
+
+/* modal */
+.veu{position:fixed;inset:56px 0 0 0;background:rgba(15,23,42,.45);display:none;align-items:center;justify-content:center;z-index:50}
+.veu.on{display:flex}
+.modal{background:#fff;border-radius:14px;width:560px;max-width:94vw;box-shadow:0 20px 50px rgba(15,23,42,.3)}
+.modal h2{margin:0;font-size:18px;color:var(--tinta)}
+.mh{padding:18px 22px 6px}
+.mh p{margin:4px 0 0;font-size:13px;color:var(--fraco)}
+.mb{padding:12px 22px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}
+.mb .full{grid-column:1/-1}
+.campo{display:flex;flex-direction:column;gap:5px}
+.campo label{font-size:12.5px;font-weight:600;color:var(--tinta)}
+.campo label em{font-style:normal;font-weight:400;color:var(--fraquinho)}
+.campo label i{font-style:normal;color:#dc2626}
+.campo input,.campo select,.campo textarea{border:1px solid #cbd5e1;border-radius:8px;padding:9px 11px;font-size:13.5px;color:var(--tinta);background:#fff;font-family:inherit}
+.campo textarea{resize:none;height:62px}
+.sep{grid-column:1/-1;border-top:1px dashed var(--linha);padding-top:12px;font-size:11.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--fraquinho)}
+.mf{display:flex;justify-content:flex-end;gap:10px;padding:14px 22px 18px;border-top:1px solid var(--linha);margin-top:6px}
+.fixo{background:#f8fafc !important;color:var(--fraco) !important}
+
+.combo{position:relative}
+.cb{display:flex;align-items:center;gap:8px;border:1px solid #cbd5e1;border-radius:8px;padding:9px 11px;font-size:13.5px;color:var(--tinta);background:#fff;cursor:pointer;min-height:40px}
+.cb #cbv{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cb b{color:var(--fraco);font-weight:400}
+.cb.fixo{cursor:not-allowed}
+.st{font:700 10.5px -apple-system,"Segoe UI",Roboto,sans-serif;border-radius:999px;padding:1px 8px;white-space:nowrap}
+.st-a{background:var(--verde-f);color:var(--verde)}.st-o{background:var(--ambar-f);color:var(--ambar)}
+.cbp{display:none;position:absolute;top:66px;left:0;width:380px;background:#fff;border:1px solid var(--linha);border-radius:10px;box-shadow:0 12px 30px rgba(15,23,42,.18);z-index:5;padding:6px;max-height:380px;overflow:auto}
+.cbp.on{display:block}
+.cbs{width:100%;border:1px solid var(--linha);border-radius:7px;padding:8px 10px;font-size:13px;margin-bottom:4px}
+.cbg{font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--fraquinho);padding:8px 8px 4px}
+.cbo{display:flex;align-items:center;gap:8px;padding:7px 8px;border-radius:6px;font:600 12.5px ui-monospace,Consolas,monospace;color:var(--tinta);cursor:pointer}
+.cbo small{flex:1;font:400 12px -apple-system,"Segoe UI",Roboto,sans-serif;color:var(--fraco);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cbo:hover,.cbo.sel{background:var(--azul-f)}
+.cbmais{font-size:12px;color:var(--fraquinho);padding:4px 8px}
+.cbnota{font-size:11.5px;color:var(--fraco);border-top:1px solid var(--linha);margin-top:6px;padding:8px 8px 4px}
+.outros{display:none;background:#f8fafc;border:1px dashed #cbd5e1;border-radius:10px;padding:10px 12px}
+.outros.on{display:flex}
+.dica{font-size:11.5px;color:var(--fraco)}
+.up{display:flex;align-items:center;gap:10px;border:1.5px dashed #cbd5e1;border-radius:8px;padding:12px 14px;font-size:13px;color:var(--fraco);background:#f8fafc;cursor:pointer}
+.up b{color:var(--azul)}
+.up small{margin-left:auto;color:var(--fraquinho);font-size:11.5px}
+.ed{font-size:11.5px;color:var(--verde);white-space:nowrap}.ed.fim{color:var(--fraquinho)}
+.clip{color:var(--fraco);font-size:12px}
+.adm{font-size:10px;font-weight:800;background:#0f172a;color:#fff;border-radius:4px;padding:1px 5px;margin-left:4px;vertical-align:1px}
+.mig{font-size:11px;font-weight:600;background:#f1f5f9;color:#475569;border-radius:999px;padding:2px 8px;white-space:nowrap}
+/* notas do mockup */
+.notas{margin-top:22px;background:#fffbeb;border:1px solid #fde68a;border-radius:12px;padding:14px 18px;font-size:13px;color:#78350f}
+.notas b{color:#78350f}
+.notas ol{margin:6px 0 0;padding-left:18px}
+.notas li{margin:3px 0}
+.view{display:none}.view.on{display:block}
+</style>
+</head>
+<body>
+
+<div class="switch">
+  <button class="on" data-v="central">Visão da Central (Sapron)</button>
+  <button data-v="franquia">Visão da franquia</button>
+  <button data-v="franquia" data-form="1">Tela de preenchimento</button>
+  <small>Mockup v1 · 29/10/2026 · dados fictícios</small>
+</div>
+
+<!-- ======================= VISÃO DA CENTRAL ======================= -->
+<div class="view on" id="central">
+<div class="app">
+  <aside class="side">
+    <div class="brand">sea<span>⌂</span>zone</div>
+    <nav class="nav">
+      <div class="grp">Operação</div>
+      <a>Controle de reservas</a><a>Danos de hóspede</a><a class="on">Central de Manutenção</a><a>Franquias</a>
+      <div class="grp">Financeiro</div>
+      <a>Despesas</a><a>Fechamento</a>
+    </nav>
+  </aside>
+  <main class="main"><div class="wrap">
+    <div class="hdr">
+      <div><h1>Central de Manutenção</h1><p class="sub">Cards, prazos e evidências das manutenções dos imóveis.</p></div>
+    </div>
+    <div class="tabs">
+      <span class="tab">Dashboard</span><span class="tab">Central de Cards</span><span class="tab">Por imóvel</span>
+      <span class="tab on">Registro das franquias<span class="novo">NOVO</span><span class="adm">só Admin</span></span>
+      <span class="tab">UTI de imóveis</span><span class="tab">Recorrentes</span><span class="tab">KPIs diários</span><span class="tab">Score de manutenção</span><span class="tab">Guia operacional</span><span class="tab">Excluídos</span>
+    </div>
+
+    <div class="hdr" style="margin-bottom:12px">
+      <div><h1 style="font-size:18px">Registro das franquias</h1><p class="sub">Tudo o que as franquias registraram de manutenção feita nos imóveis. Só a franquia lança; aqui a Central consulta.</p></div>
+      <button class="btn sec">⤓ Baixar CSV</button>
+    </div>
+
+    <div class="kpis">
+      <div class="kpi"><div class="l">Registros no período</div><div class="v">128</div><div class="s">outubro/2026</div></div>
+      <div class="kpi"><div class="l">Valor registrado</div><div class="v">R$ 41.380</div><div class="s">média R$ 323 por registro</div></div>
+      <div class="kpi"><div class="l">Franquias que registraram</div><div class="v">23</div><div class="s">de 41 ativas</div></div>
+      <div class="kpi"><div class="l">Imóveis com registro</div><div class="v">96</div><div class="s">tipo mais comum: ar-condicionado</div></div>
+    </div>
+
+    <div class="filtros">
+      <div class="f"><label>Período</label><select><option>Outubro/2026</option></select></div>
+      <div class="f"><label>Franquia</label><select><option>Todas</option></select></div>
+      <div class="f"><label>Imóvel</label><select><option>Todos</option></select></div>
+      <div class="f"><label>Tipo de manutenção</label><select><option>Todos</option></select></div>
+      <div class="f"><label>Prestador</label><select><option>Todos</option></select></div>
+      <div class="f busca"><label>Buscar</label><input placeholder="código do imóvel, prestador, observação…"></div>
+      <button class="limpar">Limpar filtros</button>
+    </div>
+    <p class="conta">Mostrando 8 de 128 registros</p>
+
+    <div class="tw"><table>
+      <thead><tr><th>Data</th><th>Franquia</th><th>Imóvel</th><th>Tipo de manutenção</th><th class="r">Valor</th><th>Prestador</th><th>Observação</th><th>Anexo</th><th>Registrado em</th></tr></thead>
+      <tbody id="tbCentral"></tbody>
+      <tfoot><tr><td colspan="4">Total dos filtros</td><td class="r">R$ 41.380,00</td><td colspan="4"></td></tr></tfoot>
+    </table>
+    <div class="pag"><span>Página 1 de 16</span><span>‹ Anterior · Próxima ›</span></div></div>
+
+    <div class="notas"><b>Como esta tela funciona</b><ol>
+      <li>Só quem é <b>Admin</b> vê esta aba, porque ela tem os dados de todas as franquias. Os outros usuários da Central não veem a aba.</li>
+      <li>Quem cria o registro é a franquia. Depois dos 3 dias de edição livre, só Admin corrige.</li>
+      <li>Fica numa aba nova, sem ligação com cards nem despesas.</li>
+      <li>"Exportar planilha" baixa exatamente o que está filtrado.</li>
+    </ol></div>
+  </div></main>
+</div>
+</div>
+
+<!-- ======================= VISÃO DA FRANQUIA ======================= -->
+<div class="view" id="franquia">
+<div class="app">
+  <aside class="side">
+    <div class="brand">sea<span>⌂</span>zone</div>
+    <nav class="nav">
+      <div class="grp">Franquia Floripa</div>
+      <a>Início</a><a>Meus imóveis</a>
+      <div class="grp">Operação do dia</div>
+      <a>Incidentes</a><a class="on">Manutenção</a><a>Danos</a>
+    </nav>
+  </aside>
+  <main class="main"><div class="wrap">
+    <div class="hdr">
+      <div><h1>Manutenção</h1><p class="sub">Franquia Floripa</p></div>
+    </div>
+    <div class="tabs">
+      <span class="tab">Cards da Central</span><span class="tab on">Registro de manutenções<span class="novo">NOVO</span></span>
+    </div>
+
+    <div class="hdr" style="margin-bottom:12px">
+      <div><h1 style="font-size:18px">Registro de manutenções</h1><p class="sub">Anote aqui toda manutenção feita nos seus imóveis. Fica o histórico do que foi feito, quanto custou e quem fez.</p></div>
+      <div style="display:flex;gap:10px"><button class="btn sec">⤓ Baixar CSV</button><button class="btn" id="abrir">+ Registrar manutenção</button></div>
+    </div>
+
+    <div class="filtros">
+      <div class="f"><label>Imóvel</label><select><option>Todos (14)</option><option>FLN0102</option><option>FLN0215</option></select></div>
+      <div class="f"><label>Tipo de manutenção</label><select><option>Todos</option><option>Ar-condicionado</option><option>Hidráulica</option></select></div>
+      <div class="f"><label>Prestador</label><select><option>Todos</option><option>Clima Sul Refrigeração</option><option>João Eletricista</option></select></div>
+      <div class="f"><label>Período</label><select><option>Últimos 90 dias</option></select></div>
+      <button class="limpar">Limpar filtros</button>
+    </div>
+    <p class="conta">5 registros · R$ 1.570,00 · 1 de antes da migração</p>
+
+    <div class="tw"><table>
+      <thead><tr><th>Data</th><th>Imóvel</th><th>Tipo de manutenção</th><th class="r">Valor</th><th>Prestador</th><th>Observação</th><th>Anexo</th><th>Edição</th><th></th></tr></thead>
+      <tbody id="tbFranquia"></tbody>
+    </table></div>
+
+    <div class="notas"><b>Como esta tela funciona</b><ol>
+      <li>A franquia só vê os imóveis dela. O nome da franquia vem do login, então ninguém digita.</li>
+      <li>O registro é estático: o nome da franquia fica gravado nele. Se o imóvel sair da franquia, o registro continua aparecendo para quem lançou.</li>
+      <li>Imóvel que chegou por migração traz o histórico anterior: a franquia nova vê os registros da franquia antiga, só para consulta, com o nome de quem lançou.</li>
+      <li>"Baixar CSV" baixa só as manutenções da própria franquia, com os filtros aplicados.</li>
+      <li>Os filtros que você pediu: imóvel, tipo de manutenção e prestador.</li>
+      <li>"⋯" na linha: editar ou apagar o próprio registro, livre por 3 dias depois de registrar. Depois disso a linha fecha (🔒) e só Admin consegue corrigir.</li>
+      <li>Tipo "Outros" abre um campo obrigatório "Qual tipo?". A Central usa esses textos para ver se vale criar categoria nova.</li>
+    </ol></div>
+  </div></main>
+</div>
+</div>
+
+<!-- formulário -->
+<div class="veu" id="veu"><div class="modal">
+  <div class="mh"><h2>Registrar manutenção</h2><p>Leva menos de 1 minuto. Campos com <span style="color:#dc2626">*</span> são obrigatórios.</p></div>
+  <div class="mb">
+    <div class="campo"><label>Data da manutenção <i>*</i></label><input type="text" value="29/10/2026"></div>
+    <div class="campo combo"><label>Imóvel <i>*</i></label>
+      <div class="cb" id="cb"><span id="cbv">FLN0102 · Rua das Gaivotas, 120</span><span class="st st-a">Ativo</span><b>▾</b></div>
+      <div class="cbp" id="cbp">
+        <input class="cbs" placeholder="Buscar pelo código ou endereço…">
+        <div class="cbg">Ativos · 12</div>
+        <div class="cbo sel">FLN0102 <small>Rua das Gaivotas, 120</small><span class="st st-a">Ativo</span></div>
+        <div class="cbo">FLN0215 <small>Av. das Rendeiras, 1800</small><span class="st st-a">Ativo</span></div>
+        <div class="cbo">FLN0330 <small>Rua Bocaiúva, 2125</small><span class="st st-a">Ativo</span></div>
+        <div class="cbo">FLN0341 <small>Servidão dos Coqueiros, 45</small><span class="st st-a">Ativo</span></div>
+        <div class="cbmais">+ 8 imóveis ativos</div>
+        <div class="cbg">Em onboarding · 2</div>
+        <div class="cbo">FLN0402 <small>Rua Lauro Linhares, 897</small><span class="st st-o">Onboarding</span></div>
+        <div class="cbo">FLN0405 <small>Rua Deputado Antônio Edu Vieira, 300</small><span class="st st-o">Onboarding</span></div>
+        <div class="cbnota">Só aparecem os imóveis da sua franquia, ativos ou em onboarding.</div>
+      </div></div>
+    <div class="campo"><label>Tipo de manutenção <i>*</i></label><select id="tipoSel"><option>Ar-condicionado</option><option>Eletrodomésticos</option><option>Elétrica</option><option>Hidráulica</option><option>Marcenaria</option><option>Pintura</option><option>Alvenaria</option><option>Vidraçaria</option><option>Enxoval</option><option>Limpeza e conservação</option><option>Dedetização</option><option>Jardinagem</option><option>Wi-fi</option><option>Automação</option><option>Outros</option></select></div>
+    <div class="campo"><label>Valor (R$) <i>*</i></label><input type="text" value="250,00"></div>
+    <div class="campo full outros" id="outrosBox"><label>Qual tipo de manutenção? <i>*</i></label><input placeholder="Descreva o tipo, ex.: troca de fechadura eletrônica"><span class="dica">Escreva em poucas palavras o tipo de serviço.</span></div>
+    <div class="campo full"><label>Franquia <em>(preenchida pelo seu login)</em></label><div class="cb fixo">🔒 Franquia Floripa</div></div>
+    <div class="sep">Opcional</div>
+    <div class="campo"><label>Nome do prestador <em>(opcional)</em></label><input placeholder="Ex.: Clima Sul Refrigeração" value="Clima Sul Refrigeração"></div>
+    <div class="campo"><label>Telefone do prestador <em>(opcional)</em></label><input placeholder="(48) 9 0000-0000" value="(48) 9 0000-0001"></div>
+    <div class="campo full"><label>Foto ou nota fiscal <em>(opcional)</em></label><div class="up">📎 <span><b>Clique para anexar</b> ou arraste aqui</span><small>JPG, PNG ou PDF · até 3 arquivos</small></div></div>
+    <div class="campo full"><label>Observação <em>(opcional)</em></label><textarea placeholder="O que foi feito, em poucas palavras">Limpeza e troca do capacitor do split do quarto</textarea></div>
+  </div>
+  <div class="mf"><button class="btn sec" id="fechar">Cancelar</button><button class="btn" id="salvar">Salvar registro</button></div>
+</div></div>
+
+<script>
+const veu=document.getElementById('veu');
+const T={'Ar-condicionado':'t-ac','Hidráulica':'t-hid','Elétrica':'t-ele','Marcenaria':'t-mar','Dedetização':'t-ded','Pintura':'t-pin'};
+const tipo=t=>`<span class="tipo ${T[t]||''}">${t}</span>`;
+const prest=(n,f)=>n?`<div class="prest"><b>${n}</b>${f?`<span>${f}</span>`:''}</div>`:'<span class="vazio">—</span>';
+const brl=v=>'R$ '+v.toLocaleString('pt-BR',{minimumFractionDigits:2});
+const D=[
+ ['28/10/2026','Franquia Floripa','FLN0102','Ar-condicionado',250,'Clima Sul Refrigeração','(48) 9 0000-0001','Limpeza e troca do capacitor','28/10 14:02','nf_0412.pdf','31/10 14:02'],
+ ['27/10/2026','Franquia Balneário','BC0031','Marcenaria',180,'','','Porta do armário reparada','27/10 18:40'],
+ ['25/10/2026','Franquia Floripa','FLN0215','Hidráulica',320,'João Encanador','(48) 9 0000-0002','Troca do sifão da pia','26/10 09:15','foto.jpg','29/10 09:15'],
+ ['24/10/2026','Franquia Floripa','FLN0102','Elétrica',120,'João Eletricista','','Tomada da sala','24/10 17:22','',''],
+ ['23/10/2026','Franquia Balneário','BC0047','Dedetização',180,'Dedetiza BC','(47) 0000-0003','Semestral','23/10 11:05'],
+ ['22/10/2026','Franquia Ingleses','ING0012','Pintura',900,'','','Retoque da parede da sala após mancha','22/10 16:48'],
+ ['21/10/2026','Franquia Floripa','FLN0330','Ar-condicionado',600,'Clima Sul Refrigeração','(48) 9 0000-0001','',"21/10 10:30",'nf_0398.pdf',''],
+ ['20/10/2026','Franquia Ingleses','ING0040','Hidráulica',410,'','','Vazamento no registro do banheiro','20/10 08:57'],
+];
+document.getElementById('tbCentral').innerHTML=D.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td class="cod">${r[2]}</td><td>${tipo(r[3])}</td><td class="r">${brl(r[4])}</td><td>${prest(r[5],r[6])}</td><td class="obs">${r[7]||'<span class="vazio">—</span>'}</td><td>${r[9]?'<span class="clip">📎 '+r[9]+'</span>':'<span class="vazio">—</span>'}</td><td style="color:#64748b;font-size:12.5px">${r[8]}</td></tr>`).join('');
+const MIG=[['12/08/2026','Franquia Ingleses','FLN0330','Hidráulica',280,'Hidro Norte','','Troca do registro do chuveiro','12/08 10:11','','']];
+document.getElementById('tbFranquia').innerHTML=D.filter(r=>r[1]==='Franquia Floripa').concat(MIG).map(r=>`<tr><td>${r[0]}</td><td class="cod">${r[2]}</td><td>${tipo(r[3])}</td><td class="r">${brl(r[4])}</td><td>${prest(r[5],r[6])}</td><td class="obs">${r[7]||'<span class="vazio">—</span>'}</td><td>${r[9]?'<span class="clip">📎 '+r[9]+'</span>':'<span class="vazio">—</span>'}</td><td>${r[1]!=='Franquia Floripa'?'<span class="mig">antes da migração · '+r[1]+'</span>':(r[10]?'<span class="ed">editável até '+r[10]+'</span>':'<span class="ed fim">🔒 fechado</span>')}</td><td style="color:#94a3b8;cursor:pointer">${r[10]?'⋯':''}</td></tr>`).join('');
+document.querySelectorAll('.switch button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.switch button').forEach(x=>x.classList.remove('on'));b.classList.add('on');document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on',v.id===b.dataset.v));veu.classList.toggle('on',!!b.dataset.form);document.getElementById('cbp').classList.toggle('on',!!b.dataset.form);});
+document.getElementById('tipoSel').onchange=e=>document.getElementById('outrosBox').classList.toggle('on',e.target.value==='Outros');
+document.getElementById('cb').onclick=()=>document.getElementById('cbp').classList.toggle('on');
+document.querySelectorAll('.cbo').forEach(o=>o.onclick=()=>{document.querySelectorAll('.cbo').forEach(x=>x.classList.remove('sel'));o.classList.add('sel');document.getElementById('cbv').textContent=o.firstChild.textContent.trim()+' · '+o.querySelector('small').textContent;const st=document.querySelector('#cb .st');const os=o.querySelector('.st');st.className=os.className;st.textContent=os.textContent;document.getElementById('cbp').classList.remove('on');});
+document.getElementById('abrir').onclick=()=>veu.classList.add('on');
+document.getElementById('fechar').onclick=document.getElementById('salvar').onclick=()=>veu.classList.remove('on');
+</script>
+</body>
+</html>
