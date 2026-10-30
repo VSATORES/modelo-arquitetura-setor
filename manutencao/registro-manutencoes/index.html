@@ -166,6 +166,53 @@ tfoot td{background:#f8fafc;font-weight:700;border-top:1px solid var(--linha)}
 .im.all{font-family:inherit;background:var(--azul-f);border-color:transparent;color:var(--azul)}
 .mais{font-size:12px;color:var(--fraquinho);align-self:center}
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--tinta);color:#fff;border-radius:10px;padding:10px 16px;font-size:13px;display:none;z-index:60}
+.barra{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.seg{display:inline-flex;border:1px solid var(--linha);border-radius:8px;overflow:hidden;background:#fff}
+.seg button{border:none;background:none;padding:7px 14px;font-size:13px;cursor:pointer;color:var(--fraco)}
+.seg button.on{background:var(--tinta);color:#fff}
+.dica-pr{display:flex;align-items:center;gap:12px;background:#eff6ff;border:1px solid #bfdbfe;border-radius:12px;padding:10px 14px;margin-bottom:14px;font-size:13.5px;color:var(--tinta)}
+.dica-pr .ic{font-size:18px}.dica-pr div{flex:1}
+.dica-pr .btn{padding:7px 12px;font-size:12.5px}
+.lnk{background:none;border:none;color:var(--azul);cursor:pointer;font-size:12.5px;font-weight:600}
+.grupo{background:var(--papel);border:1px solid var(--linha);border-radius:12px;margin-bottom:12px;overflow:hidden}
+.gh{display:flex;align-items:center;gap:8px;padding:10px 16px;font-weight:700;color:var(--tinta);background:#f8fafc;border-bottom:1px solid var(--linha)}
+.gh .n{background:var(--linha);border-radius:999px;font-size:11.5px;padding:0 8px}
+.gh small{font-weight:400;color:var(--fraco)}
+.dot{width:9px;height:9px;border-radius:50%;background:#dc2626}.dot.azul{background:var(--azul)}.dot.cinza{background:var(--fraquinho)}
+.g-late .gh{background:#fef2f2;color:#991b1b}
+.row{display:grid;grid-template-columns:80px 1fr 40px auto;gap:14px;align-items:center;padding:12px 16px;border-bottom:1px solid var(--linha)}
+.row:last-child{border-bottom:none}
+.row.hide,.it.hide{display:none}
+.row.hosp{background:#fffbeb}
+.rd b{display:block;color:var(--tinta);font-size:14px}.rd small{color:var(--fraco);font-size:12px}
+.g-late .rd small{color:#dc2626;font-weight:600}
+.end{color:var(--fraco);font-size:12.5px}
+.oq{margin-top:4px;font-size:13px;color:var(--texto);display:flex;align-items:center;gap:6px}
+.oq .tipo{font-size:11px}
+.aviso-h{margin-top:5px;font-size:12px;color:#92400e;font-weight:600}
+.ra{display:flex;gap:8px}
+.mdata{border:1px solid var(--linha);background:#fff;border-radius:7px;padding:6px 10px;font-size:12.5px;cursor:pointer;color:var(--texto)}
+.mdata.forte{border-color:#f59e0b;color:#92400e;background:#fffbeb}
+.ra .feito{padding:6px 12px;font-size:12.5px}
+.vermais{display:block;width:100%;border:none;background:none;padding:10px;color:var(--azul);font-weight:600;cursor:pointer;font-size:13px}
+.semana .it{flex-direction:row;flex-wrap:wrap;align-items:center;gap:6px}
+.it-s{width:100%}
+.planos-box{background:var(--papel);border:1px solid var(--linha);border-radius:12px;padding:12px 16px;margin-top:6px}
+.planos-box summary{cursor:pointer;font-weight:700;color:var(--tinta);display:flex;align-items:center;gap:8px}
+.planos-box summary .n{background:var(--linha);border-radius:999px;font-size:11.5px;padding:0 8px}
+.planos-box summary small{font-weight:400;color:var(--fraco)}
+.pl-l{margin-top:10px;display:flex;flex-direction:column}
+.pl-r{display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid var(--linha);font-size:13px;color:var(--tinta)}
+.pl-r .m{color:var(--fraco);font-size:12.5px;flex:1}
+.passos{display:flex;gap:6px;margin-top:10px}
+.ps{flex:1;text-align:center;font-size:12px;font-weight:600;color:var(--fraquinho);border-bottom:3px solid var(--linha);padding-bottom:6px}
+.ps.on{color:var(--azul);border-color:var(--azul)}.ps.ok{color:var(--verde);border-color:var(--verde)}
+.wiz{display:none}.wiz.on{display:grid}
+.pq{font-size:16px;font-weight:700;color:var(--tinta)}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.op{border:1px solid #cbd5e1;border-radius:8px;padding:9px 14px;cursor:pointer;font-size:13.5px;display:flex;gap:6px;align-items:center}
+.op.on{border-color:var(--azul);background:var(--azul-f);color:var(--azul);font-weight:600}
+.resumo{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:12px 14px;color:#166534;font-size:13.5px}
 /* notas do mockup */
 .notas{margin-top:22px;background:#fffbeb;border:1px solid #fde68a;border-radius:12px;padding:14px 18px;font-size:13px;color:#78350f}
 .notas b{color:#78350f}
@@ -310,99 +357,117 @@ tfoot td{background:#f8fafc;font-weight:700;border-top:1px solid var(--linha)}
       <a>Incidentes</a><a class="on">Manutenção</a><a>Danos</a>
     </nav>
   </aside>
-  <main class="main"><div class="wrap">
+  <main class="main"><div class="wrap" style="max-width:1100px">
     <div class="hdr"><div><h1>Manutenção</h1><p class="sub">Franquia Floripa</p></div></div>
     <div class="tabs">
       <span class="tab">Situação</span><span class="tab">Por imóvel</span><span class="tab">Registro de manutenções</span><span class="tab on">Planejamento<span class="novo">NOVO</span></span>
     </div>
 
-    <div class="hdr" style="margin-bottom:12px">
-      <div><h1 style="font-size:18px">Planejamento de manutenção</h1><p class="sub">Monte seus planos uma vez, aplique em vários imóveis e acompanhe a semana. Quando fizer, clique em "Feito" e o registro já vem preenchido.</p></div>
-      <div style="display:flex;gap:10px"><button class="btn sec" id="abrirAviso">🔔 Avisar 3 dias antes</button><button class="btn" id="abrirPlano">+ Novo plano</button></div>
+    <div class="hdr" style="margin-bottom:14px">
+      <div><h1 style="font-size:20px">O que fazer</h1><p class="sub">As manutenções que você planejou para os seus imóveis. Fez? Clique em <b>✓ Feito</b>.</p></div>
+      <button class="btn" id="abrirPlano">+ Planejar manutenções</button>
     </div>
 
-    <div class="pk">
-      <div class="pkc bad"><b>2</b><span>atrasados</span></div>
-      <div class="pkc"><b>6</b><span>nesta semana</span></div>
-      <div class="pkc"><b>14</b><span>nos próximos 30 dias</span></div>
-      <div class="pkc ok"><b>78%</b><span>do plano em dia</span></div>
-    </div>
-
-    <!-- 1. PLANOS -->
-    <div class="sec-t"><span class="num1">1</span>Meus planos <small>um plano vale para vários imóveis</small></div>
-    <div class="planos">
-      <div class="plano"><div class="pl-h"><span class="tipo t-ac">Ar-condicionado</span><span class="freq">a cada 90 dias</span></div><div class="pl-b"><b>12 imóveis</b> · Clima Sul Refrigeração</div><div class="pl-f"><span class="av a1">AN</span> Ana · <span class="em">10 em dia</span> · <span class="atr">2 atrasados</span></div></div>
-      <div class="plano"><div class="pl-h"><span class="tipo t-ded">Dedetização</span><span class="freq">a cada 180 dias</span></div><div class="pl-b"><b>14 imóveis</b> · Dedetiza BC</div><div class="pl-f"><span class="av a2">BR</span> Bruno · <span class="em">14 em dia</span></div></div>
-      <div class="plano"><div class="pl-h"><span class="tipo t-hid">Hidráulica</span><span class="freq">a cada 180 dias</span></div><div class="pl-b"><b>6 imóveis</b> · troca do filtro de água</div><div class="pl-f"><span class="av a1">AN</span> Ana · <span class="em">6 em dia</span></div></div>
-      <div class="plano novo-pl" id="abrirPlano2">+ Novo plano<small>ex.: revisão elétrica anual</small></div>
-    </div>
-
-    <!-- 2. SEMANA + 3. RESPONSÁVEL -->
-    <div class="sec-t"><span class="num1">2</span>Semana de 03 a 09/11 <small>arraste um item para trocar o dia</small>
-      <span class="resp"><span class="num1 s">3</span>Responsável:
+    <div class="barra">
+      <div class="seg"><button class="on" data-modo="lista">☰ Lista</button><button data-modo="semana">▦ Semana</button></div>
+      <div class="resp">Quem cuida:
         <button class="chip on" data-r="todos">Todos</button><button class="chip" data-r="ana"><span class="av a1">AN</span> Ana</button><button class="chip" data-r="bruno"><span class="av a2">BR</span> Bruno</button>
-      </span>
-    </div>
-    <div class="semana" id="semana">
-      <div class="dia" data-d="seg"><div class="dh">Seg <b>03</b></div>
-        <div class="it late" draggable="true" data-r="ana"><div class="it-t"><span class="cod">FLN0102</span><span class="tipo t-ac">Ar</span></div><div class="it-s">atrasado 21 dias</div><div class="it-f"><span class="av a1">AN</span><button class="feito">✓ Feito</button></div></div>
-        <div class="it" draggable="true" data-r="bruno"><div class="it-t"><span class="cod">FLN0215</span><span class="tipo t-ded">Dedet.</span></div><div class="it-s">Dedetiza BC</div><div class="it-f"><span class="av a2">BR</span><button class="feito">✓ Feito</button></div></div>
       </div>
-      <div class="dia" data-d="ter"><div class="dh">Ter <b>04</b></div>
-        <div class="it hosp" draggable="true" data-r="ana"><div class="it-t"><span class="cod">FLN0330</span><span class="tipo t-ac">Ar</span></div><div class="it-s">🛏 hóspede no imóvel (02 a 06/11)</div><div class="it-f"><span class="av a1">AN</span><button class="feito">✓ Feito</button></div></div>
-      </div>
-      <div class="dia" data-d="qua"><div class="dh">Qua <b>05</b></div>
-        <div class="it" draggable="true" data-r="ana"><div class="it-t"><span class="cod">FLN0341</span><span class="tipo t-ac">Ar</span></div><div class="it-s">Clima Sul · livre</div><div class="it-f"><span class="av a1">AN</span><button class="feito">✓ Feito</button></div></div>
-        <div class="it" draggable="true" data-r="ana"><div class="it-t"><span class="cod">FLN0402</span><span class="tipo t-hid">Filtro</span></div><div class="it-s">livre</div><div class="it-f"><span class="av a1">AN</span><button class="feito">✓ Feito</button></div></div>
-      </div>
-      <div class="dia" data-d="qui"><div class="dh">Qui <b>06</b></div></div>
-      <div class="dia" data-d="sex"><div class="dh">Sex <b>07</b></div>
-        <div class="it" draggable="true" data-r="bruno"><div class="it-t"><span class="cod">FLN0102</span><span class="tipo t-ded">Dedet.</span></div><div class="it-s">livre</div><div class="it-f"><span class="av a2">BR</span><button class="feito">✓ Feito</button></div></div>
-      </div>
-      <div class="dia fds" data-d="sab"><div class="dh">Sáb <b>08</b></div></div>
-      <div class="dia fds" data-d="dom"><div class="dh">Dom <b>09</b></div></div>
-    </div>
-    <p class="leg">🛏 = tem reserva no imóvel nesse dia (o item fica amarelo). Faixa vermelha = atrasado.</p>
-
-    <!-- 4. JUNTAR POR PRESTADOR -->
-    <div class="sec-t"><span class="num1">4</span>Junte numa visita só <small>mesmo prestador, vários imóveis no mesmo período</small></div>
-    <div class="juntar">
-      <div class="jt"><div><b>Clima Sul Refrigeração</b> tem <b>4 imóveis</b> de ar-condicionado entre 03 e 14/11<br><small>FLN0102 · FLN0330 · FLN0341 · FLN0388</small></div><button class="btn">Marcar tudo no mesmo dia</button></div>
-      <div class="jt"><div><b>Dedetiza BC</b> tem <b>2 imóveis</b> na semana<br><small>FLN0215 · FLN0102</small></div><button class="btn sec">Marcar tudo no mesmo dia</button></div>
     </div>
 
-    <div class="notas"><b>Como o planejamento funciona</b><ol>
-      <li><b>Planos:</b> a franquia cria um plano (tipo, de quanto em quanto tempo, prestador previsto, responsável) e aplica em vários imóveis de uma vez. Cada imóvel ganha a próxima data.</li>
-      <li><b>Semana:</b> agenda de segunda a domingo; arrastar um item muda a data dele.</li>
-      <li><b>Responsável:</b> cada item tem uma pessoa da equipe; o filtro mostra só o que é de cada um.</li>
-      <li><b>Juntar por prestador:</b> o sistema avisa quando o mesmo prestador tem vários imóveis no período e marca tudo no mesmo dia num clique.</li>
-      <li><b>Aviso:</b> lembrete alguns dias antes de vencer (no Portal e por e-mail).</li>
-      <li><b>Hóspede:</b> se o imóvel tem reserva no dia planejado, o item fica amarelo com 🛏.</li>
-      <li><b>"✓ Feito"</b> abre o formulário do Registro já preenchido (imóvel, tipo, prestador). Ao salvar, o item pula para a próxima data do plano.</li>
-      <li>O plano é só da franquia: não vira card e não mexe nos ciclos recorrentes da Central.</li>
+    <div class="dica-pr" id="dicaPr">
+      <span class="ic">💡</span>
+      <div><b>Economize uma visita:</b> a Clima Sul Refrigeração tem <b>4 imóveis</b> para fazer até 14/11 (FLN0102, FLN0330, FLN0341, FLN0388).</div>
+      <button class="btn" id="juntar">Marcar todos no mesmo dia</button><button class="lnk" id="dispensar">Agora não</button>
+    </div>
+
+    <!-- LISTA -->
+    <div id="modoLista">
+      <div class="grupo g-late"><div class="gh"><span class="dot"></span>Atrasado <span class="n">2</span></div>
+        <div class="row" data-r="ana"><div class="rd"><b>09/10</b><small>há 21 dias</small></div><div class="ri"><span class="cod">FLN0102</span> <span class="end">Rua das Gaivotas, 120</span><div class="oq"><span class="tipo t-ac">Ar-condicionado</span> Limpeza dos splits · Clima Sul</div></div><div class="rr"><span class="av a1" title="Ana">AN</span></div><div class="ra"><button class="mdata">Mudar data</button><button class="feito">✓ Feito</button></div></div>
+        <div class="row" data-r="bruno"><div class="rd"><b>28/10</b><small>há 2 dias</small></div><div class="ri"><span class="cod">FLN0388</span> <span class="end">Rua Esteves Júnior, 50</span><div class="oq"><span class="tipo t-hid">Hidráulica</span> Troca do filtro de água</div></div><div class="rr"><span class="av a2" title="Bruno">BR</span></div><div class="ra"><button class="mdata">Mudar data</button><button class="feito">✓ Feito</button></div></div>
+      </div>
+      <div class="grupo"><div class="gh"><span class="dot azul"></span>Próximos 7 dias <span class="n">4</span></div>
+        <div class="row" data-r="bruno"><div class="rd"><b>03/11</b><small>segunda</small></div><div class="ri"><span class="cod">FLN0215</span> <span class="end">Av. das Rendeiras, 1800</span><div class="oq"><span class="tipo t-ded">Dedetização</span> Dedetização semestral · Dedetiza BC</div></div><div class="rr"><span class="av a2">BR</span></div><div class="ra"><button class="mdata">Mudar data</button><button class="feito">✓ Feito</button></div></div>
+        <div class="row hosp" data-r="ana"><div class="rd"><b>04/11</b><small>terça</small></div><div class="ri"><span class="cod">FLN0330</span> <span class="end">Rua Bocaiúva, 2125</span><div class="oq"><span class="tipo t-ac">Ar-condicionado</span> Limpeza dos splits · Clima Sul</div><div class="aviso-h">🛏 Tem hóspede de 02 a 06/11. Melhor mudar a data.</div></div><div class="rr"><span class="av a1">AN</span></div><div class="ra"><button class="mdata forte">Mudar data</button><button class="feito">✓ Feito</button></div></div>
+        <div class="row" data-r="ana"><div class="rd"><b>05/11</b><small>quarta</small></div><div class="ri"><span class="cod">FLN0341</span> <span class="end">Servidão dos Coqueiros, 45</span><div class="oq"><span class="tipo t-ac">Ar-condicionado</span> Limpeza dos splits · Clima Sul</div></div><div class="rr"><span class="av a1">AN</span></div><div class="ra"><button class="mdata">Mudar data</button><button class="feito">✓ Feito</button></div></div>
+        <div class="row" data-r="bruno"><div class="rd"><b>07/11</b><small>sexta</small></div><div class="ri"><span class="cod">FLN0102</span> <span class="end">Rua das Gaivotas, 120</span><div class="oq"><span class="tipo t-ded">Dedetização</span> Dedetização semestral · Dedetiza BC</div></div><div class="rr"><span class="av a2">BR</span></div><div class="ra"><button class="mdata">Mudar data</button><button class="feito">✓ Feito</button></div></div>
+      </div>
+      <div class="grupo"><div class="gh"><span class="dot cinza"></span>Mais para frente <span class="n">8</span><small>até 30 dias</small></div>
+        <div class="row" data-r="ana"><div class="rd"><b>12/11</b><small>quarta</small></div><div class="ri"><span class="cod">FLN0388</span> <span class="end">Rua Esteves Júnior, 50</span><div class="oq"><span class="tipo t-ac">Ar-condicionado</span> Limpeza dos splits · Clima Sul</div></div><div class="rr"><span class="av a1">AN</span></div><div class="ra"><button class="mdata">Mudar data</button><button class="feito">✓ Feito</button></div></div>
+        <div class="row" data-r="ana"><div class="rd"><b>17/11</b><small>segunda</small></div><div class="ri"><span class="cod">FLN0402</span> <span class="end">Rua Lauro Linhares, 897</span><div class="oq"><span class="tipo t-hid">Hidráulica</span> Troca do filtro de água</div></div><div class="rr"><span class="av a1">AN</span></div><div class="ra"><button class="mdata">Mudar data</button><button class="feito">✓ Feito</button></div></div>
+        <button class="vermais">Ver as outras 6 ›</button>
+      </div>
+    </div>
+
+    <!-- SEMANA -->
+    <div id="modoSemana" style="display:none">
+      <div class="semana" id="semana">
+        <div class="dia"><div class="dh">Seg <b>03</b></div>
+          <div class="it late" draggable="true" data-r="ana"><span class="cod">FLN0102</span><span class="tipo t-ac">Ar</span><span class="it-s">atrasado</span></div>
+          <div class="it" draggable="true" data-r="bruno"><span class="cod">FLN0215</span><span class="tipo t-ded">Dedetização</span></div></div>
+        <div class="dia"><div class="dh">Ter <b>04</b></div>
+          <div class="it hosp" draggable="true" data-r="ana"><span class="cod">FLN0330</span><span class="tipo t-ac">Ar</span><span class="it-s">🛏 hóspede</span></div></div>
+        <div class="dia"><div class="dh">Qua <b>05</b></div>
+          <div class="it" draggable="true" data-r="ana"><span class="cod">FLN0341</span><span class="tipo t-ac">Ar</span></div></div>
+        <div class="dia"><div class="dh">Qui <b>06</b></div></div>
+        <div class="dia"><div class="dh">Sex <b>07</b></div>
+          <div class="it" draggable="true" data-r="bruno"><span class="cod">FLN0102</span><span class="tipo t-ded">Dedetização</span></div></div>
+        <div class="dia fds"><div class="dh">Sáb <b>08</b></div></div>
+        <div class="dia fds"><div class="dh">Dom <b>09</b></div></div>
+      </div>
+      <p class="leg">Arraste para mudar o dia. Amarelo = tem hóspede no imóvel nesse dia. Faixa vermelha = atrasado.</p>
+    </div>
+
+    <!-- PLANOS (secundário) -->
+    <details class="planos-box">
+      <summary>Seus planos <span class="n">3</span> <small>o que gera a lista acima · editar</small></summary>
+      <div class="pl-l">
+        <div class="pl-r"><span class="tipo t-ac">Ar-condicionado</span> Limpeza dos splits <span class="m">a cada 90 dias · 12 imóveis · Ana · Clima Sul</span><button class="lnk">Editar</button></div>
+        <div class="pl-r"><span class="tipo t-ded">Dedetização</span> Dedetização semestral <span class="m">a cada 180 dias · 14 imóveis · Bruno · Dedetiza BC</span><button class="lnk">Editar</button></div>
+        <div class="pl-r"><span class="tipo t-hid">Hidráulica</span> Troca do filtro de água <span class="m">a cada 180 dias · 6 imóveis · Ana</span><button class="lnk">Editar</button></div>
+      </div>
+    </details>
+
+    <div class="notas"><b>Como funciona</b><ol>
+      <li>A tela abre na lista <b>O que fazer</b>: atrasado, próximos 7 dias e mais para frente. Uma linha por imóvel.</li>
+      <li><b>✓ Feito</b> abre o Registro já preenchido. Ao salvar, a linha sai e a próxima data entra sozinha.</li>
+      <li><b>+ Planejar manutenções</b> é um passo a passo de 4 perguntas, feito uma vez. Ele cria as linhas da lista.</li>
+      <li>Semana, sugestão de prestador e aviso de hóspede são ajudas; ninguém precisa usar para a lista funcionar.</li>
+      <li>Lembrete automático para quem cuida, 3 dias antes de vencer.</li>
     </ol></div>
   </div></main>
 </div>
 </div>
 
-<!-- novo plano -->
+<!-- passo a passo: planejar -->
 <div class="veu" id="veuPlano"><div class="modal">
-  <div class="mh"><h2>Novo plano de manutenção</h2><p>Crie uma vez e aplique em quantos imóveis quiser.</p></div>
-  <div class="mb">
-    <div class="campo"><label>Tipo de manutenção <i>*</i></label><select><option>Ar-condicionado</option><option>Dedetização</option><option>Hidráulica</option><option>Elétrica</option><option>Outros</option></select></div>
+  <div class="mh"><h2>Planejar manutenções</h2>
+    <div class="passos"><span class="ps on">1 O quê</span><span class="ps">2 Quando</span><span class="ps">3 Onde</span><span class="ps">4 Quem</span></div></div>
+  <div class="mb wiz on" data-p="1">
+    <div class="pq full">Que manutenção você quer planejar?</div>
+    <div class="campo"><label>Tipo <i>*</i></label><select><option>Ar-condicionado</option><option>Dedetização</option><option>Hidráulica</option><option>Elétrica</option><option>Outros</option></select></div>
     <div class="campo"><label>O que fazer <em>(opcional)</em></label><input value="Limpeza dos splits"></div>
-    <div class="campo"><label>Repetir <i>*</i></label><select><option>A cada 90 dias</option><option>A cada 30 dias</option><option>A cada 180 dias</option><option>Uma vez por ano</option><option>Só uma vez (data marcada)</option></select></div>
-    <div class="campo"><label>Primeira data <i>*</i></label><input value="03/11/2026"></div>
-    <div class="campo full"><label>Imóveis <i>*</i> <em>· 12 de 14 selecionados</em></label>
-      <div class="ims">
-        <label class="im all"><input type="checkbox" checked> Todos os ativos</label>
-        <label class="im"><input type="checkbox" checked> FLN0102</label><label class="im"><input type="checkbox" checked> FLN0215</label><label class="im"><input type="checkbox" checked> FLN0330</label><label class="im"><input type="checkbox" checked> FLN0341</label><label class="im"><input type="checkbox" checked> FLN0388</label><label class="im"><input type="checkbox"> FLN0402 <span class="st st-o">Onb.</span></label><label class="im"><input type="checkbox"> FLN0405 <span class="st st-o">Onb.</span></label><span class="mais">+ 7</span>
-      </div></div>
-    <div class="campo"><label>Responsável <i>*</i></label><select><option>Ana (equipe)</option><option>Bruno (equipe)</option><option>Eu</option></select></div>
-    <div class="campo"><label>Prestador previsto <em>(opcional)</em></label><input value="Clima Sul Refrigeração"></div>
-    <div class="campo full"><label>Aviso</label><div class="cb" style="cursor:default">🔔 Avisar <b style="color:var(--tinta);font-weight:700;margin:0 4px">3 dias</b> antes de vencer, para o responsável</div></div>
   </div>
-  <div class="mf"><button class="btn sec" id="fecharPlano">Cancelar</button><button class="btn" id="salvarPlano">Criar plano em 12 imóveis</button></div>
+  <div class="mb wiz" data-p="2">
+    <div class="pq full">De quanto em quanto tempo?</div>
+    <div class="opts full"><label class="op"><input type="radio" name="fq"> Todo mês</label><label class="op on"><input type="radio" name="fq" checked> A cada 3 meses</label><label class="op"><input type="radio" name="fq"> A cada 6 meses</label><label class="op"><input type="radio" name="fq"> Uma vez por ano</label><label class="op"><input type="radio" name="fq"> Só uma vez</label></div>
+    <div class="campo"><label>A partir de <i>*</i></label><input value="03/11/2026"></div>
+  </div>
+  <div class="mb wiz" data-p="3">
+    <div class="pq full">Em quais imóveis?</div>
+    <div class="campo full"><div class="ims">
+      <label class="im all"><input type="checkbox" checked> Todos os ativos (12)</label>
+      <label class="im"><input type="checkbox" checked> FLN0102</label><label class="im"><input type="checkbox" checked> FLN0215</label><label class="im"><input type="checkbox" checked> FLN0330</label><label class="im"><input type="checkbox" checked> FLN0341</label><label class="im"><input type="checkbox" checked> FLN0388</label><label class="im"><input type="checkbox"> FLN0402 <span class="st st-o">Onb.</span></label><label class="im"><input type="checkbox"> FLN0405 <span class="st st-o">Onb.</span></label><span class="mais">+ 7</span>
+    </div></div>
+  </div>
+  <div class="mb wiz" data-p="4">
+    <div class="pq full">Quem cuida?</div>
+    <div class="campo"><label>Responsável <i>*</i></label><select><option>Ana (equipe)</option><option>Bruno (equipe)</option><option>Eu</option></select></div>
+    <div class="campo"><label>Prestador <em>(opcional)</em></label><input value="Clima Sul Refrigeração"></div>
+    <div class="resumo full">✓ Vai criar <b>12 manutenções</b> de ar-condicionado, a cada 3 meses, a partir de 03/11. A Ana recebe um lembrete 3 dias antes de cada uma.</div>
+  </div>
+  <div class="mf"><button class="btn sec" id="voltarPlano">Cancelar</button><button class="btn" id="avancarPlano">Continuar</button></div>
 </div></div>
 
 <!-- formulário -->
@@ -465,17 +530,21 @@ document.getElementById('abrir').onclick=()=>veu.classList.add('on');
 document.getElementById('fechar').onclick=document.getElementById('salvar').onclick=()=>veu.classList.remove('on');
 
 const toast=t=>{let e=document.getElementById('toast');if(!e){e=document.createElement('div');e.id='toast';e.className='toast';document.body.appendChild(e);}e.textContent=t;e.style.display='block';clearTimeout(e._t);e._t=setTimeout(()=>e.style.display='none',2600);};
-const veuPlano=document.getElementById('veuPlano');
-['abrirPlano','abrirPlano2'].forEach(id=>document.getElementById(id).onclick=()=>veuPlano.classList.add('on'));
-document.getElementById('fecharPlano').onclick=()=>veuPlano.classList.remove('on');
-document.getElementById('salvarPlano').onclick=()=>{veuPlano.classList.remove('on');toast('Plano criado em 12 imóveis. As próximas datas já estão na semana.');};
-document.getElementById('abrirAviso').onclick=()=>toast('Aviso ligado: o responsável recebe lembrete 3 dias antes de cada item.');
-document.querySelectorAll('.resp .chip').forEach(c=>c.onclick=()=>{document.querySelectorAll('.resp .chip').forEach(x=>x.classList.remove('on'));c.classList.add('on');document.querySelectorAll('#semana .it').forEach(i=>i.classList.toggle('hide',c.dataset.r!=='todos'&&i.dataset.r!==c.dataset.r));});
+const veuPlano=document.getElementById('veuPlano');let passo=1;
+const irPasso=n=>{passo=n;document.querySelectorAll('.wiz').forEach(w=>w.classList.toggle('on',+w.dataset.p===n));document.querySelectorAll('.ps').forEach((p,i)=>{p.classList.toggle('on',i+1===n);p.classList.toggle('ok',i+1<n)});document.getElementById('avancarPlano').textContent=n===4?'Criar 12 manutenções':'Continuar';document.getElementById('voltarPlano').textContent=n===1?'Cancelar':'Voltar';};
+document.getElementById('abrirPlano').onclick=()=>{irPasso(1);veuPlano.classList.add('on')};
+document.getElementById('voltarPlano').onclick=()=>{if(passo===1)veuPlano.classList.remove('on');else irPasso(passo-1)};
+document.getElementById('avancarPlano').onclick=()=>{if(passo<4)irPasso(passo+1);else{veuPlano.classList.remove('on');toast('Pronto: 12 manutenções entraram na sua lista.')}};
+document.querySelectorAll('.op').forEach(o=>o.onclick=()=>{document.querySelectorAll('.op').forEach(x=>x.classList.remove('on'));o.classList.add('on')});
+document.querySelectorAll('.seg button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.seg button').forEach(x=>x.classList.remove('on'));b.classList.add('on');document.getElementById('modoLista').style.display=b.dataset.modo==='lista'?'':'none';document.getElementById('modoSemana').style.display=b.dataset.modo==='semana'?'':'none'});
+document.querySelectorAll('.resp .chip').forEach(c=>c.onclick=()=>{document.querySelectorAll('.resp .chip').forEach(x=>x.classList.remove('on'));c.classList.add('on');document.querySelectorAll('#planejamento .row,#semana .it').forEach(i=>i.classList.toggle('hide',c.dataset.r!=='todos'&&i.dataset.r!==c.dataset.r));});
+document.getElementById('juntar').onclick=()=>{document.getElementById('dicaPr').style.display='none';toast('Os 4 imóveis da Clima Sul foram marcados para 05/11.')};
+document.getElementById('dispensar').onclick=()=>document.getElementById('dicaPr').style.display='none';
+document.querySelectorAll('.mdata').forEach(b=>b.onclick=()=>toast('Escolha a nova data no calendário.'));
 let arr=null;
 document.querySelectorAll('#semana .it').forEach(i=>{i.addEventListener('dragstart',()=>{arr=i;i.style.opacity=.5});i.addEventListener('dragend',()=>{i.style.opacity=1});});
-document.querySelectorAll('#semana .dia').forEach(d=>{d.addEventListener('dragover',e=>{e.preventDefault();d.classList.add('over')});d.addEventListener('dragleave',()=>d.classList.remove('over'));d.addEventListener('drop',e=>{e.preventDefault();d.classList.remove('over');if(arr){d.appendChild(arr);toast('Data alterada para '+d.querySelector('.dh').textContent.trim()+'/11');}});});
-document.querySelectorAll('.feito').forEach(b=>b.onclick=e=>{e.stopPropagation();const it=b.closest('.it');const cod=it.querySelector('.cod').textContent;document.getElementById('cbv').textContent=cod+' · (do plano)';const tipo=it.querySelector('.tipo').textContent;document.getElementById('tipoSel').value=tipo==='Dedet.'?'Dedetização':tipo==='Filtro'?'Hidráulica':'Ar-condicionado';veu.classList.add('on');document.getElementById('salvar').onclick=()=>{veu.classList.remove('on');it.remove();toast('Registrado. Próxima data de '+cod+' marcada pelo plano.');};});
-document.querySelectorAll('.jt .btn').forEach(b=>b.onclick=()=>toast('Itens marcados para o mesmo dia. Avise o prestador.'));
+document.querySelectorAll('#semana .dia').forEach(d=>{d.addEventListener('dragover',e=>{e.preventDefault();d.classList.add('over')});d.addEventListener('dragleave',()=>d.classList.remove('over'));d.addEventListener('drop',e=>{e.preventDefault();d.classList.remove('over');if(arr){d.appendChild(arr);toast('Data alterada.');}});});
+document.querySelectorAll('#planejamento .feito').forEach(b=>b.onclick=e=>{e.stopPropagation();const row=b.closest('.row');const cod=row.querySelector('.cod').textContent;document.getElementById('cbv').textContent=cod+' · (do plano)';document.getElementById('tipoSel').value=row.querySelector('.tipo').textContent;veu.classList.add('on');document.getElementById('salvar').onclick=()=>{veu.classList.remove('on');row.remove();toast('Registrado. A próxima de '+cod+' já está na lista.');};});
 </script>
 </body>
 </html>
